@@ -6,7 +6,7 @@ next: 8_clear-and-reset-values
 # Visits Lists
 Top or Lowest list per model type
 
-## Top/Lowest 10
+## Top/Lowest visited items per model
 ```php
 visits('App\Post')->top(10);
 ```

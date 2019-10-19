@@ -5,17 +5,17 @@ next: false
 
 # Clear and reset values
 
-## Clear an item visits
+## Clear an item's visits
 ```php
 visits($post)->reset();
 ```
 
-## Clear an item visits of specific period
+## Clear an item's visits of a specific period
 ```php
 visits($post)->period('year')->reset();
 ```
 
-## Periods options
+### Periods options
 
 - minute
 - hour
@@ -28,8 +28,7 @@ visits($post)->period('year')->reset();
 - decade
 - century
 
-you can also make your custom period by adding a carbon marco in `AppServiceProvider`:
-
+You can also make your custom period by adding a carbon marco in `AppServiceProvider`:
 ```php
 Carbon::macro('endOf...', function () {
     //
@@ -38,25 +37,32 @@ Carbon::macro('endOf...', function () {
 
 ## Clear recorded visitors' IPs
 ```php
+//all
 visits($post)->reset('ips');
+//one
 visits($post)->reset('ips','127.0.0.1');
 ```
 
-
-## Other
+## Clear items and its visits of a given model 
 ```php
-//clear all visits of the given model and its items
 visits('App\Post')->reset();
+```
 
-//clear all cache of the top/lowest list
+## Clear all cached top/lowest lists
+```php
 visits('App\Post')->reset('lists');
+```
 
-//clear visits from all items of the given model in a period
+## Clear visits from all items of the given model of a period
+```php
 visits('App\Post')->period('year')->reset();
+```
 
-//remove everything!
+## Clear & reset everything!
+```php
 visits('App\Post')->reset('factory');
 ```
+
 
 
  
