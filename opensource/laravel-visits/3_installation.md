@@ -18,11 +18,13 @@ To adjust the package to your needs, you can publish the config file to your pro
 php artisan vendor:publish --provider="Awssat\Visits\VisitsServiceProvider"
 ```
 
-> **Note** : Redis Database Name
 
-- By default `laravel-visits` doesn't use the default laravel redis configuration (see [issue #5](https://github.com/awssat/laravel-visits/issues/5))
+## Redis Configuration
+If you are not using Redis as your default data engine, skip this.
 
-To prevent any data loss add a new connection on `config/database.php`
+By default `laravel-visits` doesn't use the default laravel redis configuration (see [issue #5](https://github.com/awssat/laravel-visits/issues/5))
+
+To prevent any data loss add a new connection in `config/database.php`
 
 ```php
 'laravel-visits' => [
@@ -33,8 +35,18 @@ To prevent any data loss add a new connection on `config/database.php`
 ],
 ```
 
-and you can define your redis connection name on `config/visits.php`
+and you can define your redis connection name in `config/visits.php`
 ```php
+'connection' => 'laravel-visits'
+```
 
-'connection' => 'default' // to 'laravel-visits'
+## Eloquent (database) configuration
+If you are using Redis as your default data engine, skip this.
+
+Publish migration file, then migrate
+ ```sh
+php artisan vendor:publish --provider="Awssat\Visits\VisitsServiceProvider" --tag="migrations"
+```
+ ```sh
+php artisan migrate
 ```

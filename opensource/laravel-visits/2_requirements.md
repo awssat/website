@@ -6,7 +6,12 @@ next: 3_installation
 # Requirements
 - Laravel 5.5+
 - PHP 7.2+
-- Data engines options (can be configured from config/visits.php): 
-  - Redis: make sure that Redis is configured and ready. (see [Laravel Redis Configuration](https://laravel.com/docs/5.6/redis#configuration))
-  - Database: publish migration file: `php artisan vendor:publish --provider="Awssat\Visits\VisitsServiceProvider" --tag="migrations"` then migrate.
+- Data engine (Redis or Database) 
+
+### Data Egnine options 
+You can choose to use Redis or database as your data engine from `config/visits.php`
+#### Redis
+Make sure that Redis is configured and ready. (see [Laravel Redis Configuration](https://laravel.com/docs/5.6/redis#configuration))
+#### (Eloquent) Database
+Laravel visits uses any database that Eloquent uses.
 
