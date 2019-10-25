@@ -7,15 +7,21 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: checkout
         uses: actions/checkout@master
 
-      - name: Build and Deploy
-        uses: JamesIves/github-pages-deploy-action@master
+      - name: build
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - run: |
+          yarn install
+          yarn docs:build
+          cp ./CNAME ./docs/CNAME
+
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v2.5.0
         env:
-          ACCESS_TOKEN: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          BASE_BRANCH: master
-          BRANCH: gh-pages
-          FOLDER: docs
-          BUILD_SCRIPT: yarn global add vuepress && yarn docs:build
-          CNAME: awssat.com
+          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ./docs
