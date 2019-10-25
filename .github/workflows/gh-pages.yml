@@ -7,14 +7,14 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@master
+      - uses: actions/checkout@master
 
       - name: build
         uses: actions/setup-node@v1
         with:
           node-version: '10.x'
       - run: |
+          yarn global add vuepress 
           yarn install
           yarn docs:build
           cp ./CNAME ./docs/CNAME
