@@ -6,6 +6,10 @@ module.exports = {
   themeConfig: {
     logo: '/icons/logo.png',
     displayAllHeaders: true,
-    sidebar: require('./contentFiles.js')
+    sidebar: require('./contentFiles.js'),
+    repo: 'awssat/website',
+    editLinks: true,
+    editLinkText: 'Help us improve this page!',
+    lastUpdated: 'Last Updated'
   }
 }
