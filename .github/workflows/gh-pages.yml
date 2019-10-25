@@ -17,5 +17,5 @@ jobs:
           BASE_BRANCH: master
           BRANCH: gh-pages
           FOLDER: docs
-          BUILD_SCRIPT: npm install && npm run docs:build
+          BUILD_SCRIPT: yarn global add vuepress && yarn docs:build
           CNAME: awssat.com
