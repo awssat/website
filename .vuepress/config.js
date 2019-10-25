@@ -7,7 +7,8 @@ module.exports = {
     logo: '/icons/logo.png',
     displayAllHeaders: true,
     sidebar: require('./contentFiles.js'),
-    repo: 'awssat/website',
+    repo: 'awssat',
+    docsRepo: 'awssat/website',
     editLinks: true,
     editLinkText: 'Help us improve this page!',
     lastUpdated: 'Last Updated'
