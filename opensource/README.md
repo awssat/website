@@ -17,9 +17,15 @@ We beleive that most of these are ideas that we love to share them with you.
 
 ## Laravel Visits 
 
-Laravel Visits is an advanced counter that can be attached to any model to track its visits with useful features like IP-protection and lists caching.
+Laravel Visits is an **advanced counter** that can be attached to any model to **track its visits** with useful features like IP-protection and lists caching.
 
 [Docs](/opensource/laravel-visits)  &nbsp;&horbar;&nbsp;  [Source Code](https://github.com/awssat/laravel-visits)
+
+## Laravel Sync Migration 
+
+It's a **tool to help ease the repetitive migration process** during developing a Laravel project without migrate:fresh your database every time you change you schemas.
+
+[Docs](/opensource/laravel-sync-migration/)  &nbsp;&horbar;&nbsp;  [Source Code](https://github.com/awssat/laravel-sync-migration/)
 
 
 ---

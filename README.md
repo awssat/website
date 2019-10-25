@@ -14,7 +14,7 @@ features:
   moreUrl: https://github.com/awssat
   moreTitle: Follow us Github
 - title: Open Source
-  details: Because we like to build and also give back to community, we publish many open source projects and tools.
+  details: We are invested in open source because we like to build and also give back to community, we publish many open source projects and tools.
   moreUrl: /opensource/
   moreTitle: Awssat's Open Sources & Docs
 footer:  © 2017-present Awssat

@@ -89,7 +89,7 @@ You can add `periods` to global_ignore setting to skip recording any of these pe
 ```
 A word that's appended to the begining of keys names. If you are using shared Redis database, it's important to keep this filled.
 
-### remember_ip
+#### remember_ip
 ```php
 'remember_ip' => 15 * 60, // seconds
 ```

@@ -42,7 +42,6 @@ output.forEach(dir => {
   }
   contentFiles[`/${dir}/`] = []
   var list = fs.readdirSync(dir)
-  contentFiles[`/${dir}/`].push('../')
   contentFiles[`/${dir}/`].push('./')
   list.forEach(function (file) {
     if (/\.md$/.test(file) && file.indexOf('docs-versions') === -1 && file.indexOf('index.md') === -1 && file.indexOf('README.md') === -1) {
@@ -51,8 +50,6 @@ output.forEach(dir => {
   })
 })
 
-fs.writeFile(rootFolder + "files.json", JSON.stringify(contentFiles), function (err) {
-  if (err) throw err;
-});
+
 
 module.exports = contentFiles

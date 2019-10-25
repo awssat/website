@@ -1,4 +1,3 @@
-console.log(require('./contentFiles.js'))
 
 module.exports = {
   title: 'Awssat',
