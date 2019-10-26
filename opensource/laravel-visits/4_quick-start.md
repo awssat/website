@@ -6,6 +6,7 @@ next: 5_increments-and-decrements
 
 # Quick Start
 
+## Start using it
 It's simple.
 
 Using `visits` helper as:

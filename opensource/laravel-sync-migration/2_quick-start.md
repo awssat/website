@@ -6,6 +6,7 @@ next: false
 
 # Quick Start
 
+## Start using it
 It's simple. Anytime you want sync schema files to database run this command:
 ```sh
 php artisan migrate:sync
