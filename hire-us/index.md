@@ -1,6 +1,7 @@
 ---
 prev: false
 navbar: false
+editLink: false
 ---
 
-<Order :versions="['Latest']" />
+<Order />

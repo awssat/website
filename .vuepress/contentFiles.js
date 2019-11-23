@@ -50,23 +50,4 @@ output.forEach(dir => {
   })
 })
 
-
-let output2 = walk(rootFolder + 'hire-us')
-output2 = flatten(output)
-
-output2.forEach(dir => {
-  if(dir === "hire-us") {
-    return
-  }
-  contentFiles[`/${dir}/`] = []
-  var list = fs.readdirSync(dir)
-  contentFiles[`/${dir}/`].push('./')
-  list.forEach(function (file) {
-    if (/\.md$/.test(file) && file.indexOf('docs-versions') === -1 && file.indexOf('index.md') === -1 && file.indexOf('README.md') === -1) {
-      contentFiles[`/${dir}/`].push(file)
-    }
-  })
-})
-
-
 module.exports = contentFiles
