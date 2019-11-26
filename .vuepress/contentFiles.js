@@ -50,6 +50,4 @@ output.forEach(dir => {
   })
 })
 
-
-
 module.exports = contentFiles

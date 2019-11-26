@@ -11,8 +11,8 @@ features:
   moreTitle: Follow/Contact us on Twitter
 - title: Technology
   details: Our expertise is web development, we use PHP (Laravel) and Javascript (Vue). We also build Android/iOS apps using React Native, NativeScript, or Flutter.
-  moreUrl: https://github.com/awssat
-  moreTitle: Follow us Github
+  moreUrl: /hire-us/
+  moreTitle: Hire Us
 - title: Open Source
   details: We are invested in open source because we like to build and also give back to community, we publish many open source projects and tools.
   moreUrl: /opensource/
