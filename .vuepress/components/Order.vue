@@ -118,7 +118,7 @@
           <!-- 5th part -->
         <div class="flex items-center bg-purple-600 text-white text-sm font-bold mx-3 md:mx-12 px-4 py-3" role="alert">
           <svg class="fill-current w-12 h-12 md:w-6 md:h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19h.5v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-3.5h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/><path fill="none" d="M0 0h24v24H0z"/></svg>
-          <p class="text-xl reading-font">Let's figure out how we could step in and help you out. <a href="mailto:hello@awssat.com?subject=Hire%20a%20team&amp;body=Tell%20us%20as%20much%20as%20you%20can%20about%0A-%20where%20you%20are%20stuck%0A-%20the%20current%20state%20and%20planning%20of%20the%20project%0A-%20your%20budget%0A-%20%E2%80%A6%0A%0AAnything%20that%20helps%20us%20to%20start%20straightforward%21" class="underline font-bold">Click here</a> to contact us.</p>
+          <p class="text-xl reading-font">Let's figure out how we could step in and help you out. <a href="mailto:hello@awssat.com?subject=Hire%20a%20team&amp;body=Tell%20us%20as%20much%20as%20you%20can%20about%0A-%20where%20you%20are%20stuck%0A-%20the%20current%20state%20and%20planning%20of%20the%20project%0A-%20your%20budget%0A-%20%E2%80%A6%0A%0AAnything%20that%20helps%20us%20to%20start%20straightforward%21" class="underline font-bold text-white">Click here</a> to contact us.</p>
         </div>
 
         </div>
