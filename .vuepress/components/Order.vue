@@ -7,20 +7,20 @@
     ></div>
     <div class="absolute w-full flex flex-col">
       <div
-        class="bg-bottom bg-no-repeat bg-cover"
+        class="bg-bottom bg-no-repeat bg-cover flex md:block justify-between flex-row-reverse"
         style="background-image:url('/icons/bg-curve.svg')"
       >
-        <header class="z-20 w-full xl:px-0 px-6">
+        <header class="z-20 w-1/3 md:w-full  md:px-6">
           <a href="https://awssat.com" alt="awssat"><img src="/icons/logo.png" class="w-16 h-16 md:w-12 md:h-12 float-right mr-6 mt-3 bg-white rounded-full" /></a>
         </header>
-        <section class="w-full">
-          <div class="container mx-auto flex flex-row items-center xl:pb-16 xl:px-0 px-4">
-            <div class="md:w-1/2 text-white md:flex flex-col mb-12">
+        <section class="w-2/3 md:w-full">
+          <div class="container md:mx-auto flex flex-row items-center xl:pb-16 xl:px-0 px-4">
+            <div class="w-full md:w-1/2 text-white md:flex flex-col mb-12">
               <h1
                 class="text-2xl md:text-4xl py-4 md:py-12 head-font"
               >App &amp; Web Development with Passion</h1>
             </div>
-            <div class="w-2/4 xl:pt-6 flex justify-end items-end">
+            <div class="md:w-2/4 xl:pt-6 flex justify-end items-end">
               <img
                 alt="awssat"
                 src="/icons/pl0.svg"
@@ -44,21 +44,21 @@
           </div>
 
           <!-- 2nd part -->
-          <div class="md:mt-32 h-full md:mx-12 flex flex-col flex-col-reverse md:block">
+          <div class="md:mt-32 h-full md:mx-12 flex flex-col flex-col-reverse md:block overflow-hidden md:overflow-visible">
             <div
               class="p-2 md:px-8 md:py-10 md:rounded-lg border border-gray-200 md:shadow-lg bg-white md:flex flex-col overflow-hidden"
             >
               <h2 class="text-center md:text-right font-black text-2xl border-0 head-font">Web Development</h2>
-              <p class="leading-loose text-xl text-justify z-10 h-56 reading-font px-3 md:px-0 md:w-2/3">
-                Because each project is different, we adapt to your business model. From complete e-commerce solutions to
+              <p class="leading-loose text-xl text-justify z-10 md:h-56 reading-font px-3 md:px-0 md:w-2/3">
+                 Each project is different to us, we adapt to your business model. From complete e-commerce solutions to
                 <span
                   class="bg-purple-800 text-white px-1"
                 >personalized web applications and websites</span>, our development team always succeeds in successfully implementing a well crafted responsive design
                 <span class="bg-purple-800 text-white px-1">with a clean and optimized code</span>
               </p>
             </div>
-            <div class="relative -mb-24 md:mb-0 opacity-25 md:opacity-100 md:-mt-64 -mr-32 flex justify-end">
-              <img alt="web development" src="/icons/pl1.svg" style="width:450px" class="bg-" />
+            <div class="relative -mb-24 md:mb-0 opacity-25 md:opacity-100 md:-mt-64 -mr-32 flex justify-end overflow-hidden">
+              <img alt="web development" src="/icons/pl1.svg" style="width:450px" />
             </div>
           </div>
 
@@ -102,7 +102,7 @@
               class="p-2 md:px-8 md:py-10 md:rounded-lg border border-gray-200 md:shadow-lg bg-white md:flex flex-col overflow-hidden"
             >
               <h2 class="text-center md:text-left font-black text-2xl border-0 head-font">Mobile Apps Development</h2>
-              <p class="leading-loose text-xl text-justify z-10 h-56 reading-font md:w-2/3 self-end p-3 md:p-0">
+              <p class="leading-loose text-xl text-justify z-10 md:h-56 reading-font md:w-2/3 self-end p-3 md:p-0">
                 We develop mobile applications dedicated to smart devices, smartphones and tablets.
                 <span
                   class="bg-purple-800 text-white px-1"
