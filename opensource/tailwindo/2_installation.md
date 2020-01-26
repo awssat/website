@@ -9,7 +9,14 @@ To get started, use [Composer](https://getcomposer.org/doc/00-intro.md) to insta
 ```bash
 composer global require awssat/tailwindo
 ```
-
 ::: tip
 To install this tool make sure that PHP & [Composer](https://getcomposer.org/doc/00-intro.md) (a PHP package manager) are installed on your system .
+:::
+
+or you can use [NodeJs](https://nodejs.org) version to install the tool in your system:
+```bash
+npm i -g tailwindo
+```
+::: tip
+To install the nodejs version of the tool make sure that [NodeJs](https://nodejs.org) > 10 & NPM (a Node Package Manager) installed on your system .
 :::
