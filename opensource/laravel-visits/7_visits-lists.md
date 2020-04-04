@@ -14,6 +14,18 @@ visits('App\Post')->top(10);
 visits('App\Post')->low(10);
 ```
 
+### Filter by model attributes
+You can get only some of the top/low models by query where clause. For example if Post model has `shares` & `likes` attributes you can filter the models like this: 
+
+```php
+visits('App\Post')->top(10, [['likes', '>', 30], ['shares', '<', 20]]);
+```
+or just ...
+```php
+visits('App\Post')->top(10, ['likes' => 20]);
+```
+
+
 ## Uncached list
 ```php
 visits('App\Post')->fresh()->top(10);
