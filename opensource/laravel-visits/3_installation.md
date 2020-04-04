@@ -15,7 +15,7 @@ composer require awssat/laravel-visits
 To adjust the package to your needs, you can publish the config file `config/visits.php` to your project's config folder using:
 
 ```bash
-php artisan vendor:publish --provider="Awssat\Visits\VisitsServiceProvider"
+php artisan vendor:publish --provider="Awssat\Visits\VisitsServiceProvider" --tag=config
 ```
 
 
@@ -45,7 +45,7 @@ If you are using Redis as your default data engine, skip this.
 
 Publish migration file, then migrate
  ```sh
-php artisan vendor:publish --provider="Awssat\Visits\VisitsServiceProvider" --tag="migrations"
+php artisan vendor:publish --provider="Awssat\Visits\VisitsServiceProvider" --tag=migrations
 ```
  ```sh
 php artisan migrate
