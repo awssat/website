@@ -35,7 +35,7 @@ class Post extends Model
 
     //....
 
-    public function visits()
+    public function vzt()
     {
         return visits($this);
     }
@@ -46,6 +46,27 @@ Then you can use it as:
 
 ```php
 $post = Post::find(1);
-$post->visits()->increment();
-$post->visits()->count();
+$post->vzt()->increment();
+$post->vzt()->count();
+```
+
+
+## Relationship with models (only for Eloquent engine)
+If you are using visits with eloquent as engine (from config/visits.php; engine => 'eloquent') then you can add a relationship as visits method in your models as a helper but as a relationship
+
+```php
+class Post extends Model
+{
+
+    //....
+
+    public function visits()
+    {
+        return visits($this)->relation();
+    }
+}
+
+//then:
+
+Post::with('visits')->get(); 
 ```
