@@ -4,7 +4,8 @@ next: 2_installation
 ---
 
 # Introduction
-This tool can convert Boostrap CSS classes in any HTML code to equivalent Tailwind CSS classes.
+Tailwindo can convert Your CSS framework (currently Boostrap) classes in HTML/PHP (any of your choice) files to equivalent Tailwind CSS classes.
+
 
 
 ## Features
@@ -13,7 +14,16 @@ This tool can convert Boostrap CSS classes in any HTML code to equivalent Tailwi
 - Multiple files extensions support (.html, .vue, .twig, .blade and more)
 - Safe converting, non-destructive option.
 - Can convert a given raw code without file.
+- Made to be easy to add more CSS frameworks in the future (currently Bootstrap).
+- Can extract changes to a separate css file as Tailwind components and keep old classes names. like:
+
+```
+.p-md-5 {
+	@apply md:p-7;
+}
+```
+
 
 ::: tip
-Tailwindo currently convert code to Tailwindcss 0.7, to convert to 1.0 from 0.7 use ([tailwind-shift](https://github.com/awssat/tailwind-shift))
+Check our newest tool, update your tailwindcss code to newer versions hassle-free ([tailwind-shift](https://github.com/awssat/tailwind-shift))
 :::
