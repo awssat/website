@@ -36,7 +36,7 @@ Using Increment/decrement method will only work once every 15 minutes (default s
 ## Increment/decrement once per x seconds 
 based on visitor's IP
 ```php
-visits($post)->seconds(30)->increment()
+visits($post)->seconds(30)->increment();
 ```
 > **Note:** this will override default config setting (once each 15 minutes per IP).
 
