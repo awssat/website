@@ -1,3 +1,7 @@
-.vuepress/dist
-node_modules
-docs
+/build_*/
+/node_modules/
+/vendor/
+.DS_Store
+/source/_tags/
+/source/assets/build/**/*
+/source/assets/build/*

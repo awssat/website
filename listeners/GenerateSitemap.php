@@ -1,0 +1,48 @@
+<?php
+
+namespace App\Listeners;
+
+use samdark\sitemap\Sitemap;
+use TightenCo\Jigsaw\Jigsaw;
+use Illuminate\Support\Str;
+
+class GenerateSitemap
+{
+    protected $exclude = [
+        '/assets/*',
+        '*/images/*',
+        '*/favicon.ico',
+        '*/404*'
+    ];
+
+    public function handle(Jigsaw $jigsaw)
+    {
+        $baseUrl = $jigsaw->getConfig('baseUrl');
+
+        if (!$baseUrl) {
+            echo ("\nTo generate a sitemap.xml file, please specify a 'baseUrl' in config.php.\n\n");
+
+            return;
+        }
+
+        $sitemap = new Sitemap($jigsaw->getDestinationPath() . '/sitemap.xml');
+
+        collect($jigsaw->getOutputPaths())
+            ->reject(function ($path) {
+                return $this->isExcluded($path);
+            })
+            ->map(function ($path) {
+                return Str::start(Str::finish(trim($path), '/'), '/');
+            })
+            ->each(function ($path) use ($baseUrl, $sitemap) {
+                $sitemap->addItem(rtrim($baseUrl, '/') . trim($path), time(), Sitemap::DAILY);
+            });
+
+        $sitemap->write();
+    }
+
+    public function isExcluded($path)
+    {
+        return Str::is($this->exclude, $path);
+    }
+}

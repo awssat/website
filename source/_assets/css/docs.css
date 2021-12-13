@@ -1,0 +1,45 @@
+
+.opensource-doc-body h1 {
+    @apply text-xl mt-6 mb-2 font-black;
+}
+
+.opensource-doc-body h2 {
+    @apply text-lg mt-6 mb-2 font-black;
+}
+
+.opensource-doc-body h3 {
+    @apply text-base mt-6 mb-2 font-black;
+}
+
+.opensource-doc-body h4 {
+    @apply text-md mt-6 mb-2 font-black;
+}
+
+
+@screen md {
+    .opensource-doc-body h1 {
+        @apply text-3xl
+    }
+
+    .opensource-doc-body h2 {
+        @apply text-2xl
+    }
+
+    .opensource-doc-body h3 {
+        @apply text-xl
+    }
+
+    .opensource-doc-body h4 {
+        @apply text-lg
+    }
+}
+
+
+
+.opensource-doc-body>p>code {
+    @apply text-awssat bg-gray-300 font-mono px-1 rounded;
+}
+
+.opensource-doc-body>:not(pre) {
+    @apply break-words;
+}

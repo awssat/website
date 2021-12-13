@@ -12,17 +12,17 @@ jobs:
       - name: build
         uses: actions/setup-node@v1
         with:
-          node-version: '10.x'
-      - run: |
-          yarn global add vuepress 
-          yarn install
-          yarn docs:build
-          cp ./CNAME ./docs/CNAME
-
+          node-version: "10.x"
+      - name: Install NPM Dependencies
+        run: npm install
+      - name: Install Composer Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+      - name: Build website
+        run: npm run production
       - name: deploy
         uses: peaceiris/actions-gh-pages@v2.5.0
         env:
           ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           EXTERNAL_REPOSITORY: awssat/awssat.github.io
           PUBLISH_BRANCH: master
-          PUBLISH_DIR: ./docs
+          PUBLISH_DIR: ./build_production

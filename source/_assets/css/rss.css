@@ -1,0 +1,34 @@
+rss {
+    @apply font-sans block;
+}
+
+channel > link {
+    @apply hidden;
+}
+channel > title{
+    @apply block p-2 text-awssat font-bold text-xl;
+}
+channel > description  {
+    @apply block text-gray-900 p-3 mb-4;
+}
+
+item {
+    @apply block px-6 py-4 border;
+}
+item > title {
+    @apply block text-awssat text-lg;
+}
+item > pubDate {
+    @apply text-sm text-gray-700;
+}
+item > link {
+    @apply block text-sm text-gray-600;
+}
+
+item > description  {
+    @apply block py-2 leading-relaxed;
+}
+/* all hidden elements */
+language, lastBuildDate, ttl, guid, category, author, skipHours {
+    display: none;
+}
