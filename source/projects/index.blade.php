@@ -5,7 +5,7 @@
 
 <div class="flex flex-col items-center justify-center w-full opensource-doc-body md:px-4 px-12 mt-32">
     <p class="font-black leading-loose text-2xl md:text-3xl">
-        This is not a 404 page, but a page that is yet created.
+        This is not a 404 page, but a page that is yet to be created.
     </p>
     <p class="text-right w-full text-md text-gray-600">
     &mdash; @see also: Procrastination.
