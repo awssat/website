@@ -71,19 +71,28 @@
     <aside class="flex justify-between mt-4 text-sm">
         <div class="flex items-center">
             {{-- todo -> share & comments?. --}}
+
         </div>
-        <div>
+    
 
             {{-- on post page: show author name --}}
             <div class="base-post-author">
-                @if (!empty($page->author_link))
+                @if ($page->author_link !== null)
                 <span class="italic">By</span> <a href="{{ $page->author_link }}" class="font-bold"
-                        target="_tab" title="external page of {{ $page->author }}">{{ $page->author }}</a>
+                        target="_tab" rel="nofollow" title="external page of {{ $page->author }}">{{ $page->author }}</a>
                 @else
                 <span class="italic">By</span> <span class="font-bold">{{ $page->author }}</span>
                 @endif
             </div>
 
-        </div>
+            
+
+
+      
     </aside>
+
+    <hr>
+    <div class="text-center py-4">
+    <a target="_tab" rel="nofollow" class="font-bold text-sm text-gray-700" href="https://github.com/awssat/website/tree/master/source/_posts/{{$page->getFilename() }}.md">Improve this post on Github</a>
+    </div>
 </article>

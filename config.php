@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 
 return [
-    'baseUrl' => 'http://website-jigsaw.test',
+    'baseUrl' => 'http://localhost:8000',
     'production' => false,
     'siteName' => 'Awssat',
     'siteDescription' => 'An enthusiastic team that\'s eager to build and design beautiful web stuff.',
@@ -41,7 +41,7 @@ return [
         return parse_url($page->external_link, PHP_URL_HOST) ?? null;
     },
     'getCoverImage' => function ($page) {
-        return $page->cover_image ?? url('/assets/images/covers/' . $page->getFilename . '.png');
+        return $page->cover_image ?? url('/assets/images/covers/' . $page->getFilename() . '.png');
     },
     'getExcerpt' => function ($page, $length = 255) {
         if ($page->excerpt) {

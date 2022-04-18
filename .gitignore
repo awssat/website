@@ -5,3 +5,5 @@
 /source/_tags/
 /source/assets/build/**/*
 /source/assets/build/*
+.vscode/settings.json
+config.local.php
