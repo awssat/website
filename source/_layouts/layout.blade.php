@@ -12,7 +12,7 @@
 @stack('head')
 </head>
 <body class="mx-auto max-w-5xl px-0 md:px-4 container antialiased">
-@if (!$page->isActive('/'))
+@if (!$page->isPath(''))
     <header x-data="{ open: false }"
         class="w-full flex justify-between flex-col md:flex-row font-bold text-gray-700">
         <div

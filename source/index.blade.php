@@ -33,8 +33,8 @@
         </div>
     </div>
 
-    <div class="font-bold base-home-footer absolute bottom-0 p-3 italic">
+    {{-- <div class="font-bold base-home-footer  bottom-0 p-3 italic">
         Building a better web, we hope.
-    </div>
+    </div> --}}
 </div>
 @stop
