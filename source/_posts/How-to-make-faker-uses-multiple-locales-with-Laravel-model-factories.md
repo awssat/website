@@ -9,15 +9,12 @@ author_link: http://twitter.com/aphpdev
 
 Laravel 8 introduced new model factories that are basically the same as before, but they are class-based and have some new additions.
 
-<br>
 
 Unfortunately, switching between different locales was not taken into account, and you have to define one locale in `config/app.php` using `faker_locale` every time you decide to test your app.
 
-<br>
 
 It would be great if the upcoming versions of Laravel included functions that run before making/creating models, next to `afterMaking`and`afterCreating`, or even better they could add something similar to Sequences but for switching between multiple locales.
 
-<br>
 
 Lately, I came across this dilemma, and I had to improvise; I'm still not happy with it, but it works and is the only solution we have right now.
 
