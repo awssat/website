@@ -1,8 +1,12 @@
 window.axios = require("axios");
 const hljs = require("highlight.js/lib/core");
-window.alpine = require("alpinejs");
+import Alpine from "alpinejs";
 
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+
+// Alpine v3 initialization
+window.Alpine = Alpine;
+Alpine.start();
 
 hljs.registerLanguage("php", require("highlight.js/lib/languages/php"));
 hljs.registerLanguage("javascript", require("highlight.js/lib/languages/javascript"));
@@ -13,7 +17,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     darkMode(darkMode());
 
     document.querySelectorAll("pre code").forEach((block) => {
-        hljs.highlightBlock(block);
+        hljs.highlightElement(block);
 
         if (block.classList.contains("language-diff")) {
             block.innerHTML = block.innerHTML

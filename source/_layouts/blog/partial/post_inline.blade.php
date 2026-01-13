@@ -18,11 +18,11 @@
             @endif
         </div>
     </aside>
-    <div class="lading-9 md:leading-10 font-sans text-lg md:text-xl base-post-body">{!! $post->getExcerpt(200) !!}</div>
+    <div class="leading-9 md:leading-10 font-sans text-lg md:text-xl base-post-body">{!! $post->getExcerpt(200) !!}</div>
 
     <div class="flex justify-between mt-4 text-sm">
         <a href="{{ $post->external_link ?? $post->getUrl() }}"
-            {{ !empty($post->external_link) ? 'target="_tab"' : '' }} title="Read more on '{{ $post->title }}'"
+            {{ !empty($post->external_link) ? 'target="_blank" rel="noopener noreferrer"' : '' }} title="Read more on '{{ $post->title }}'"
             class="text-lg font-bold text-gray-800 base-post-read-more flex items-center  py-px px-1 rounded group">Read
             More
             @if (!empty($post->external)) <span class="px-1 text-sm font-normal">[{{ $post->getExternalDomain() }}]</span> @else &hellip; @endif

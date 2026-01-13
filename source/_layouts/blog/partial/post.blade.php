@@ -12,8 +12,8 @@
                 <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
             </svg>
             {{ $page->getDate()->toDayDateTimeString() }}
-            @if (!empty($page->updated_at) && $page->getUpdateAt() > $page->getDate())
-                | updated: {{ $page->getUpdateAt()->toDayDateTimeString() }}
+            @if (!empty($page->updated_at) && $page->getUpdatedAt() > $page->getDate())
+                | updated: {{ $page->getUpdatedAt()->toDayDateTimeString() }}
             @endif
         </div>
 
@@ -61,7 +61,7 @@
         </div>
     </aside>
 
-    <section id="article-body" class="lading-9 md:leading-10 font-sans text-lg md:text-xl base-post-body">
+    <section id="article-body" class="leading-9 md:leading-10 font-sans text-lg md:text-xl base-post-body">
 
         @yield('post_content')
 
@@ -79,7 +79,7 @@
             <div class="base-post-author">
                 @if ($page->author_link !== null)
                 <span class="italic">By</span> <a href="{{ $page->author_link }}" class="font-bold"
-                        target="_tab" rel="nofollow" title="external page of {{ $page->author }}">{{ $page->author }}</a>
+                        target="_blank" rel="nofollow noopener noreferrer" title="external page of {{ $page->author }}">{{ $page->author }}</a>
                 @else
                 <span class="italic">By</span> <span class="font-bold">{{ $page->author }}</span>
                 @endif
@@ -93,6 +93,6 @@
 
     <hr>
     <div class="text-center py-4">
-    <a target="_tab" rel="nofollow" class="font-bold text-sm text-gray-700" href="https://github.com/awssat/website/tree/master/source/_posts/{{$page->getFilename() }}.md">Improve this post on Github</a>
+    <a target="_blank" rel="nofollow noopener noreferrer" class="font-bold text-sm text-gray-700" href="https://github.com/awssat/website/tree/master/source/_posts/{{$page->getFilename() }}.md">Improve this post on Github</a>
     </div>
 </article>

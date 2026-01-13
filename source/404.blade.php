@@ -14,9 +14,9 @@ permalink: 404.html
 
     <p class="mt-12 font-bold md:text-2xl text-xl border-t pt-4">
     If you are looking for a specific blog post, then it's ok because we use tags to make it easy for you to find any post, or just use Google (site:awssat.com your keyword).
-    <p>
+    </p>
     <p class="mt-5 font-bold md:text-2xl text-xl border-t pt-4">
     If you are looking for documenations of our packages, then go to the Github page of that package and you will find it there.
-    <p>
+    </p>
     </div>
 @endsection

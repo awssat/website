@@ -15,7 +15,7 @@ pagination:
     @include('_layouts.blog.partial.post_inline') 
 @endforeach
 
-{{-- TODO: fix links previous if currrent: >2 --}}
+{{-- TODO: Fix pagination link styles when current page is greater than 2 --}}
 @if ($pagination->pages->count() > 1)
 <nav class="flex my-8">
     @if ($previous = $pagination->previous)

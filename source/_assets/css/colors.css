@@ -1,4 +1,4 @@
-/* colors + dark mode shitty implementation */
+/* Colors and dark mode theme implementation */
 body {
     @apply bg-gray-100;
 }

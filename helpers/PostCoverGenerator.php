@@ -5,13 +5,14 @@ namespace App\Helpers;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class PostCoverGenerator
 {
     public static function generate($post, $destination)
     {
-        $imageManager = new ImageManager(array('driver' => 'gd'));
-        $img = $imageManager->make(public_path('assets/images/cover.png'));
+        $imageManager = new ImageManager(new Driver());
+        $img = $imageManager->read(public_path('assets/images/cover.png'));
 
         /**
          * An open-source font from Adobe, distributed under the SIL Open Font License.
@@ -60,7 +61,7 @@ class PostCoverGenerator
         $i = 0;
         foreach ($post->tags as $tag) {
             if (file_exists(public_path("assets/images/tags/" . Str::lower($tag) . ".png"))) {
-                $img->insert(public_path("assets/images/tags/" . Str::lower($tag) . ".png"), 'top-left', 70 + $i, 60);
+                $img->place(public_path("assets/images/tags/" . Str::lower($tag) . ".png"), 'top-left', 70 + $i, 60);
                 $i = $i + 70;
             }
         }
@@ -69,7 +70,7 @@ class PostCoverGenerator
             mkdir($destination . '/assets/images/covers/', 0777, true);
         }
 
-        if (file_put_contents($destination . '/assets/images/covers/' . $post->getFilename() . '.png', $img->encode('png'))) {
+        if (file_put_contents($destination . '/assets/images/covers/' . $post->getFilename() . '.png', $img->toPng())) {
             return $destination . '/assets/images/covers/' . $post->getFilename() . '.png';
         }
 

@@ -1,11 +1,24 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap'); */
 @import url("https://fonts.googleapis.com/css2?family=Bitter:wght@400;700;900&display=swap");
 
-@tailwind base;
+@import "tailwindcss";
 
-@tailwind components;
+/* Tailwind v4 Theme Configuration */
+@theme {
+  /* Custom Colors */
+  --color-awssat: #4931A5;
+  --color-awssat-light: #8166E5;
 
-@tailwind utilities;
+  /* Custom Font Family */
+  --font-family-sans: Bitter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  /* Custom Font Size */
+  --text-md: 1.0625rem;
+  --text-md--line-height: 1.5;
+
+  /* Custom Box Shadow */
+  --shadow-link: 0 -4px 0 0 rgba(248, 220, 74, .7) inset;
+}
 
 [x-cloak] {
     display: none;
