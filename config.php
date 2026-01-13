@@ -45,11 +45,11 @@ return [
             },
         ],
 
-        // English blog posts
+        // English blog posts (default, no locale prefix)
         'posts_en' => [
             'author' => 'Awssat Devs',
             'sort' => '-date',
-            'path' => '/en/blog/{filename}',
+            'path' => '/blog/{filename}',
             'extends' => '_layouts.blog.view',
             'section' => 'post_content',
             'locale' => 'en',
@@ -91,12 +91,19 @@ return [
             },
         ],
 
-        // English portfolio items
+        // Base portfolio collection (loads all portfolio items)
+        'portfolio' => [
+            'sort' => '-date',
+            'path' => '/portfolio/{filename}',
+            'extends' => '_layouts.portfolio.view',
+        ],
+
+        // English portfolio items (default, no locale prefix)
         'portfolio_en' => [
             'sort' => '-date',
-            'path' => '/en/portfolio/{filename}',
+            'path' => '/portfolio/{filename}',
             'extends' => '_layouts.portfolio.view',
-            'section' => 'portfolio_content',
+
             'locale' => 'en',
             'filter' => function ($item) {
                 return Str::endsWith($item->getFilename(), '.en');
@@ -213,8 +220,9 @@ return [
     // Get all portfolio items for current locale
     'allPortfolio' => function ($page) {
         $locale = $page->locale ?? 'en';
-        $collectionName = "portfolio_{$locale}";
-        return $page->{$collectionName} ?? collect();
+        return collect($page->portfolio ?? [])->filter(function ($item) use ($locale) {
+            return Str::endsWith($item->getFilename(), ".{$locale}");
+        });
     },
 
     // Get all posts for current locale

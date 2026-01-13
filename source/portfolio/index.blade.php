@@ -6,10 +6,10 @@ pagination:
 @extends('_layouts.layout')
 
 @php
-    $page->locale = 'ar';
+    $page->locale = 'en';
 @endphp
 
-@section('title', 'الأعمال - ' . $page->siteName)
+@section('title', 'Portfolio - ' . $page->siteName)
 
 @section('main')
 @include('_layouts.partial.portfolio_content')

@@ -1,20 +1,15 @@
-@extends('_layouts.layout')
-
 @php
-    $page->locale = 'en';
+    $locale = $page->locale ?? 'en';
 @endphp
 
-@section('title', 'Awssat - Expert Laravel Development & Open Source')
-
-@section('main')
 <div class="w-full overflow-hidden">
     {{-- Epic Hero Section --}}
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden gradient-mesh">
         {{-- Animated Background Elements --}}
         <div class="absolute inset-0 overflow-hidden pointer-events-none">
-            <div class="absolute top-20 left-10 w-96 h-96 bg-primary-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float"></div>
-            <div class="absolute top-40 right-20 w-[500px] h-[500px] bg-accent-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float-slow"></div>
-            <div class="absolute -bottom-20 left-1/3 w-80 h-80 bg-primary-400 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float-fast"></div>
+            <div class="absolute top-20 {{ $locale === 'ar' ? 'right-10' : 'left-10' }} w-96 h-96 bg-primary-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float"></div>
+            <div class="absolute top-40 {{ $locale === 'ar' ? 'left-20' : 'right-20' }} w-[500px] h-[500px] bg-accent-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float-slow"></div>
+            <div class="absolute -bottom-20 {{ $locale === 'ar' ? 'right-1/3' : 'left-1/3' }} w-80 h-80 bg-primary-400 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float-fast"></div>
         </div>
 
         {{-- Hero Content --}}
@@ -38,9 +33,9 @@
 
             {{-- Main Headline --}}
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight animate-on-scroll delay-100">
-                <span class="block text-gray-900 dark:text-white">We Build</span>
-                <span class="block text-gradient-primary">Exceptional Web</span>
-                <span class="block text-gray-900 dark:text-white">Experiences</span>
+                <span class="block text-gray-900 dark:text-white">{{ $locale === 'ar' ? 'نبني' : 'We Build' }}</span>
+                <span class="block text-gradient-primary">{{ $locale === 'ar' ? 'تجارب ويب استثنائية' : 'Exceptional Web' }}</span>
+                <span class="block text-gray-900 dark:text-white">{{ $locale === 'ar' ? '' : 'Experiences' }}</span>
             </h1>
 
             {{-- Subheadline --}}
@@ -246,4 +241,3 @@
         </div>
     </section>
 </div>
-@endsection

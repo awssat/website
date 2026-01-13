@@ -1,20 +1,11 @@
-@extends('_layouts.layout')
-
-@php
-    $page->locale = 'en';
-@endphp
-
-@section('title', $page->siteName . ' - Building the Future of Web')
-
-@section('main')
 <div class="w-full overflow-hidden gradient-mesh">
     {{-- Hero Section --}}
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden px-4">
         {{-- Floating Geometric Shapes --}}
         <div class="absolute inset-0 overflow-hidden pointer-events-none">
-            <div class="absolute top-20 left-10 w-72 h-72 bg-primary-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
-            <div class="absolute top-40 right-20 w-96 h-96 bg-accent-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float-slow"></div>
-            <div class="absolute -bottom-32 left-1/3 w-80 h-80 bg-primary-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float-fast"></div>
+            <div class="absolute top-20 {{ $page->locale === 'ar' ? 'right-10' : 'left-10' }} w-72 h-72 bg-primary-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
+            <div class="absolute top-40 {{ $page->locale === 'ar' ? 'left-20' : 'right-20' }} w-96 h-96 bg-accent-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float-slow"></div>
+            <div class="absolute -bottom-32 {{ $page->locale === 'ar' ? 'right-1/3' : 'left-1/3' }} w-80 h-80 bg-primary-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float-fast"></div>
         </div>
 
         {{-- Content --}}
@@ -28,7 +19,7 @@
                                 <path class="logo-svg-outer animate-on-scroll" stroke-width="2"
                                     d="M 29.855469,0.00126721 A 29.999999,29.999999 0 0 0 1.5914255e-7,30.001266 30,30 0 0 0 60,30.001266 29.999999,29.999999 0 0 0 29.855469,0.00126721 Z m 0.240234,7.41992139 a 22.579908,22.579908 0 0 1 22.484375,22.5800774 22.579908,22.579908 0 0 1 -45.1582024,0 A 22.579908,22.579908 0 0 1 30.095703,7.4211886 Z" />
                                 <path class="logo-svg-inner animate-on-scroll delay-200" stroke-width="2"
-                                    d="m 29.834961,11.906314 a 18.096309,18.096309 0 0 0 -17.93164,18.095703 18.09668,18.09668 0 0 0 36.193359,0 18.096309,18.096309 0 0 0 -18.261719,-18.095703 z m -0.01367,7.552735 a 10.544895,10.544895 0 0 1 10.724609,10.542968 10.544922,10.544922 0 0 1 -21.089844,0 10.544895,10.544895 0 0 1 10.365235,-10.542968 z" />
+                                    d="m 29.834961,11.906314 a 18.096309,18.096309 0 0 0 -17.93164,18.095703 18.09668,18.09668 0 0 0 36.193359,0 18.096309,18.096309 0 0 0 -18.261719,-18.095703 z m -0.01367,7.552735 a 10.544895,10.544895 0 0 1 10.724609,10.542968 10.544922,10.544922 0 0 1 -21.089844,0 10.544895,10.544895 0 0 1 10.365235-10.542968 z" />
                             </g>
                         </g>
                     </svg>
@@ -52,13 +43,13 @@
 
             {{-- CTA Button --}}
             <div class="animate-on-scroll delay-400">
-                <a href="{{ url('/en/portfolio') }}"
+                <a href="{{ url('/' . $page->locale . '/portfolio') }}"
                    class="magnetic-button inline-block px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-glow transition-all duration-300"
                    x-data="magneticButton()"
                    @mousemove="handleMouseMove"
                    @mouseleave="handleMouseLeave">
                     {{ $page->trans('home.cta') }}
-                    <svg class="inline-block w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="inline-block w-5 h-5 {{ $page->locale === 'ar' ? 'mr-2' : 'ml-2' }} rtl:mirror" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                     </svg>
                 </a>
@@ -90,24 +81,33 @@
                 </p>
             </div>
 
+            @php
+                $featuredItems = isset($page->portfolio)
+                    ? $page->portfolio->filter(function($item) use ($page) {
+                        $locale = $page->locale ?? 'en';
+                        return isset($item->featured)
+                            && $item->featured
+                            && str_ends_with($item->getFilename(), '.' . $locale);
+                    })->take(6)
+                    : collect();
+            @endphp
+
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @if(isset($page->portfolio_en))
-                    @foreach($page->portfolio_en->where('featured', true)->take(6) as $item)
-                        <div class="perspective-container animate-on-scroll"
-                             x-data="tiltCard()"
-                             @mousemove="handleMouseMove"
-                             @mouseleave="handleMouseLeave"
-                             x-intersect="$el.classList.add('stagger-item')">
-                            @include('_layouts.portfolio.partial.card', ['item' => $item])
-                        </div>
-                    @endforeach
-                @endif
+                @foreach($featuredItems as $item)
+                    <div class="perspective-container animate-on-scroll"
+                         x-data="tiltCard()"
+                         @mousemove="handleMouseMove"
+                         @mouseleave="handleMouseLeave"
+                         x-intersect="$el.classList.add('stagger-item')">
+                        @include('_layouts.portfolio.partial.card', ['item' => $item])
+                    </div>
+                @endforeach
             </div>
 
             <div class="text-center mt-12 animate-on-scroll">
-                <a href="{{ url('/en/portfolio') }}" class="inline-flex items-center px-6 py-3 rounded-xl font-semibold text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">
+                <a href="{{ url('/' . $page->locale . '/portfolio') }}" class="inline-flex items-center px-6 py-3 rounded-xl font-semibold text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">
                     {{ $page->trans('common.view_all') }}
-                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-5 h-5 {{ $page->locale === 'ar' ? 'mr-2' : 'ml-2' }} rtl:mirror" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                     </svg>
                 </a>
@@ -116,7 +116,10 @@
     </section>
 
     {{-- Recent Blog Posts --}}
-    @if(isset($page->posts_en) && $page->posts_en->count() > 0)
+    @php
+        $postsCollection = $page->locale === 'ar' ? 'posts_ar' : 'posts_en';
+    @endphp
+    @if(isset($page->{$postsCollection}) && $page->{$postsCollection}->count() > 0)
     <section class="py-24 px-4 bg-gray-50 dark:bg-gray-950">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16 animate-on-scroll">
@@ -126,7 +129,7 @@
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach($page->posts_en->take(3) as $post)
+                @foreach($page->{$postsCollection}->take(3) as $post)
                     <article class="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover-lift animate-on-scroll">
                         <div class="p-6">
                             <time class="text-sm text-gray-500 dark:text-gray-400">
@@ -142,7 +145,7 @@
                             </p>
                             <a href="{{ $post->getUrl() }}" class="inline-flex items-center text-sm font-semibold text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">
                                 {{ $page->trans('blog.read_more') }}
-                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-4 h-4 {{ $page->locale === 'ar' ? 'mr-1' : 'ml-1' }} rtl:mirror" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                 </svg>
                             </a>
@@ -154,4 +157,3 @@
     </section>
     @endif
 </div>
-@endsection

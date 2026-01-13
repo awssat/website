@@ -113,9 +113,9 @@ window.darkMode = (toggle) => {
 
 var darkModeToggle = (toggle) => {
     if (toggle) {
-        document.body.classList.add("dark-mode");
+        document.documentElement.classList.add("dark");
     } else {
-        document.body.classList.remove("dark-mode");
+        document.documentElement.classList.remove("dark");
     }
 };
 

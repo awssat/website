@@ -61,6 +61,13 @@ class TranslationHelper
             'footer.copyright' => 'All rights reserved',
             'footer.made_with' => 'Made with',
             'footer.in' => 'in',
+            'footer.tagline' => 'Building exceptional web experiences with Laravel and modern technologies.',
+            'footer.quick_links' => 'Quick Links',
+            'footer.resources' => 'Resources',
+            'footer.rights' => 'All rights reserved.',
+            'footer.rss_feed' => 'RSS Feed',
+            'footer.source_code' => 'Source Code',
+            'nav.github' => 'GitHub',
 
             // Language
             'language.en' => 'English',
@@ -122,6 +129,13 @@ class TranslationHelper
             'footer.copyright' => 'جميع الحقوق محفوظة',
             'footer.made_with' => 'صُنع بـ',
             'footer.in' => 'في',
+            'footer.tagline' => 'نبني تجارب ويب استثنائية باستخدام Laravel والتقنيات الحديثة.',
+            'footer.quick_links' => 'روابط سريعة',
+            'footer.resources' => 'الموارد',
+            'footer.rights' => 'جميع الحقوق محفوظة.',
+            'footer.rss_feed' => 'تغذية RSS',
+            'footer.source_code' => 'الكود المصدري',
+            'nav.github' => 'GitHub',
 
             // Language
             'language.en' => 'English',

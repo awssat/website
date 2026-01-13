@@ -19,10 +19,10 @@
 @endif
 @stack('head')
 </head>
-<body class="antialiased bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100">
+<body class="antialiased bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
 @if (!$page->isPath(''))
     {{-- Modern Header --}}
-    <header x-data="{ mobileMenuOpen: false }" class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800">
+    <header x-data="{ mobileMenuOpen: false }" class="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-sm">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 {{-- Logo --}}
@@ -35,7 +35,7 @@
 
                 {{-- Desktop Navigation --}}
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="{{ $page->baseUrl }}/{{ $page->locale ?? 'en' }}/portfolio"
+                    <a href="{{ $page->baseUrl }}/{{ ($page->locale ?? 'en') === 'ar' ? 'ar/' : '' }}portfolio"
                        class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors @if($page->isPath('*portfolio*')) text-primary-600 dark:text-primary-400 @endif">
                         {{ $page->trans('nav.portfolio') ?? 'Portfolio' }}
                     </a>
@@ -80,7 +80,7 @@
                  x-transition:leave-end="opacity-0 scale-95"
                  class="md:hidden py-4 border-t border-gray-200 dark:border-gray-800">
                 <div class="flex flex-col space-y-3">
-                    <a href="{{ $page->baseUrl }}/{{ $page->locale ?? 'en' }}/portfolio" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 @if($page->isPath('*portfolio*')) bg-gray-100 dark:bg-gray-800 text-primary-600 dark:text-primary-400 @endif">
+                    <a href="{{ $page->baseUrl }}/{{ ($page->locale ?? 'en') === 'ar' ? 'ar/' : '' }}portfolio" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 @if($page->isPath('*portfolio*')) bg-gray-100 dark:bg-gray-800 text-primary-600 dark:text-primary-400 @endif">
                         {{ $page->trans('nav.portfolio') ?? 'Portfolio' }}
                     </a>
                     <a href="{{ $page->baseUrl }}/blog" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 @if($page->isPath('blog*')) bg-gray-100 dark:bg-gray-800 text-primary-600 dark:text-primary-400 @endif">
@@ -103,12 +103,20 @@
     </header>
 
     {{-- Main Content --}}
-    <main>
+    <main class="flex-1">
         @yield('main')
     </main>
+
+    {{-- Footer --}}
+    @include('_layouts.partial.footer')
 @else
-    {{-- Home Page (no header) --}}
-    @yield('main')
+    {{-- Home Page (no header, but include footer) --}}
+    <main class="flex-1">
+        @yield('main')
+    </main>
+
+    {{-- Footer --}}
+    @include('_layouts.partial.footer')
 @endif
 </body>
 </html>

@@ -1,12 +1,3 @@
-@extends('_layouts.layout')
-
-@php
-    $page->locale = 'en';
-@endphp
-
-@section('title', 'Portfolio - ' . $page->siteName)
-
-@section('main')
 <div class="w-full min-h-screen py-12">
     <div class="max-w-7xl mx-auto px-4">
         {{-- Header --}}
@@ -42,7 +33,8 @@
 
         {{-- Portfolio Grid --}}
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" x-data="{ activeFilter: 'all' }">
-            @foreach($page->allPortfolio()->sortByDesc('date') as $item)
+            @foreach($pagination->items as $item)
+                @if(str_ends_with($item->getFilename(), '.' . $page->locale))
                 <div x-show="activeFilter === 'all' || (activeFilter === 'prs' && '{{ $item->type }}' === 'laravel-pr') || (activeFilter === 'projects' && '{{ $item->type }}' === 'project')"
                      x-transition:enter="transition ease-out duration-300"
                      x-transition:enter-start="opacity-0 transform scale-90"
@@ -50,17 +42,9 @@
                      class="animate-on-scroll">
                     @include('_layouts.portfolio.partial.card', ['item' => $item])
                 </div>
+                @endif
             @endforeach
         </div>
 
-        {{-- Empty State --}}
-        <div x-show="activeFilter !== 'all' && ![...document.querySelectorAll('[x-show]')].some(el => el.style.display !== 'none' && el !== $el)"
-             class="text-center py-20">
-            <svg class="w-24 h-24 mx-auto text-gray-300 dark:text-gray-700 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path>
-            </svg>
-            <p class="text-gray-500 dark:text-gray-400 text-lg">No items found in this category</p>
-        </div>
     </div>
 </div>
-@endsection
