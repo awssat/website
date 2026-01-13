@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ $page->locale ?? 'en' }}" dir="{{ isset($page->locale) && $page->locale === 'ar' ? 'rtl' : 'ltr' }}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -13,6 +13,10 @@
 <link rel="home" href="{{ $page->baseUrl }}">
 <link rel="icon" href="{{ url('/favicon.ico') }}">
 <link href="{{ url('/blog/feed.atom') }}" type="application/atom+xml" rel="alternate" title="{{ $page->siteName }} Atom Feed">
+@if(isset($page->locale))
+<link rel="alternate" hreflang="{{ $page->alternateLocale ?? 'ar' }}" href="{{ url($page->getAlternateUrl()) }}">
+<link rel="alternate" hreflang="{{ $page->locale }}" href="{{ $page->getUrl() }}">
+@endif
 @stack('head')
 </head>
 <body class="mx-auto max-w-5xl px-0 md:px-4 container antialiased">
@@ -54,6 +58,12 @@
                     <a class="w-full hidden md:block" href="{{ $page->baseUrl }}/projects">Projects</a>
                 @endif
             </div>
+
+            @if(isset($page->locale))
+            <div class="mt-2 md:mt-1">
+                @include('_layouts.partial.language_switcher')
+            </div>
+            @endif
 
         </div>
 

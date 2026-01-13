@@ -22,7 +22,7 @@
     @apply text-base mt-6 mb-2 font-bold;
 }
 
-@screen md {
+@media (width >= 768px) {
     #article-body h1 {
         @apply text-4xl
     }

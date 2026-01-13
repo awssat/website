@@ -1,10 +1,29 @@
 /* Colors and dark mode theme implementation */
 body {
-    @apply bg-gray-100;
+    @apply bg-gray-50 text-gray-900;
 }
 
 .dark-mode {
-    @apply bg-gray-900 text-gray-200;
+    @apply bg-gray-950 text-gray-50;
+}
+
+/* Gradient Mesh Dark Mode */
+.dark-mode .gradient-mesh {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.04) 0%,
+    rgba(59, 130, 246, 0.04) 33%,
+    rgba(236, 72, 153, 0.04) 66%,
+    rgba(139, 92, 246, 0.04) 100%
+  );
+  background-size: 400% 400%;
+}
+
+/* Text Gradients Dark Mode Compatibility */
+.dark-mode .text-gradient,
+.dark-mode .text-gradient-primary,
+.dark-mode .text-gradient-accent {
+  filter: brightness(1.2);
 }
 
 .base-logo-box {

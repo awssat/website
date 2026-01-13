@@ -1,10 +1,49 @@
 window.axios = require("axios");
 const hljs = require("highlight.js/lib/core");
 import Alpine from "alpinejs";
+import intersect from '@alpinejs/intersect';
 
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
-// Alpine v3 initialization
+// Alpine v3 initialization with plugins
+Alpine.plugin(intersect);
+
+// Alpine data components for animations
+Alpine.data('magneticButton', () => ({
+  x: 0,
+  y: 0,
+  handleMouseMove(e) {
+    const rect = this.$el.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    this.x = (e.clientX - centerX) / 5;
+    this.y = (e.clientY - centerY) / 5;
+    this.$el.style.transform = `translate(${this.x}px, ${this.y}px)`;
+  },
+  handleMouseLeave() {
+    this.x = 0;
+    this.y = 0;
+    this.$el.style.transform = 'translate(0, 0)';
+  }
+}));
+
+Alpine.data('tiltCard', () => ({
+  handleMouseMove(e) {
+    const rect = this.$el.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = (y - centerY) / 15;
+    const rotateY = (centerX - x) / 15;
+
+    this.$el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+  },
+  handleMouseLeave() {
+    this.$el.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+  }
+}));
+
 window.Alpine = Alpine;
 Alpine.start();
 
@@ -79,3 +118,36 @@ var darkModeToggle = (toggle) => {
         document.body.classList.remove("dark-mode");
     }
 };
+
+// Parallax scroll effect
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      document.documentElement.style.setProperty('--scroll', window.pageYOffset);
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+// Intersection Observer for scroll animations
+document.addEventListener('DOMContentLoaded', () => {
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, observerOptions);
+
+  // Observe all elements with .animate-on-scroll class
+  document.querySelectorAll('.animate-on-scroll').forEach(el => {
+    observer.observe(el);
+  });
+});
