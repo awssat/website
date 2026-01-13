@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Typography\FontFactory;
 
 class PostCoverGenerator
 {
@@ -37,8 +38,8 @@ class PostCoverGenerator
                 $text,
                 90,
                 120 + $i,
-                function ($font) use ($fontPath) {
-                    $font->file($fontPath);
+                function (FontFactory $font) use ($fontPath) {
+                    $font->filename($fontPath);
                     $font->size(70);
                     $font->color('#4931A5');
                 }
@@ -48,11 +49,12 @@ class PostCoverGenerator
         }
 
         //author + date
-        $img->text(($post->author ?? 'Awssat Devs') . ' . ' . ($post->getDate() ?? Date::now())->format('d M Y'),
+        $img->text(
+            ($post->author ?? 'Awssat Devs') . ' . ' . ($post->getDate() ?? Date::now())->format('d M Y'),
             90,
             520,
-            function ($font) use ($fontPath) {
-                $font->file($fontPath);
+            function (FontFactory $font) use ($fontPath) {
+                $font->filename($fontPath);
                 $font->size(35);
                 $font->color('#7352d6');
             }
