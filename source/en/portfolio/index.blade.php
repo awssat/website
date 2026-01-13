@@ -14,26 +14,26 @@
             <h1 class="text-5xl md:text-6xl font-bold text-gradient-primary mb-6">
                 {{ $page->trans('portfolio.title') }}
             </h1>
-            <p class="text-xl text-gray-600 dark-mode:text-gray-400 max-w-3xl mx-auto">
+            <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
                 {{ $page->trans('portfolio.description') }}
             </p>
         </header>
 
         {{-- Filter Tabs --}}
         <div class="flex justify-center mb-12 animate-on-scroll" x-data="{ activeFilter: 'all' }">
-            <div class="inline-flex rounded-xl bg-gray-100 dark-mode:bg-gray-800 p-1 shadow-lg">
+            <div class="inline-flex rounded-xl bg-gray-100 dark:bg-gray-800 p-1 shadow-lg">
                 <button @click="activeFilter = 'all'"
-                        :class="activeFilter === 'all' ? 'bg-white dark-mode:bg-gray-700 shadow-md' : ''"
+                        :class="activeFilter === 'all' ? 'bg-white dark:bg-gray-700 shadow-md' : ''"
                         class="px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-200">
                     {{ $page->trans('portfolio.filter.all') }}
                 </button>
                 <button @click="activeFilter = 'prs'"
-                        :class="activeFilter === 'prs' ? 'bg-white dark-mode:bg-gray-700 shadow-md' : ''"
+                        :class="activeFilter === 'prs' ? 'bg-white dark:bg-gray-700 shadow-md' : ''"
                         class="px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-200">
                     {{ $page->trans('portfolio.filter.prs') }}
                 </button>
                 <button @click="activeFilter = 'projects'"
-                        :class="activeFilter === 'projects' ? 'bg-white dark-mode:bg-gray-700 shadow-md' : ''"
+                        :class="activeFilter === 'projects' ? 'bg-white dark:bg-gray-700 shadow-md' : ''"
                         class="px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-200">
                     {{ $page->trans('portfolio.filter.projects') }}
                 </button>
@@ -56,10 +56,10 @@
         {{-- Empty State --}}
         <div x-show="activeFilter !== 'all' && ![...document.querySelectorAll('[x-show]')].some(el => el.style.display !== 'none' && el !== $el)"
              class="text-center py-20">
-            <svg class="w-24 h-24 mx-auto text-gray-300 dark-mode:text-gray-700 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-24 h-24 mx-auto text-gray-300 dark:text-gray-700 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path>
             </svg>
-            <p class="text-gray-500 dark-mode:text-gray-400 text-lg">No items found in this category</p>
+            <p class="text-gray-500 dark:text-gray-400 text-lg">No items found in this category</p>
         </div>
     </div>
 </div>

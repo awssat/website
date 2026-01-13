@@ -22,7 +22,7 @@
             {{-- Logo Animation --}}
             <div class="mb-8 flex justify-center">
                 <div class="w-32 h-32 flex justify-center items-center">
-                    <svg class="w-full h-full text-primary-600 dark-mode:text-primary-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" version="1.1">
+                    <svg class="w-full h-full text-primary-600 dark:text-primary-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" version="1.1">
                         <g class="logo-svg-group">
                             <g class="logo-svg-colored fill-current">
                                 <path class="logo-svg-outer animate-on-scroll" stroke-width="2"
@@ -41,12 +41,12 @@
             </h1>
 
             {{-- Subtitle --}}
-            <p class="text-2xl md:text-3xl font-semibold text-gray-700 dark-mode:text-gray-300 mb-4 animate-on-scroll delay-200">
+            <p class="text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-4 animate-on-scroll delay-200">
                 {{ $page->trans('home.subtitle') }}
             </p>
 
             {{-- Description --}}
-            <p class="text-lg md:text-xl text-gray-600 dark-mode:text-gray-400 max-w-2xl mx-auto mb-12 animate-on-scroll delay-300">
+            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12 animate-on-scroll delay-300">
                 {{ $page->trans('home.description') }}
             </p>
 
@@ -79,13 +79,13 @@
     </section>
 
     {{-- Featured Work Section --}}
-    <section class="py-24 px-4 bg-white dark-mode:bg-gray-900">
+    <section class="py-24 px-4 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16 animate-on-scroll">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark-mode:text-gray-100 mb-4">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                     {{ $page->trans('home.featured_work') }}
                 </h2>
-                <p class="text-lg text-gray-600 dark-mode:text-gray-400">
+                <p class="text-lg text-gray-600 dark:text-gray-400">
                     {{ $page->trans('portfolio.description') }}
                 </p>
             </div>
@@ -105,7 +105,7 @@
             </div>
 
             <div class="text-center mt-12 animate-on-scroll">
-                <a href="{{ url('/en/portfolio') }}" class="inline-flex items-center px-6 py-3 rounded-xl font-semibold text-primary-600 dark-mode:text-primary-400 hover:text-primary-700 dark-mode:hover:text-primary-300 transition-colors">
+                <a href="{{ url('/en/portfolio') }}" class="inline-flex items-center px-6 py-3 rounded-xl font-semibold text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">
                     {{ $page->trans('common.view_all') }}
                     <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
@@ -117,30 +117,30 @@
 
     {{-- Recent Blog Posts --}}
     @if(isset($page->posts_en) && $page->posts_en->count() > 0)
-    <section class="py-24 px-4 bg-gray-50 dark-mode:bg-gray-950">
+    <section class="py-24 px-4 bg-gray-50 dark:bg-gray-950">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16 animate-on-scroll">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark-mode:text-gray-100 mb-4">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                     {{ $page->trans('home.recent_posts') }}
                 </h2>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach($page->posts_en->take(3) as $post)
-                    <article class="bg-white dark-mode:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover-lift animate-on-scroll">
+                    <article class="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover-lift animate-on-scroll">
                         <div class="p-6">
-                            <time class="text-sm text-gray-500 dark-mode:text-gray-400">
+                            <time class="text-sm text-gray-500 dark:text-gray-400">
                                 {{ date('F j, Y', $post->date) }}
                             </time>
-                            <h3 class="text-xl font-bold text-gray-900 dark-mode:text-gray-100 mt-2 mb-3">
-                                <a href="{{ $post->getUrl() }}" class="hover:text-primary-600 dark-mode:hover:text-primary-400 transition-colors">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mt-2 mb-3">
+                                <a href="{{ $post->getUrl() }}" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
                                     {{ $post->title }}
                                 </a>
                             </h3>
-                            <p class="text-gray-600 dark-mode:text-gray-400 mb-4 line-clamp-3">
+                            <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
                                 {{ $post->getExcerpt(150) }}
                             </p>
-                            <a href="{{ $post->getUrl() }}" class="inline-flex items-center text-sm font-semibold text-primary-600 dark-mode:text-primary-400 hover:text-primary-700 dark-mode:hover:text-primary-300 transition-colors">
+                            <a href="{{ $post->getUrl() }}" class="inline-flex items-center text-sm font-semibold text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">
                                 {{ $page->trans('blog.read_more') }}
                                 <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>

@@ -9,6 +9,7 @@
     },
     "devDependencies": {
         "@alpinejs/intersect": "^3.15.4",
+        "@tailwindcss/typography": "^0.5.19",
         "@tailwindcss/vite": "^4.1.0",
         "@tighten/jigsaw-vite-plugin": "^1.0.1",
         "alpinejs": "^3.15.3",
