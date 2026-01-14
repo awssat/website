@@ -1,3 +1,16 @@
+/* Respect prefers-reduced-motion for all animations */
+@media (prefers-reduced-motion: reduce) {
+    .logo-svg-outer,
+    .logo-svg-inner,
+    .home-fade-in,
+    .home-slide-down {
+        animation: none !important;
+        -webkit-animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
 .logo-svg-outer {
     stroke: #4931A5;
     fill: transparent;

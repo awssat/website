@@ -60,7 +60,7 @@
             {{-- Subheadline --}}
             <p class="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-6 sm:mb-8 md:mb-10 animate-on-scroll delay-200 leading-relaxed text-balance font-medium">
                 @if($locale === 'ar')
-                    هندسة Laravel متميزة. نصنع تطبيقات قوية وقابلة للتطوير مع <span class="font-bold text-primary-600 dark:text-primary-400 border-b-2 border-primary-500/20">6 مساهمات مدمجة</span> في الإطار الأساسي و <span class="font-bold text-accent-600 dark:text-accent-400 border-b-2 border-accent-500/20">2,200+ نجمة</span> على GitHub.
+                    تطوير Laravel بمستوى عالمي. نصنع تطبيقات قوية وقابلة للتطوير مع <span class="font-bold text-primary-600 dark:text-primary-400 border-b-2 border-primary-500/20">6 تحديثات جوهرية</span> في قلب الإطار و <span class="font-bold text-accent-600 dark:text-accent-400 border-b-2 border-accent-500/20">2,200+ نجمة</span> على GitHub.
                 @else
                     Elite Laravel engineering. We craft robust, scalable applications with <span class="font-bold text-primary-600 dark:text-primary-400 border-b-2 border-primary-500/20">6 merged PRs</span> to the framework core and <span class="font-bold text-accent-600 dark:text-accent-400 border-b-2 border-accent-500/20">2,200+ stars</span> on GitHub.
                 @endif
@@ -127,7 +127,7 @@
                             </div>
                             <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">{{ $locale === 'ar' ? 'مساهم أساسي في Laravel' : 'Laravel Core Contributor' }}</h3>
                             <p class="text-lg text-gray-600 dark:text-gray-400 max-w-md leading-relaxed">
-                                {{ $locale === 'ar' ? 'قمنا بدمج 6 طلبات سحب مهمة في إطار Laravel، لإصلاح الأخطاء في Eloquent و Routing و SQLite. نفهم الإطار من الداخل لأننا نساعد في بنائه.' : 'We\'ve merged 6 critical PRs to the Laravel framework, fixing bugs in Eloquent, Routing, and SQLite. We understand the framework inside out because we help build it.' }}
+                                {{ $locale === 'ar' ? 'ساهمنا بـ 6 تحديثات جوهرية في قلب إطار عمل Laravel لإصلاح الأخطاء في Eloquent و Routing و SQLite. نفهم الإطار من الداخل لأننا نساعد في بنائه.' : 'We\'ve merged 6 critical PRs to the Laravel framework, fixing bugs in Eloquent, Routing, and SQLite. We understand the framework inside out because we help build it.' }}
                             </p>
                         </div>
                         <div class="flex items-center gap-4 mt-8">
@@ -178,7 +178,7 @@
                                     <span class="font-bold text-yellow-200">Laravel Visits</span>
                                     <span class="text-xs bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded">975 ★</span>
                                 </div>
-                                <p class="text-sm text-gray-400">{{ $locale === 'ar' ? 'عداد زيارات مدعوم بـ Redis لنماذج Eloquent.' : 'Redis-backed visits counter for Eloquent models.' }}</p>
+                                <p class="text-sm text-gray-400">{{ $locale === 'ar' ? 'عداد زيارات مدعوم بـ Redis لـ Models في Eloquent.' : 'Redis-backed visits counter for Eloquent models.' }}</p>
                             </div>
                         </div>
                     </div>
@@ -197,9 +197,9 @@
                                 <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path>
                             </svg>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">{{ $locale === 'ar' ? 'مُختبر عمليًا' : 'Battle Tested' }}</h3>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">{{ $locale === 'ar' ? 'أداء مثبت تحت الضغط' : 'Battle Tested' }}</h3>
                         <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
-                            {{ $locale === 'ar' ? 'كود يتعامل مع ملايين الطلبات. نضع الأداء وقابلية التوسع في الأولوية منذ اليوم الأول.' : 'Code that handles millions of requests. We prioritize performance and scalability from day one.' }}
+                            {{ $locale === 'ar' ? 'برمجيات صممت لتتحمل ملايين الطلبات بكفاءة عالية. نضع الأداء وقابلية التوسع في الأولوية منذ اليوم الأول.' : 'Code that handles millions of requests. We prioritize performance and scalability from day one.' }}
                         </p>
                     </div>
                 </div>
@@ -221,6 +221,173 @@
                         <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
                             {{ $locale === 'ar' ? 'نبقى في طليعة تقنيات TALL stack (Tailwind, Alpine, Laravel, Livewire) و Vue/Inertia.' : 'We stay on the bleeding edge of the TALL stack (Tailwind, Alpine, Laravel, Livewire) and Vue/Inertia.' }}
                         </p>
+                    </div>
+                </div>
+
+                {{-- Card 5: Security & AI Verification - Full Width --}}
+                <div class="md:col-span-3 group relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 text-white rounded-3xl p-8 overflow-hidden shadow-xl animate-on-scroll delay-400 border border-gray-700 dark:border-gray-800"
+                     @mousemove="$el.style.setProperty('--x', $event.clientX - $el.getBoundingClientRect().left); $el.style.setProperty('--y', $event.clientY - $el.getBoundingClientRect().top)">
+                    <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#22c55e 1px, transparent 1px); background-size: 24px 24px;"></div>
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-500"
+                         style="background: radial-gradient(600px circle at var(--x)px var(--y)px, rgba(34, 197, 94, 0.15), transparent 40%);">
+                    </div>
+
+                    <div class="relative z-10 grid md:grid-cols-[auto,1fr] gap-8 items-center">
+                        <div class="flex items-center justify-center">
+                            <div class="w-16 h-16 bg-green-500/10 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-green-500/20 relative">
+                                <svg class="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                                </svg>
+                                <div class="absolute -top-1 -right-1 w-6 h-6 bg-purple-500/20 rounded-full flex items-center justify-center border border-purple-400/30">
+                                    <svg class="w-3 h-3 text-purple-300" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.476.859h4.002z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-3xl font-bold mb-4">
+                                {{ $locale === 'ar' ? 'فحص الكود ومراجعة الذكاء الاصطناعي' : 'Code Audits & AI Verification' }}
+                            </h3>
+                            <p class="text-gray-300 leading-relaxed text-lg mb-4">
+                                @if($locale === 'ar')
+                                    هل تعتمد على الذكاء الاصطناعي في البرمجة (Vibe-Coding) وتخشى من الثغرات الخفية؟ نحن متخصصون في الفحص العميق للكود. نقوم بمراجعة ما كتبه الـ AI، إصلاح الأخطاء المنطقية، وسد الثغرات الأمنية لضمان أن مشروعك ليس مجرد "فكرة جميلة" بل نظام آمن وجاهز للإطلاق.
+                                @else
+                                    Complex bugs? Unsure about your AI-generated code? We specialize in deep-dive auditing. We validate "vibe-coded" features, trace hidden logic errors, patch vulnerabilities, and ensure your rapid prototypes are actually production-secure.
+                                @endif
+                            </p>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm border border-green-500/30">{{ $locale === 'ar' ? 'فحص أمني' : 'Security Audit' }}</span>
+                                <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm border border-purple-500/30">{{ $locale === 'ar' ? 'مراجعة AI' : 'AI Review' }}</span>
+                                <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30">{{ $locale === 'ar' ? 'إصلاح الثغرات' : 'Vulnerability Patching' }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- Extended Capabilities Section --}}
+    <section class="py-24 px-4 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+                    {{ $locale === 'ar' ? 'خدماتنا الشاملة' : 'Our Full-Stack Expertise' }}
+                </h2>
+                <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    {{ $locale === 'ar' ? 'نتجاوز تطوير الويب لتقديم حلول تقنية متكاملة تغطي كافة احتياجات عملك الرقمي.' : 'Beyond web development. We deliver end-to-end technology solutions that power your digital business.' }}
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 animate-on-scroll">
+                {{-- Mobile & Systems Engineering --}}
+                <div class="group relative bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 rounded-3xl p-8 overflow-hidden border border-blue-100 dark:border-blue-900/30 hover:shadow-2xl transition-all duration-500">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-blue-600 dark:bg-blue-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                            {{ $locale === 'ar' ? 'تطوير تطبيقات الجوال والأنظمة' : 'Mobile & Systems Engineering' }}
+                        </h3>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                            @if($locale === 'ar')
+                                لا نكتفي بالويب؛ نبني تطبيقات جوال (Mobile Apps) متقنة باستخدام Flutter و Swift. كما نمتلك خبرة عميقة في لغات Rust و Python و Java لبناء أدوات وأنظمة خلفية عالية الأداء.
+                            @else
+                                Beyond Web. We craft high-performance mobile apps and systems using Flutter, Swift, Rust, and Python.
+                            @endif
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">Flutter</span>
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">Swift</span>
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">Rust</span>
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Backend Architecture & Database --}}
+                <div class="group relative bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/20 dark:to-teal-950/20 rounded-3xl p-8 overflow-hidden border border-emerald-100 dark:border-emerald-900/30 hover:shadow-2xl transition-all duration-500">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-emerald-600 dark:bg-emerald-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-emerald-500/30">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                            {{ $locale === 'ar' ? 'هندسة البيانات والـ APIs' : 'Backend Architecture & Database Optimization' }}
+                        </h3>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                            @if($locale === 'ar')
+                                نحن خبراء في تصميم معماريات البرمجيات (Software Architecture) المعقدة. نقوم ببناء وتحسين قواعد البيانات (Databases) لتتحمل ضغط العمل الهائل، ونصمم واجهات برمجية (APIs) صلبة تضمن تدفق البيانات بسلاسة واستقرار.
+                            @else
+                                Scale & Resilience. We architect complex APIs and optimize database schemas to handle massive data pressure without breaking.
+                            @endif
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-full text-sm font-medium">{{ $locale === 'ar' ? 'معماريات' : 'Architecture' }}</span>
+                            <span class="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-full text-sm font-medium">APIs</span>
+                            <span class="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-full text-sm font-medium">{{ $locale === 'ar' ? 'قواعد بيانات' : 'Databases' }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Data Intelligence & AI --}}
+                <div class="group relative bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/20 rounded-3xl p-8 overflow-hidden border border-purple-100 dark:border-purple-900/30 hover:shadow-2xl transition-all duration-500">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-purple-600 dark:bg-purple-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-purple-500/30">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                            {{ $locale === 'ar' ? 'تحليل البيانات والذكاء الاصطناعي' : 'Data Intelligence & AI Solutions' }}
+                        </h3>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                            @if($locale === 'ar')
+                                بياناتك هي ثروتك. نساعدك في تحليل بياناتك الضخمة برمجياً لتحقيق أهداف عملك الاستراتيجية. كما نقوم بدمج حلول الذكاء الاصطناعي (AI) في صلب نظامك وتطبيقاتك لرفع إنتاجية فريقك وتحسين تجربة عميلك.
+                            @else
+                                Unlock Your Data. We programmatically analyze your business data to achieve strategic goals. We integrate AI into your existing apps to maximize success for your team and customers.
+                            @endif
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium">{{ $locale === 'ar' ? 'تحليلات' : 'Analytics' }}</span>
+                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium">AI</span>
+                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium">{{ $locale === 'ar' ? 'بيانات ضخمة' : 'Big Data' }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Government Compliance --}}
+                <div class="group relative bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20 rounded-3xl p-8 overflow-hidden border border-amber-100 dark:border-amber-900/30 hover:shadow-2xl transition-all duration-500">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-amber-600 dark:bg-amber-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-amber-500/30">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                            {{ $locale === 'ar' ? 'الامتثال الحكومي والتحول الرقمي' : 'Government Compliance & Digital Transformation' }}
+                        </h3>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                            @if($locale === 'ar')
+                                نضمن توافق أنظمتكم بالكامل مع <strong>المعايير الأساسية للتحول الرقمي</strong> وتشريعات <strong>هيئة الحكومة الرقمية</strong>. نمتلك الخبرة لبناء وتطوير وإدارة البوابات والتطبيقات الحكومية وشبه الحكومية، مع الالتزام التام بضوابط الأمن السيبراني ولوائح استضافة البيانات المحلية.
+                            @else
+                                Compliance & Standards. We specialize in upgrading and building platforms that strictly adhere to the Digital Government Authority (DGA) standards and local regulations.
+                            @endif
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-full text-sm font-medium">{{ $locale === 'ar' ? 'امتثال' : 'Compliance' }}</span>
+                            <span class="px-3 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-full text-sm font-medium">DGA</span>
+                            <span class="px-3 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-full text-sm font-medium">{{ $locale === 'ar' ? 'أمن سيبراني' : 'Cybersecurity' }}</span>
+                        </div>
                     </div>
                 </div>
             </div>

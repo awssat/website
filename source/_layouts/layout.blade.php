@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ $page->locale ?? 'en' }}" dir="{{ isset($page->locale) && $page->locale === 'ar' ? 'rtl' : 'ltr' }}" class="no-js" x-data="{ darkMode: $persist(false) }" :class="{ 'dark': darkMode }">
+<html lang="{{ $page->locale ?? 'en' }}" dir="{{ isset($page->locale) && $page->locale === 'ar' ? 'rtl' : 'ltr' }}" class="no-js" x-data="{ darkMode: $persist(window.matchMedia('(prefers-color-scheme: dark)').matches) }" :class="{ 'dark': darkMode }">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -42,6 +42,12 @@
 @stack('head')
 </head>
 <body class="antialiased bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
+    {{-- Skip to content link for accessibility --}}
+    <a href="#main-content"
+       class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary-600 focus:text-white focus:rounded-lg focus:shadow-xl focus:ring-2 focus:ring-primary-400 focus:ring-offset-2">
+        {{ ($page->locale ?? 'en') === 'ar' ? 'تخطى إلى المحتوى الرئيسي' : 'Skip to main content' }}
+    </a>
+
     {{-- Modern Floating Header --}}
     <header x-data="{ mobileMenuOpen: false, scrolled: false }"
             @scroll.window="scrolled = (window.pageYOffset > 20)"
@@ -167,7 +173,7 @@
         $currentPath = $page->getPath();
         $isHomePage = in_array($currentPath, ['/', '/ar', '', 'ar']) || $currentPath === null;
     @endphp
-    <main class="flex-1 {{ $isHomePage ? '' : 'pt-20' }}">
+    <main id="main-content" class="flex-1 {{ $isHomePage ? '' : 'pt-20' }}">
         @yield('main')
     </main>
 

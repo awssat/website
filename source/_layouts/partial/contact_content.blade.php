@@ -58,7 +58,7 @@
             </a>
 
             {{-- Twitter/X --}}
-            <a href="https://twitter.com/awssat" target="_blank" rel="noopener noreferrer"
+            <a href="https://x.com/awssat_dev" target="_blank" rel="noopener noreferrer"
                class="group relative bg-white dark:bg-gray-900 rounded-2xl p-6 sm:p-8 border border-gray-200 dark:border-gray-800 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 overflow-hidden">
                 <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
 
@@ -72,7 +72,7 @@
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{{ $isArabic ? 'تويتر / X' : 'Twitter / X' }}</h3>
                     <p class="text-gray-600 dark:text-gray-400 mb-3 text-sm">{{ $isArabic ? 'تابعنا للحصول على التحديثات' : 'Follow for updates & tips' }}</p>
                     <div class="flex items-center text-blue-600 dark:text-blue-400 font-medium group-hover:gap-2 transition-all">
-                        <span class="font-mono text-sm sm:text-base">@awssat</span>
+                        <span class="font-mono text-sm sm:text-base">@awssat_dev</span>
                         <svg class="w-5 h-5 {{ $isArabic ? 'mr-2 group-hover:-translate-x-1' : 'ml-2 group-hover:translate-x-1' }} transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $isArabic ? 'M11 17l-5-5m0 0l5-5m-5 5h12' : 'M13 7l5 5m0 0l-5 5m5-5H6' }}"></path>
                         </svg>

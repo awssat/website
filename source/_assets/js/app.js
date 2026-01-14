@@ -14,19 +14,46 @@ window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 Alpine.plugin(intersect);
 Alpine.plugin(persist);
 
+// Performance: Throttle helper using requestAnimationFrame
+const throttleRAF = (callback) => {
+  let ticking = false;
+  return function(...args) {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        callback.apply(this, args);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  };
+};
+
+// Check for prefers-reduced-motion
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // Alpine data components for animations
 Alpine.data('magneticButton', () => ({
   x: 0,
   y: 0,
+  init() {
+    // Disable animation if user prefers reduced motion
+    if (prefersReducedMotion) return;
+
+    this.throttledMove = throttleRAF((e) => {
+      const rect = this.$el.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      this.x = (e.clientX - centerX) / 5;
+      this.y = (e.clientY - centerY) / 5;
+      this.$el.style.transform = `translate(${this.x}px, ${this.y}px)`;
+    });
+  },
   handleMouseMove(e) {
-    const rect = this.$el.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    this.x = (e.clientX - centerX) / 5;
-    this.y = (e.clientY - centerY) / 5;
-    this.$el.style.transform = `translate(${this.x}px, ${this.y}px)`;
+    if (prefersReducedMotion || !this.throttledMove) return;
+    this.throttledMove(e);
   },
   handleMouseLeave() {
+    if (prefersReducedMotion) return;
     this.x = 0;
     this.y = 0;
     this.$el.style.transform = 'translate(0, 0)';
@@ -34,23 +61,69 @@ Alpine.data('magneticButton', () => ({
 }));
 
 Alpine.data('tiltCard', () => ({
-  handleMouseMove(e) {
-    const rect = this.$el.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = (y - centerY) / 15;
-    const rotateY = (centerX - x) / 15;
+  init() {
+    // Disable animation if user prefers reduced motion
+    if (prefersReducedMotion) return;
 
-    this.$el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+    this.throttledMove = throttleRAF((e) => {
+      const rect = this.$el.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = (y - centerY) / 15;
+      const rotateY = (centerX - x) / 15;
+
+      this.$el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+    });
+  },
+  handleMouseMove(e) {
+    if (prefersReducedMotion || !this.throttledMove) return;
+    this.throttledMove(e);
   },
   handleMouseLeave() {
+    if (prefersReducedMotion) return;
     this.$el.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
   }
 }));
 
 window.Alpine = Alpine;
+
+// Sync theme-color meta tag with dark mode state
+Alpine.effect(() => {
+  const darkMode = Alpine.store('darkMode') || document.documentElement.classList.contains('dark');
+  const themeColor = darkMode ? '#1f2937' : '#8b5cf6';
+  const metaThemeColor = document.querySelector('meta[name="theme-color"]:not([media])');
+  if (metaThemeColor) {
+    metaThemeColor.setAttribute('content', themeColor);
+  } else {
+    // Create meta tag if it doesn't exist
+    const meta = document.createElement('meta');
+    meta.name = 'theme-color';
+    meta.content = themeColor;
+    document.head.appendChild(meta);
+  }
+});
+
+// Listen for dark mode changes via MutationObserver
+const observer = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    if (mutation.attributeName === 'class') {
+      const isDark = document.documentElement.classList.contains('dark');
+      const themeColor = isDark ? '#1f2937' : '#8b5cf6';
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]:not([media])');
+      if (metaThemeColor) {
+        metaThemeColor.setAttribute('content', themeColor);
+      }
+    }
+  });
+});
+
+observer.observe(document.documentElement, {
+  attributes: true,
+  attributeFilter: ['class']
+});
+
 Alpine.start();
 
 // Fix mobile menu state persistence on navigation (especially on mobile browsers with bfcache)
@@ -105,6 +178,50 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 })
                 .join("\n");
         }
+
+        // Add copy-to-clipboard button
+        const pre = block.parentElement;
+        if (pre && pre.tagName === 'PRE') {
+            const copyButton = document.createElement('button');
+            copyButton.className = 'absolute top-2 right-2 px-3 py-1.5 text-xs font-medium text-gray-300 bg-gray-700 hover:bg-gray-600 rounded-md transition-all duration-200 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 focus:opacity-100 z-20';
+            copyButton.innerHTML = `
+                <svg class="w-4 h-4 copy-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                </svg>
+                <span class="copy-text">Copy</span>
+                <svg class="w-4 h-4 check-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+            `;
+
+            copyButton.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(block.textContent);
+                    const copyIcon = copyButton.querySelector('.copy-icon');
+                    const checkIcon = copyButton.querySelector('.check-icon');
+                    const copyText = copyButton.querySelector('.copy-text');
+
+                    copyIcon.classList.add('hidden');
+                    checkIcon.classList.remove('hidden');
+                    copyText.textContent = 'Copied!';
+                    copyButton.classList.add('bg-green-600', 'hover:bg-green-500');
+
+                    setTimeout(() => {
+                        copyIcon.classList.remove('hidden');
+                        checkIcon.classList.add('hidden');
+                        copyText.textContent = 'Copy';
+                        copyButton.classList.remove('bg-green-600', 'hover:bg-green-500');
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy:', err);
+                }
+            });
+
+            pre.style.position = 'relative';
+            pre.classList.add('group');
+            pre.appendChild(copyButton);
+        }
+
         //add line numbers
         var lh = parseInt(window.getComputedStyle(block, null).getPropertyValue("line-height")) || 39.1;
         var ln = Math.floor(block.offsetHeight / lh);

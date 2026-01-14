@@ -1,5 +1,41 @@
 /* Modern Animation System - Bold & Noticeable */
 
+/* Respect prefers-reduced-motion - Disable all animations for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-on-scroll,
+  .fadeIn,
+  .fadeInUp,
+  .fadeInDown,
+  .scaleIn,
+  .slideInLeft,
+  .slideInRight,
+  .text-reveal,
+  .stagger-item {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .card-3d:hover,
+  .hover-lift:hover,
+  .hover-scale:hover {
+    transform: none !important;
+  }
+
+  html {
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Scroll-triggered Fade-in Animations */
 @keyframes fadeInUp {
   from {
