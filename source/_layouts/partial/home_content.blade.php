@@ -68,7 +68,7 @@
 
             {{-- CTA Buttons --}}
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-on-scroll delay-400">
-                <a href="/portfolio"
+                <a href="{{ $page->baseUrl }}/{{ $locale === 'ar' ? 'ar/' : '' }}portfolio"
                    class="magnetic-button group px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-glow transition-all duration-300 inline-flex items-center"
                    x-data="magneticButton()"
                    @mousemove="handleMouseMove"
@@ -128,7 +128,7 @@
                         <p class="text-gray-600 dark:text-gray-400 mb-4">
                             6 merged PRs to Laravel framework fixing critical bugs in Eloquent, routing, and SQLite. Trusted by the Laravel core team.
                         </p>
-                        <a href="/portfolio" class="text-primary-600 dark:text-primary-400 font-semibold inline-flex items-center group">
+                        <a href="{{ $page->baseUrl }}/{{ $locale === 'ar' ? 'ar/' : '' }}portfolio" class="text-primary-600 dark:text-primary-400 font-semibold inline-flex items-center group">
                             See contributions
                             <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -204,7 +204,7 @@
             </div>
 
             <div class="text-center mt-12 animate-on-scroll">
-                <a href="/portfolio" class="inline-flex items-center px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-2xl font-semibold text-lg shadow-xl hover:shadow-2xl transition-all">
+                <a href="{{ $page->baseUrl }}/{{ $locale === 'ar' ? 'ar/' : '' }}portfolio" class="inline-flex items-center px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-2xl font-semibold text-lg shadow-xl hover:shadow-2xl transition-all">
                     View All Work
                     <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>

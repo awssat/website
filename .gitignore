@@ -7,3 +7,4 @@
 /source/assets/build/*
 .vscode/settings.json
 config.local.php
+source/hot
