@@ -22,7 +22,7 @@
 @section('title'){{ $page->title ?? '--' }} — @parent @endsection
 
 @section('blog_main')
-<article class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-800 overflow-hidden animate-on-scroll">
+<article class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-800 overflow-hidden">
     @include('_layouts.blog.partial.post')
 </article>
 @stop

@@ -1,24 +1,26 @@
 {{-- Hero Section with Cover Image --}}
-<div class="relative w-full bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 overflow-hidden mb-12">
-    {{-- Cover Image --}}
-    <div class="relative max-w-7xl mx-auto px-4">
-        <div class="relative aspect-[21/9] rounded-3xl overflow-hidden shadow-2xl my-8">
+<div class="relative w-full mb-12 -mt-8">
+    {{-- Cover Image - Full width, no container --}}
+    <div class="relative w-full">
+        <div class="relative aspect-[40/21] overflow-hidden">
             <img src="{{ $page->getCoverImage() }}"
                  alt="{{ $page->title }}"
-                 class="w-full h-full object-cover"
+                 class="w-full h-full object-cover object-center"
                  loading="eager">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
 
-            {{-- Floating Meta Badge --}}
-            <div class="absolute top-6 left-6">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-lg border border-white/20 dark:border-gray-700/50">
-                    <svg class="w-4 h-4 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
-                    </svg>
-                    <time datetime="{{ $page->getDate()->toIso8601String() }}" class="text-sm font-semibold text-gray-900 dark:text-white">
-                        {{ $page->getDate()->format('F j, Y') }}
-                    </time>
-                </div>
+            {{-- Subtle vignette effect --}}
+            <div class="absolute inset-0 bg-gradient-to-t from-white/10 via-transparent to-transparent dark:from-black/10"></div>
+        </div>
+
+        {{-- Floating Date Badge - Bottom Right --}}
+        <div class="absolute bottom-6 right-6">
+            <div class="inline-flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-2xl border border-gray-200/50 dark:border-gray-700/50">
+                <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                </svg>
+                <time datetime="{{ $page->getDate()->toIso8601String() }}" class="text-sm font-bold text-gray-900 dark:text-white">
+                    {{ $page->getDate()->format('F j, Y') }}
+                </time>
             </div>
         </div>
     </div>

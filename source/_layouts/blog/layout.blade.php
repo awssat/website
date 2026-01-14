@@ -14,7 +14,7 @@
 
         {{-- Sidebar --}}
         <aside class="w-full lg:w-1/4">
-            <div class="lg:sticky lg:top-32 space-y-6">
+            <div class="lg:sticky lg:top-4 space-y-6">
                 {{-- About Widget - Enhanced Design --}}
                 <div class="relative bg-gradient-to-br from-white via-white to-primary-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-primary-900/20 rounded-3xl p-6 shadow-xl border border-gray-200 dark:border-gray-800 backdrop-blur-xl animate-on-scroll overflow-hidden">
                     {{-- Decorative Background Elements --}}

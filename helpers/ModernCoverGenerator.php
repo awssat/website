@@ -261,9 +261,9 @@ class ModernCoverGenerator
     private function addTechLogo($img, array $tags, int $seed): void
     {
         try {
-            // Find first matching tag that has a logo
+            // Find last matching tag that has a logo (most specific)
             $logoTag = null;
-            foreach ($tags as $tag) {
+            foreach (array_reverse($tags) as $tag) {
                 $tagLower = strtolower($tag);
                 if (isset(self::SVG_LOGOS[$tagLower])) {
                     $logoTag = $tagLower;
