@@ -4,19 +4,37 @@
 
 <div class="w-full overflow-hidden">
     {{-- Epic Hero Section --}}
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden gradient-mesh"
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden gradient-mesh perspective-1000"
              x-data="{ x: 0, y: 0 }"
              @mousemove="x = $event.clientX; y = $event.clientY">
         
         {{-- Spotlight Effect --}}
-        <div class="absolute inset-0 pointer-events-none" 
-             :style="`background: radial-gradient(circle 600px at ${x}px ${y}px, rgba(124, 58, 237, 0.1), transparent 70%);`">
+        <div class="absolute inset-0 pointer-events-none z-0" 
+             :style="`background: radial-gradient(circle 800px at ${x}px ${y}px, rgba(124, 58, 237, 0.05), transparent 50%);`">
         </div>
 
-        {{-- Animated Background Elements --}}
-        <div class="absolute inset-0 overflow-hidden pointer-events-none">
-            <div class="absolute top-20 {{ $locale === 'ar' ? 'right-10' : 'left-10' }} w-96 h-96 bg-primary-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-float"></div>
-            <div class="absolute top-40 {{ $locale === 'ar' ? 'left-20' : 'right-20' }} w-[500px] h-[500px] bg-accent-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-float-slow"></div>
+        {{-- High-Fidelity SVG Background --}}
+        <div class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none z-0">
+            <svg class="w-[800px] h-[800px] md:w-[1000px] md:h-[1000px] opacity-10 dark:opacity-5 animate-[float-gentle_10s_ease-in-out_infinite]" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" class="stop-color-primary-500" style="stop-color: #8b5cf6; stop-opacity: 0.8" />
+                        <stop offset="100%" class="stop-color-accent-500" style="stop-color: #06b6d4; stop-opacity: 0.8" />
+                    </linearGradient>
+                </defs>
+                {{-- Outer Ring --}}
+                <path class="origin-center animate-[spin-slow_60s_linear_infinite]" 
+                      d="M 29.855469,0.00126721 A 29.999999,29.999999 0 0 0 1.5914255e-7,30.001266 30,30 0 0 0 60,30.001266 29.999999,29.999999 0 0 0 29.855469,0.00126721 Z m 0.240234,7.41992139 a 22.579908,22.579908 0 0 1 22.484375,22.5800774 22.579908,22.579908 0 0 1 -45.1582024,0 A 22.579908,22.579908 0 0 1 30.095703,7.4211886 Z" 
+                      fill="url(#grad1)" />
+                
+                {{-- Inner Ring --}}
+                <path class="origin-center animate-[spin-reverse-slow_45s_linear_infinite]" 
+                      d="m 29.834961,11.906314 a 18.096309,18.096309 0 0 0 -17.93164,18.095703 18.09668,18.09668 0 0 0 36.193359,0 18.096309,18.096309 0 0 0 -18.261719,-18.095703 z m -0.01367,7.552735 a 10.544895,10.544895 0 0 1 10.724609,10.542968 10.544922,10.544922 0 0 1 -21.089844,0 10.544895,10.544895 0 0 1 10.365235,-10.542968 z" 
+                      fill="url(#grad1)" />
+            </svg>
+            
+            {{-- Ambient Glow --}}
+            <div class="absolute inset-0 bg-gradient-to-tr from-primary-500/5 via-transparent to-accent-500/5 mix-blend-overlay pointer-events-none"></div>
         </div>
 
         {{-- Hero Content --}}
