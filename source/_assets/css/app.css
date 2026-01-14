@@ -203,6 +203,11 @@ body {
   100% { transform: translateX(-50%); }
 }
 
+@keyframes marquee-smooth-rtl {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(50%); }
+}
+
 .animate-marquee {
   animation: marquee 25s linear infinite;
 }
@@ -213,6 +218,10 @@ body {
 
 .animate-marquee-smooth {
   animation: marquee-smooth 25s linear infinite;
+}
+
+[dir="rtl"] .animate-marquee-smooth {
+  animation: marquee-smooth-rtl 25s linear infinite;
 }
 
 /* Shimmer Animation */
