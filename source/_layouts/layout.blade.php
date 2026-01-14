@@ -22,23 +22,24 @@
 </head>
 <body class="antialiased bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
     {{-- Modern Floating Header --}}
-    <header x-data="{ mobileMenuOpen: false, scrolled: false }" 
+    <header x-data="{ mobileMenuOpen: false, scrolled: false }"
             @scroll.window="scrolled = (window.pageYOffset > 20)"
-            class="fixed top-0 w-full z-50 transition-all duration-500 ease-in-out py-4">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-500"
+            @click.away="mobileMenuOpen = false"
+            class="fixed top-0 w-full z-50 transition-all duration-500 ease-in-out py-3 md:py-4">
+        <div class="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 transition-all duration-500"
              :class="{ 'px-0 sm:px-0 lg:px-0': scrolled }">
-            <div class="relative mx-auto transition-all duration-500 ease-in-out border border-transparent"
-                 :class="{ 
-                    'bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl shadow-lg rounded-2xl max-w-5xl px-6 py-2 border-white/20 dark:border-gray-700/50': scrolled, 
-                    'bg-transparent max-w-7xl px-0 py-2': !scrolled 
+            <div class="relative mx-auto transition-all duration-500 ease-in-out border"
+                 :class="{
+                    'bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl shadow-lg rounded-2xl max-w-5xl px-4 sm:px-6 py-2 border-white/20 dark:border-gray-700/50': scrolled,
+                    'bg-white/70 dark:bg-gray-900/70 backdrop-blur-md shadow-md rounded-2xl max-w-7xl px-4 sm:px-6 py-2 border-white/10 dark:border-gray-800/50 md:bg-transparent md:backdrop-blur-none md:shadow-none md:border-transparent md:px-0': !scrolled
                  }">
-                <div class="flex justify-between items-center h-12 transition-all duration-300">
+                <div class="flex justify-between items-center h-10 sm:h-12 transition-all duration-300">
                     {{-- Logo --}}
                     <div class="flex items-center">
                         <a href="{{ $page->baseUrl }}" class="flex items-center space-x-2 group">
-                            <img src="{{ $page->baseUrl }}/assets/images/logo.png" class="w-8 h-8 transition-transform duration-500 group-hover:rotate-12" alt="Awssat" aria-roledescription="Logo of Awssat">
-                            <span class="text-xl font-bold tracking-tight text-gray-900 dark:text-white"
-                                  :class="{ 'text-lg': scrolled }">Awssat</span>
+                            <img src="{{ $page->baseUrl }}/assets/images/logo.png" class="w-7 h-7 sm:w-8 sm:h-8 transition-transform duration-500 group-hover:rotate-12" alt="Awssat" aria-roledescription="Logo of Awssat">
+                            <span class="text-lg sm:text-xl font-bold tracking-tight text-gray-900 dark:text-white"
+                                  :class="{ 'text-base sm:text-lg': scrolled }">Awssat</span>
                         </a>
                     </div>
 

@@ -4,30 +4,30 @@
 
 @section('blog_main')
     {{-- Enhanced Tag Hero Header --}}
-    <div class="relative mb-16 animate-on-scroll">
+    <div class="relative mb-12 md:mb-16 animate-on-scroll px-4 sm:px-0">
         {{-- Background Decoration --}}
-        <div class="absolute -top-8 -left-8 w-64 h-64 bg-primary-500/5 blur-3xl rounded-full pointer-events-none"></div>
-        <div class="absolute -bottom-8 -right-8 w-48 h-48 bg-accent-500/5 blur-2xl rounded-full pointer-events-none"></div>
+        <div class="absolute -top-8 -left-8 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 bg-primary-500/5 blur-3xl rounded-full pointer-events-none"></div>
+        <div class="absolute -bottom-8 -right-8 w-24 sm:w-36 md:w-48 h-24 sm:h-36 md:h-48 bg-accent-500/5 blur-2xl rounded-full pointer-events-none"></div>
 
         <div class="relative">
             {{-- Breadcrumb / Badge --}}
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary-100/80 to-accent-100/80 dark:from-primary-900/40 dark:to-accent-900/40 backdrop-blur-sm border border-primary-200/50 dark:border-primary-800/50 text-primary-700 dark:text-primary-300 text-sm font-semibold mb-6 shadow-lg">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <div class="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-primary-100/80 to-accent-100/80 dark:from-primary-900/40 dark:to-accent-900/40 backdrop-blur-sm border border-primary-200/50 dark:border-primary-800/50 text-primary-700 dark:text-primary-300 text-xs sm:text-sm font-semibold mb-4 sm:mb-6 shadow-lg">
+                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
                 </svg>
                 <span>Topic</span>
             </div>
 
             {{-- Tag Title --}}
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 tracking-tight">
                 <span class="inline-block bg-gradient-to-r from-primary-600 via-primary-500 to-accent-500 bg-clip-text text-transparent">
                     #{{ $page->title }}
                 </span>
             </h1>
 
             {{-- Description & Stats --}}
-            <div class="flex flex-wrap items-center gap-4 mb-6">
-                <p class="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
+            <div class="flex flex-wrap items-center gap-4 mb-4 sm:mb-6">
+                <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
                     Exploring articles and tutorials about <span class="font-bold text-gray-900 dark:text-white">{{ $page->title }}</span>
                 </p>
             </div>
