@@ -110,7 +110,7 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]" x-data>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-auto md:grid-rows-[repeat(2,minmax(300px,auto))]" x-data>
                 {{-- Card 1: Large Span --}}
                 <div class="md:col-span-2 group relative bg-white dark:bg-gray-900 rounded-3xl p-8 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-800 animate-on-scroll"
                      @mousemove="$el.style.setProperty('--x', $event.clientX - $el.getBoundingClientRect().left); $el.style.setProperty('--y', $event.clientY - $el.getBoundingClientRect().top)">

@@ -187,6 +187,18 @@ body {
   mask-composite: exclude;
 }
 
+/* Mask Border Fade for Marquee Effects */
+.mask-border-fade {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* RTL Support for Mask Border Fade */
+[dir="rtl"] .mask-border-fade {
+  -webkit-mask-image: linear-gradient(to left, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to left, transparent, black 10%, black 90%, transparent);
+}
+
 /* Infinite Marquee Animation */
 @keyframes marquee {
   0% { transform: translateX(0); }

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ $page->locale ?? 'en' }}" dir="{{ isset($page->locale) && $page->locale === 'ar' ? 'rtl' : 'ltr' }}" x-data="{ darkMode: $persist(false) }" :class="{ 'dark': darkMode }">
+<html lang="{{ $page->locale ?? 'en' }}" dir="{{ isset($page->locale) && $page->locale === 'ar' ? 'rtl' : 'ltr' }}" class="no-js" x-data="{ darkMode: $persist(false) }" :class="{ 'dark': darkMode }">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
+<script>document.documentElement.classList.remove('no-js')</script>
 <title>@section('title'){{ $page->siteName }}@show</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -125,7 +126,11 @@
     </header>
 
     {{-- Main Content --}}
-    <main class="flex-1">
+    @php
+        $currentPath = $page->getPath();
+        $isHomePage = in_array($currentPath, ['/', '/ar', '', 'ar']) || $currentPath === null;
+    @endphp
+    <main class="flex-1 {{ $isHomePage ? '' : 'pt-20' }}">
         @yield('main')
     </main>
 
