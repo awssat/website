@@ -1,21 +1,64 @@
-window.axios = require("axios");
-const hljs = require("highlight.js/lib/core");
+import axios from "axios";
+import hljs from "highlight.js/lib/core";
+import php from "highlight.js/lib/languages/php";
+import javascript from "highlight.js/lib/languages/javascript";
+import bash from "highlight.js/lib/languages/bash";
 import Alpine from "alpinejs";
+import intersect from '@alpinejs/intersect';
+import persist from '@alpinejs/persist';
 
+window.axios = axios;
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
-// Alpine v3 initialization
+// Alpine v3 initialization with plugins
+Alpine.plugin(intersect);
+Alpine.plugin(persist);
+
+// Alpine data components for animations
+Alpine.data('magneticButton', () => ({
+  x: 0,
+  y: 0,
+  handleMouseMove(e) {
+    const rect = this.$el.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    this.x = (e.clientX - centerX) / 5;
+    this.y = (e.clientY - centerY) / 5;
+    this.$el.style.transform = `translate(${this.x}px, ${this.y}px)`;
+  },
+  handleMouseLeave() {
+    this.x = 0;
+    this.y = 0;
+    this.$el.style.transform = 'translate(0, 0)';
+  }
+}));
+
+Alpine.data('tiltCard', () => ({
+  handleMouseMove(e) {
+    const rect = this.$el.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = (y - centerY) / 15;
+    const rotateY = (centerX - x) / 15;
+
+    this.$el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+  },
+  handleMouseLeave() {
+    this.$el.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+  }
+}));
+
 window.Alpine = Alpine;
 Alpine.start();
 
-hljs.registerLanguage("php", require("highlight.js/lib/languages/php"));
-hljs.registerLanguage("javascript", require("highlight.js/lib/languages/javascript"));
-hljs.registerLanguage("bash", require("highlight.js/lib/languages/bash"));
-hljs.registerLanguage("diff", require("highlight.js/lib/languages/bash"));
+hljs.registerLanguage("php", php);
+hljs.registerLanguage("javascript", javascript);
+hljs.registerLanguage("bash", bash);
+hljs.registerLanguage("diff", bash);
 
 document.addEventListener("DOMContentLoaded", (event) => {
-    darkMode(darkMode());
-
     document.querySelectorAll("pre code").forEach((block) => {
         hljs.highlightElement(block);
 
@@ -56,26 +99,35 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
 });
 
-window.darkMode = (toggle) => {
-    if (typeof toggle === "undefined") {
-        if (localStorage.getItem("dark-theme") !== null) {
-            return true;
-        }
-        return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-    }
-    if (toggle) {
-        localStorage.setItem("dark-theme", true);
-    } else {
-        localStorage.removeItem("dark-theme");
-    }
-    darkModeToggle(toggle);
-    return toggle;
-};
+// Parallax scroll effect
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      document.documentElement.style.setProperty('--scroll', window.pageYOffset);
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
 
-var darkModeToggle = (toggle) => {
-    if (toggle) {
-        document.body.classList.add("dark-mode");
-    } else {
-        document.body.classList.remove("dark-mode");
-    }
-};
+// Intersection Observer for scroll animations
+document.addEventListener('DOMContentLoaded', () => {
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, observerOptions);
+
+  // Observe all elements with .animate-on-scroll class
+  document.querySelectorAll('.animate-on-scroll').forEach(el => {
+    observer.observe(el);
+  });
+});

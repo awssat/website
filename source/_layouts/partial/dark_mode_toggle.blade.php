@@ -1,21 +1,30 @@
-<div class="relative inline-block w-12 select-none" x-cloak x-data="{ toggle: darkMode() }"
-    @click.prevent="toggle = darkMode(! toggle)">
-    <div :class="{'translate-x-full': toggle}"
-        class="absolute z-10 border-gray-700 block w-6 h-6 rounded-full bg-white border-2 cursor-pointer transition duration-100 transform"></div>
+<button @click="darkMode = !darkMode" 
+        type="button" 
+        class="relative p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+        :title="darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+        :aria-label="darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
+    
+    {{-- Sun Icon (Visible in Dark Mode) --}}
+    <svg x-show="darkMode" 
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 rotate-90 scale-50"
+         x-transition:enter-end="opacity-100 rotate-0 scale-100"
+         x-transition:leave="transition ease-in duration-100"
+         x-transition:leave-start="opacity-100 rotate-0 scale-100"
+         x-transition:leave-end="opacity-0 -rotate-90 scale-50"
+         xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+    </svg>
 
-    <div
-        class="overflow-hidden bg-gray-800 h-6 w-full base-theme-toggle-pill rounded-full cursor-pointer flex justify-between items-center p-px">
-        {{-- feathericons --}}
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5  text-blue-300 fill-current" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="0" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-        {{-- material icons --}}
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5  text-yellow-400 fill-current" viewBox="0 0 24 24">
-            <path d="M0 0h24v24H0z" fill="none" />
-            <path
-                d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z" />
-            </svg>
-    </div>
-    <input type="checkbox" class="hidden" aria-label="dark mode toggle">
-</div>
+    {{-- Moon Icon (Visible in Light Mode) --}}
+    <svg x-show="!darkMode" 
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 -rotate-90 scale-50"
+         x-transition:enter-end="opacity-100 rotate-0 scale-100"
+         x-transition:leave="transition ease-in duration-100"
+         x-transition:leave-start="opacity-100 rotate-0 scale-100"
+         x-transition:leave-end="opacity-0 rotate-90 scale-50"
+         xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+    </svg>
+</button>

@@ -16,7 +16,7 @@
 }
 
 
-@screen md {
+@media (width >= 768px) {
     .opensource-doc-body h1 {
         @apply text-3xl
     }

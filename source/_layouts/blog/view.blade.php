@@ -21,8 +21,8 @@
 
 @section('title'){{ $page->title ?? '--' }} — @parent @endsection
 
-@section('main')
-<div class="w-full mx-auto max-w-5xl flex flex-col p-4 md:p-0">
-@include('_layouts.blog.partial.post')
-</div>
+@section('blog_main')
+<article class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-800 overflow-hidden">
+    @include('_layouts.blog.partial.post')
+</article>
 @stop

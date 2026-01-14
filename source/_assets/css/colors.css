@@ -1,336 +1,70 @@
-/* Colors and dark mode theme implementation */
-body {
-    @apply bg-gray-100;
+/* Modern Color System with Tailwind Dark Mode */
+
+/* Gradient Mesh Light Mode */
+.gradient-mesh {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.08) 0%,
+    rgba(59, 130, 246, 0.08) 33%,
+    rgba(236, 72, 153, 0.08) 66%,
+    rgba(139, 92, 246, 0.08) 100%
+  );
+  background-size: 400% 400%;
 }
 
-.dark-mode {
-    @apply bg-gray-900 text-gray-200;
+/* Gradient Mesh Dark Mode */
+.dark .gradient-mesh {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.04) 0%,
+    rgba(59, 130, 246, 0.04) 33%,
+    rgba(236, 72, 153, 0.04) 66%,
+    rgba(139, 92, 246, 0.04) 100%
+  );
+  background-size: 400% 400%;
 }
 
-.base-logo-box {
-    @apply bg-gray-200;
+/* Text Gradients Dark Mode Compatibility */
+.dark .text-gradient-primary,
+.dark .text-gradient-accent {
+  filter: brightness(1.2);
 }
 
-.dark-mode .base-logo-box {
-    @apply bg-gray-800 border-gray-700;
+/* Legacy base classes for backward compatibility */
+.base-post-body {
+    @apply text-gray-900 dark:text-gray-300;
 }
-
-/* .base-logo-box > a {} */
-.dark-mode .base-logo-box>a {
-    @apply text-gray-100;
-}
-
-.base-breadcrumbs {
-    @apply text-gray-700 bg-gray-100;
-}
-
-.dark-mode .base-breadcrumbs {
-    @apply text-gray-300 bg-gray-700;
-}
-
-/* .base-theme-toggle-pill {} */
-
-.dark-mode .base-theme-toggle-pill {
-    @apply border border-gray-600;
-}
-
-.base-home-title {
-   @apply text-gray-700;
-}
-.dark-mode .base-home-title {
-    @apply text-gray-300;
-}
-
-.base-home-desc {
-    @apply text-gray-700;
-}
-.dark-mode .base-home-desc {
-    @apply text-gray-500
-}
-.base-home-footer {
-    @apply text-gray-300;
-}
-.dark-mode .base-home-footer {
-    @apply text-gray-700;
-}
-
-
-
-.base-side-menu-ul {
-    @apply bg-gray-200;
-}
-
-.dark-mode .base-side-menu-ul {
-    @apply border-gray-700 bg-gray-800;
-}
-
-
-.base-side-menu-li {
-    @apply text-gray-700;
-}
-
-.dark-mode .base-side-menu-li {
-    @apply text-gray-400;
-}
-
-.group:hover .base-side-menu-li-text {
-    @apply text-gray-900;
-}
-
-.dark-mode .group:hover>.base-side-menu-li-text {
-    @apply text-gray-200;
-}
-
-/* .base-left-side-container {} */
-.dark-mode .base-left-side-container {
-    @apply border-gray-800;
-}
-
-.base-left-side-nav {
-    @apply text-white bg-awssat;
-}
-
-.dark-mode .base-left-side-nav {
-    @apply bg-gray-800 text-gray-500;
-}
-
-.base-left-side-nav-title {
-    @apply text-awssat bg-gray-100;
-}
-
-.dark-mode .base-left-side-nav-title {
-    @apply text-gray-300 bg-awssat;
-}
-
-/* .base-post-container {} */
-.dark-mode .base-post-container {
-    @apply border-gray-800;
-}
-
-/* .base-post-large-title {
-    @apply text-awssat;
-    @apply shadow-link;
-}
-
-.dark-mode .base-post-large-title {
-    @apply text-awssat-light;
-} */
 
 .base-post-title {
     @apply shadow-link;
 }
 
-/* .base-post-title:visited {
-    @apply text-purple-500;
-} */
-
-/* .dark-mode .base-post-title {
-    @apply text-awssat-light;
-} */
-
-.base-post-aside-date {
-    @apply text-gray-700;
-}
-
-.dark-mode .base-post-aside-date {
-    @apply text-gray-500;
-}
-
-.base-post-aside-icon {
-    @apply text-gray-700;
-}
-
-.dark-mode .base-post-aside-icon {
-    @apply text-gray-500;
-}
-
-.base-post-body {
-    @apply text-gray-900;
-}
-
-.dark-mode .base-post-body {
-    @apply text-gray-400;
-}
-
-/* .base-post-read-more {} */
-.base-post-read-more:hover {
-    @apply bg-gray-200;
-}
-
-.dark-mode .base-post-read-more {
-    @apply text-gray-200
-}
-
-.dark-mode .base-post-read-more:hover {
-    @apply bg-gray-800;
-}
-
-.base-post-author {
-    @apply text-gray-800;
-}
-
-.dark-mode .base-post-author {
-    @apply text-gray-400;
-}
-
 .base-tag-tweet {
-    @apply bg-blue-200 text-blue-800 border-blue-300
-}
-
-.base-tag-tweet:hover {
-    @apply bg-blue-700 text-blue-200;
-}
-
-.dark-mode .base-tag-tweet {
-    @apply bg-blue-700 text-blue-200;
+    @apply bg-blue-200 text-blue-800 border-blue-300 dark:bg-blue-700 dark:text-blue-200;
 }
 
 .base-tag-video {
-    @apply bg-red-200 text-red-800 border-red-300;
-}
-
-.base-tag-video:hover,
-.dark-mode .base-tag-video {
-    @apply bg-red-800 text-red-200;
+    @apply bg-red-200 text-red-800 border-red-300 dark:bg-red-800 dark:text-red-200;
 }
 
 .base-tag-link {
-    @apply bg-green-200 text-green-800 border-green-300;
-}
-
-.base-tag-link:hover,
-.dark-mode .base-tag-link {
-    @apply bg-green-700 text-green-200;
+    @apply bg-green-200 text-green-800 border-green-300 dark:bg-green-700 dark:text-green-200;
 }
 
 .base-tag-original {
-    @apply bg-purple-200 text-purple-700 border-purple-300;
-}
-
-.base-tag-original:hover,
-.dark-mode .base-tag-original {
-    @apply bg-purple-700 text-purple-200;
+    @apply bg-purple-200 text-purple-700 border-purple-300 dark:bg-purple-700 dark:text-purple-200;
 }
 
 .base-tag-default {
-    @apply bg-gray-200 text-gray-700 border-gray-300;
+    @apply bg-gray-200 text-gray-700 border-gray-300 dark:bg-gray-700 dark:text-gray-200;
 }
 
-.base-tag-default:hover,
-.dark-mode .base-tag-default {
-    @apply bg-gray-700 text-gray-200;
-}
-
-.dark-mode .base-tag-no-box,
-.base-tag-no-box {
-    @apply bg-transparent;
-}
-
-.base-pagination-prev-off,
-.base-pagination-next-off {
-    @apply text-gray-500 bg-white border-gray-300
-}
-
-.dark-mode .base-pagination-prev-off,
-.dark-mode .base-pagination-next-off {
-    @apply text-gray-500 bg-gray-600 border-gray-600
+/* Pagination styles */
+.base-pagination-page {
+    @apply text-gray-700 bg-white border border-gray-300 dark:text-white dark:bg-gray-700 dark:border-gray-600;
 }
 
 .base-pagination-prev,
 .base-pagination-next {
-    @apply text-gray-700 bg-white border-gray-300;
-}
-
-.dark-mode .base-pagination-prev,
-.dark-mode .base-pagination-next {
-    @apply text-white bg-gray-700 border-gray-600;
-}
-
-.base-pagination-prev:active,
-.base-pagination-next:active {
-    @apply text-gray-700 bg-gray-100;
-}
-
-.dark-mode .base-pagination-prev:active,
-.dark-mode .base-pagination-next:active {
-    @apply text-gray-100 bg-gray-700;
-}
-
-.base-pagination-prev:hover,
-.base-pagination-next:hover {
-    @apply text-gray-500;
-}
-
-.base-pagination-prev:focus,
-.base-pagination-next:focus {
-    @apply border-blue-300;
-}
-
-.base-pagination-info {
-    @apply text-gray-700;
-}
-
-.base-pagination-page {
-    @apply text-gray-700 bg-white border border-gray-300;
-}
-
-.dark-mode .base-pagination-page {
-    @apply text-white bg-gray-700 border-gray-600;
-}
-
-.base-pagination-page:active {
-    @apply bg-gray-100 text-gray-700;
-}
-
-.dark-mode .base-pagination-page:active {
-    @apply bg-gray-700 text-gray-100;
-}
-
-.base-pagination-page:hover {
-    @apply text-gray-500;
-}
-
-.base-pagination-page:focus {
-    @apply border-blue-300;
-}
-
-.dark-mode .base-pagination-page-current,
-.base-pagination-page-current {
-    @apply text-gray-500;
-}
-
-.base-opensource-index-desc {
-    @apply text-gray-800;
-}
-.dark-mode .base-opensource-index-desc {
-    @apply text-gray-400;
-}
-
-.base-opensource-index-item {
-    @apply bg-gray-200;
-}
-.dark-mode .base-opensource-index-item {
-    @apply bg-gray-700;
-}
-
-.base-opensource-index-item-name {
-    @apply text-gray-700;
-}
-.dark-mode .base-opensource-index-item-name {
-    @apply text-gray-500;
-}
-
-.base-opensource-index-note {
-    @apply bg-yellow-300;
-}
-.dark-mode .base-opensource-index-note {
-    @apply bg-yellow-300 text-gray-900;
-}
-
-.base-opensource-view-side-border {
-    @apply border-gray-300;
-}
-
-.dark-mode .base-opensource-view-side-border {
-    @apply border-gray-700;
+    @apply text-gray-700 bg-white border-gray-300 dark:text-white dark:bg-gray-700 dark:border-gray-600;
 }

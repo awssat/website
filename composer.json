@@ -9,5 +9,8 @@
             "App\\Listeners\\": "listeners/",
             "App\\Helpers\\": "helpers/"
         }
+    },
+    "require-dev": {
+        "symfony/console": "^7.0 <7.4"
     }
 }

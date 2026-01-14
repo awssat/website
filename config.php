@@ -1,6 +1,7 @@
 <?php
 
 use App\Helpers\PostStructuredData;
+use App\Helpers\TranslationHelper;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 
@@ -11,10 +12,26 @@ return [
     'siteDescription' => 'An enthusiastic team that\'s eager to build and design beautiful web stuff.',
     'siteAuthor' => 'Awssat Devs',
 
+    // Locale configuration
+    'locales' => [
+        'en' => [
+            'name' => 'English',
+            'dir' => 'ltr',
+            'default' => true,
+        ],
+        'ar' => [
+            'name' => 'العربية',
+            'dir' => 'rtl',
+            'default' => false,
+        ],
+    ],
+    'defaultLocale' => 'en',
+
     // collections
     'collections' => [
+        // Legacy collection (kept for backward compatibility during migration)
         'posts' => [
-            'author' => 'Awssat Devs', // Default author, if not provided in a post
+            'author' => 'Awssat Devs',
             'sort' => '-date',
             'path' => '/blog/{filename}',
             'extends' => '_layouts.blog.view',
@@ -26,7 +43,95 @@ return [
                 })->toArray();
                 return $post;
             },
+        ],
 
+        // English blog posts (default, no locale prefix)
+        'posts_en' => [
+            'author' => 'Awssat Devs',
+            'sort' => '-date',
+            'path' => '/blog/{filename}',
+            'extends' => '_layouts.blog.view',
+            'section' => 'post_content',
+            'locale' => 'en',
+            'tags' => [],
+            'filter' => function ($item) {
+                return Str::endsWith($item->getFilename(), '.en');
+            },
+            'map' => function ($post) {
+                $post->locale = 'en';
+                $post->alternateLocale = 'ar';
+                $post->slug = Str::before($post->getFilename(), '.en');
+                $post->tags = collect($post->tags ?? [])->map(function ($tag) {
+                    return Str::kebab($tag);
+                })->toArray();
+                return $post;
+            },
+        ],
+
+        // Arabic blog posts
+        'posts_ar' => [
+            'author' => 'Awssat Devs',
+            'sort' => '-date',
+            'path' => '/ar/blog/{filename}',
+            'extends' => '_layouts.blog.view',
+            'section' => 'post_content',
+            'locale' => 'ar',
+            'tags' => [],
+            'filter' => function ($item) {
+                return Str::endsWith($item->getFilename(), '.ar');
+            },
+            'map' => function ($post) {
+                $post->locale = 'ar';
+                $post->alternateLocale = 'en';
+                $post->slug = Str::before($post->getFilename(), '.ar');
+                $post->tags = collect($post->tags ?? [])->map(function ($tag) {
+                    return Str::kebab($tag);
+                })->toArray();
+                return $post;
+            },
+        ],
+
+        // Base portfolio collection (loads all portfolio items)
+        'portfolio' => [
+            'sort' => '-date',
+            'path' => '/portfolio/{filename}',
+            'extends' => '_layouts.portfolio.view',
+        ],
+
+        // English portfolio items (default, no locale prefix)
+        'portfolio_en' => [
+            'sort' => '-date',
+            'path' => '/portfolio/{filename}',
+            'extends' => '_layouts.portfolio.view',
+
+            'locale' => 'en',
+            'filter' => function ($item) {
+                return Str::endsWith($item->getFilename(), '.en');
+            },
+            'map' => function ($item) {
+                $item->locale = 'en';
+                $item->alternateLocale = 'ar';
+                $item->slug = Str::before($item->getFilename(), '.en');
+                return $item;
+            },
+        ],
+
+        // Arabic portfolio items
+        'portfolio_ar' => [
+            'sort' => '-date',
+            'path' => '/ar/portfolio/{filename}',
+            'extends' => '_layouts.portfolio.view',
+            'section' => 'portfolio_content',
+            'locale' => 'ar',
+            'filter' => function ($item) {
+                return Str::endsWith($item->getFilename(), '.ar');
+            },
+            'map' => function ($item) {
+                $item->locale = 'ar';
+                $item->alternateLocale = 'en';
+                $item->slug = Str::before($item->getFilename(), '.ar');
+                return $item;
+            },
         ],
     ],
 
@@ -94,5 +199,36 @@ return [
         return $allPosts->filter(function ($post) use ($page) {
             return $post->tags ? in_array($page->getFilename(), $post->tags, true) : false;
         });
+    },
+
+    // Translation helper
+    'trans' => function ($page, $key) {
+        $locale = $page->locale ?? 'en';
+        return TranslationHelper::get($key, $locale);
+    },
+
+    // Get alternate language URL
+    'getAlternateUrl' => function ($page) {
+        $currentLocale = $page->locale ?? 'en';
+        $altLocale = $currentLocale === 'en' ? 'ar' : 'en';
+        $currentPath = $page->getPath();
+
+        // Replace locale in path
+        return str_replace("/{$currentLocale}/", "/{$altLocale}/", $currentPath);
+    },
+
+    // Get all portfolio items for current locale
+    'allPortfolio' => function ($page) {
+        $locale = $page->locale ?? 'en';
+        return collect($page->portfolio ?? [])->filter(function ($item) use ($locale) {
+            return Str::endsWith($item->getFilename(), ".{$locale}");
+        });
+    },
+
+    // Get all posts for current locale
+    'allPosts' => function ($page) {
+        $locale = $page->locale ?? 'en';
+        $collectionName = "posts_{$locale}";
+        return $page->{$collectionName} ?? collect();
     },
 ];

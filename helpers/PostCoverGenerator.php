@@ -69,7 +69,7 @@ class PostCoverGenerator
         }
 
         if (!is_dir($destination . '/assets/images/covers')) {
-            mkdir($destination . '/assets/images/covers/', 0777, true);
+            @mkdir($destination . '/assets/images/covers/', 0777, true);
         }
 
         if (file_put_contents($destination . '/assets/images/covers/' . $post->getFilename() . '.png', $img->toPng())) {
