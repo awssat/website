@@ -35,13 +35,13 @@
                 </h3>
                 <ul class="space-y-2">
                     <li>
-                        <a href="{{ url('/' . (($page->locale ?? 'en') === 'ar' ? 'ar/' : '') . 'portfolio') }}"
+                        <a href="{{ $page->localUrl('portfolio') }}"
                            class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors text-sm">
                             {{ $page->trans('nav.portfolio') ?? 'Portfolio' }}
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/blog') }}"
+                        <a href="{{ $page->localUrl('blog') }}"
                            class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors text-sm">
                             {{ $page->trans('nav.blog') ?? 'Blog' }}
                         </a>

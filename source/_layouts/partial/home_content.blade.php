@@ -68,7 +68,7 @@
 
             {{-- CTA Buttons --}}
             <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center items-stretch sm:items-center animate-on-scroll delay-300 max-w-lg mx-auto">
-                <a href="{{ $page->baseUrl }}/{{ $locale === 'ar' ? 'ar/' : '' }}portfolio"
+                <a href="{{ $page->localUrl('portfolio') }}"
                    class="group relative px-5 sm:px-6 md:px-7 py-3 sm:py-3.5 md:py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full font-bold text-sm sm:text-base md:text-lg shadow-2xl hover:shadow-primary-500/30 transition-all duration-300 hover:-translate-y-1 overflow-hidden ring-4 ring-gray-900/5 dark:ring-white/5 text-center whitespace-nowrap">
                     <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer"></div>
                     <span class="relative flex items-center justify-center gap-2">
@@ -498,7 +498,7 @@
                         {{ $locale === 'ar' ? 'مجموعة من المشاريع التي أحدثنا فيها تأثيرًا كبيرًا.' : 'A collection of projects where we\'ve made a significant impact.' }}
                     </p>
                 </div>
-                <a href="{{ $page->baseUrl }}/{{ $locale === 'ar' ? 'ar/' : '' }}portfolio" class="hidden md:inline-flex items-center text-lg font-semibold text-primary-600 dark:text-primary-400 hover:text-primary-700 transition-colors">
+                <a href="{{ $page->localUrl('portfolio') }}" class="hidden md:inline-flex items-center text-lg font-semibold text-primary-600 dark:text-primary-400 hover:text-primary-700 transition-colors">
                     {{ $locale === 'ar' ? 'عرض جميع المشاريع' : 'View all projects' }}
                     <svg class="w-5 h-5 {{ $locale === 'ar' ? 'mr-2 scale-x-[-1]' : 'ml-2' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
@@ -516,9 +516,9 @@
                     </div>
                 @endforeach
             </div>
-            
+
             <div class="mt-12 text-center md:hidden">
-                <a href="{{ $page->baseUrl }}/{{ $locale === 'ar' ? 'ar/' : '' }}portfolio" class="inline-flex items-center text-lg font-semibold text-primary-600 dark:text-primary-400 hover:text-primary-700 transition-colors">
+                <a href="{{ $page->localUrl('portfolio') }}" class="inline-flex items-center text-lg font-semibold text-primary-600 dark:text-primary-400 hover:text-primary-700 transition-colors">
                     {{ $locale === 'ar' ? 'عرض جميع المشاريع' : 'View all projects' }}
                     <svg class="w-5 h-5 {{ $locale === 'ar' ? 'mr-2 scale-x-[-1]' : 'ml-2' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
@@ -602,6 +602,144 @@
         </div>
     </section>
 
+    {{-- Philosophy Section --}}
+    <section class="py-24 px-4 bg-gradient-to-br from-gray-50 via-white to-primary-50/30 dark:from-gray-900 dark:via-gray-950 dark:to-primary-900/10 border-y border-gray-200 dark:border-gray-800">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+                    {{ $locale === 'ar' ? 'فلسفتنا في العمل' : 'Our Philosophy' }}
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto text-balance">
+                    {{ $locale === 'ar' ? 'نؤمن بالبرمجة الواعية والتطوير المستدام. كل سطر كود نكتبه يعكس التزامنا بالجودة والأداء والأمان.' : 'We believe in conscious coding and sustainable development. Every line of code we write reflects our commitment to quality, performance, and security.' }}
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                {{-- Philosophy Card 1: Code Quality --}}
+                <div class="group relative bg-white dark:bg-gray-900 rounded-3xl p-8 border border-gray-200 dark:border-gray-800 hover:border-primary-300 dark:hover:border-primary-700 transition-all duration-300 hover:shadow-2xl animate-on-scroll">
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl"></div>
+                    <div class="relative">
+                        <div class="flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 text-white mb-6 group-hover:scale-110 transition-transform shadow-lg">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                            {{ $locale === 'ar' ? 'الجودة أولاً' : 'Quality First' }}
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                            @if($locale === 'ar')
+                                لا نكتفي بـ "يعمل". نسعى للكود النظيف والمختبر والموثق جيدًا. كل PR نرسله لـ Laravel يمر بمعايير صارمة - نطبق نفس المعايير على مشاريعنا.
+                            @else
+                                We don't settle for "it works". We strive for clean, tested, well-documented code. Every PR we submit to Laravel passes rigorous standards — we apply the same rigor to our projects.
+                            @endif
+                        </p>
+                        <div class="flex items-center gap-2 text-sm text-primary-600 dark:text-primary-400 font-semibold">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            {{ $locale === 'ar' ? 'الكود النظيف هو الكود السريع' : 'Clean code is fast code' }}
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Philosophy Card 2: Pragmatism --}}
+                <div class="group relative bg-white dark:bg-gray-900 rounded-3xl p-8 border border-gray-200 dark:border-gray-800 hover:border-accent-300 dark:hover:border-accent-700 transition-all duration-300 hover:shadow-2xl animate-on-scroll delay-100">
+                    <div class="absolute inset-0 bg-gradient-to-br from-accent-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl"></div>
+                    <div class="relative">
+                        <div class="flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-500 to-accent-600 text-white mb-6 group-hover:scale-110 transition-transform shadow-lg">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                            {{ $locale === 'ar' ? 'البراغماتية والبساطة' : 'Pragmatism Over Perfection' }}
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                            @if($locale === 'ar')
+                                نحن ضد الهندسة الزائدة. نبني ما تحتاجه الآن، وليس ما قد تحتاجه "ربما" لاحقًا. كل تجريد له سبب، كل dependency لها قيمة.
+                            @else
+                                We're against over-engineering. We build what you need now, not what you "might" need later. Every abstraction has a purpose, every dependency has value.
+                            @endif
+                        </p>
+                        <div class="flex items-center gap-2 text-sm text-accent-600 dark:text-accent-400 font-semibold">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            {{ $locale === 'ar' ? 'البساطة هي الأساس' : 'Simplicity scales' }}
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Philosophy Card 3: Open Source --}}
+                <div class="group relative bg-white dark:bg-gray-900 rounded-3xl p-8 border border-gray-200 dark:border-gray-800 hover:border-purple-300 dark:hover:border-purple-700 transition-all duration-300 hover:shadow-2xl animate-on-scroll delay-200">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl"></div>
+                    <div class="relative">
+                        <div class="flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-600 text-white mb-6 group-hover:scale-110 transition-transform shadow-lg">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                            {{ $locale === 'ar' ? 'نعيد للمجتمع' : 'We Give Back' }}
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                            @if($locale === 'ar')
+                                نحن جزء من مجتمع المصدر المفتوح. 6 تحديثات في قلب Laravel، 2200+ نجمة على GitHub، وعشرات الحزم المستخدمة في آلاف المشاريع. نأخذ، ونعطي.
+                            @else
+                                We're part of the open source community. 6 core Laravel contributions, 2,200+ GitHub stars, and dozens of packages used in thousands of projects. We take, and we give back.
+                            @endif
+                        </p>
+                        <div class="flex items-center gap-2 text-sm text-purple-600 dark:text-purple-400 font-semibold">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            {{ $locale === 'ar' ? 'نرتقي معًا' : 'Rising tides lift all boats' }}
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Philosophy Card 4: Security --}}
+                <div class="group relative bg-white dark:bg-gray-900 rounded-3xl p-8 border border-gray-200 dark:border-gray-800 hover:border-red-300 dark:hover:border-red-700 transition-all duration-300 hover:shadow-2xl animate-on-scroll delay-300">
+                    <div class="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl"></div>
+                    <div class="relative">
+                        <div class="flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-red-500 to-red-600 text-white mb-6 group-hover:scale-110 transition-transform shadow-lg">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                            {{ $locale === 'ar' ? 'الأمان من البداية' : 'Security by Design' }}
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                            @if($locale === 'ar')
+                                الأمان ليس إضافة لاحقة. نفكر في OWASP Top 10، SQL injection، XSS، CSRF من اليوم الأول. نفحص كود الـ AI، ونراجع الـ dependencies، ونختبر الثغرات.
+                            @else
+                                Security isn't an afterthought. We think about OWASP Top 10, SQL injection, XSS, CSRF from day one. We audit AI-generated code, review dependencies, and test for vulnerabilities.
+                            @endif
+                        </p>
+                        <div class="flex items-center gap-2 text-sm text-red-600 dark:text-red-400 font-semibold">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            {{ $locale === 'ar' ? 'الأمان ليس اختياريًا' : 'Trust is earned, not assumed' }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Bottom Quote --}}
+            <div class="text-center max-w-3xl mx-auto animate-on-scroll delay-400">
+                <blockquote class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4 italic">
+                    "{{ $locale === 'ar' ? 'نحن لا نبني برمجيات فقط. نبني حلولاً تدوم.' : 'We don\'t just build software. We build solutions that last.' }}"
+                </blockquote>
+                <p class="text-gray-600 dark:text-gray-400">
+                    {{ $locale === 'ar' ? '— فريق Awssat' : '— The Awssat Team' }}
+                </p>
+            </div>
+        </div>
+    </section>
+
     {{-- CTA Section --}}
     <section id="contact" class="relative py-32 px-4 overflow-hidden border-t border-gray-200 dark:border-gray-800">
         <div class="absolute inset-0 bg-white dark:bg-gray-950"></div>
@@ -621,7 +759,7 @@
                     </svg>
                     {{ $locale === 'ar' ? 'عرض ملف GitHub' : 'View GitHub Profile' }}
                 </a>
-                <a href="/contact" class="px-8 py-4 bg-transparent border-2 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white rounded-2xl font-bold text-lg hover:border-gray-300 dark:hover:border-gray-600 transition-all inline-flex items-center justify-center">
+                <a href="{{ $page->localUrl('contact') }}" class="px-8 py-4 bg-transparent border-2 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white rounded-2xl font-bold text-lg hover:border-gray-300 dark:hover:border-gray-600 transition-all inline-flex items-center justify-center">
                     {{ $locale === 'ar' ? 'تواصل معنا' : 'Get In Touch' }}
                 </a>
             </div>

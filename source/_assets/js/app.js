@@ -294,6 +294,86 @@ window.addEventListener('scroll', () => {
   }
 });
 
+// Add IDs to headings for TOC functionality and active section highlighting
+document.addEventListener('DOMContentLoaded', () => {
+  // Find all h2, h3, h4 headings in blog posts
+  const articleBody = document.getElementById('article-body');
+  if (!articleBody) return;
+
+  const headings = articleBody.querySelectorAll('h2, h3, h4');
+  headings.forEach((heading) => {
+    // Only add ID if it doesn't already have one
+    if (!heading.id) {
+      // Generate slug from text content
+      const text = heading.textContent.trim();
+      const slug = text
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+      heading.id = slug;
+    }
+  });
+
+  // Active section highlighting in TOC
+  const tocLinks = document.querySelectorAll('nav a[href^="#"]');
+  if (tocLinks.length === 0) return;
+
+  const observerOptions = {
+    rootMargin: '-20% 0px -35% 0px',
+    threshold: [0, 0.25, 0.5, 0.75, 1]
+  };
+
+  const activeSection = new Map();
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      activeSection.set(entry.target, entry.isIntersecting);
+    });
+
+    // Find the first visible heading
+    let activeId = null;
+    for (const [target, isIntersecting] of activeSection.entries()) {
+      if (isIntersecting) {
+        activeId = target.id;
+        break;
+      }
+    }
+
+    // Update active state in TOC
+    tocLinks.forEach(link => {
+      const href = link.getAttribute('href').substring(1);
+      if (href === activeId) {
+        link.classList.add('!text-primary-600', 'dark:!text-primary-400', 'font-semibold');
+      } else {
+        link.classList.remove('!text-primary-600', 'dark:!text-primary-400', 'font-semibold');
+      }
+    });
+  }, observerOptions);
+
+  headings.forEach(heading => observer.observe(heading));
+
+  // Smooth scroll for TOC links
+  tocLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        const offset = 80; // Account for fixed header
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+});
+
 // Intersection Observer for scroll animations
 document.addEventListener('DOMContentLoaded', () => {
   // Mobile-friendly observer settings

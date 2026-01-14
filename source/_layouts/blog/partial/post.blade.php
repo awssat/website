@@ -63,6 +63,16 @@
                 <span>Published {{ $page->getDate()->diffForHumans() }}</span>
             </div>
 
+            <span class="text-gray-300 dark:text-gray-700">|</span>
+
+            {{-- Reading Time --}}
+            <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"></path>
+                </svg>
+                <span>{{ $page->getReadingTime() }} min read</span>
+            </div>
+
             @if (!empty($page->updated_at) && $page->getUpdatedAt() > $page->getDate())
             <span class="text-gray-300 dark:text-gray-700">|</span>
             <div class="flex items-center gap-2 text-accent-600 dark:text-accent-400">
@@ -104,6 +114,42 @@
         @endif
     </header>
 
+    {{-- Table of Contents --}}
+    @php
+        $tableOfContents = $page->getTableOfContents();
+    @endphp
+    @if(count($tableOfContents) >= 3)
+    <nav class="mb-8 p-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700" x-data="{ tocOpen: true }">
+        <button @click="tocOpen = !tocOpen" class="flex items-center justify-between w-full text-left mb-4">
+            <h2 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
+                </svg>
+                Table of Contents
+            </h2>
+            <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform" :class="{ 'rotate-180': !tocOpen }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </button>
+
+        <div x-show="tocOpen" x-collapse>
+            <ul class="space-y-2">
+                @foreach($tableOfContents as $heading)
+                    <li class="@if($heading['level'] === 3) ml-4 @elseif($heading['level'] === 4) ml-8 @endif">
+                        <a href="#{{ $heading['id'] }}"
+                           class="group flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors py-1">
+                            <svg class="w-4 h-4 mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity text-primary-600 dark:text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                            <span class="group-hover:translate-x-1 transition-transform">{{ $heading['text'] }}</span>
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    </nav>
+    @endif
+
     {{-- Article Body --}}
     <section id="article-body" class="prose prose-lg md:prose-xl dark:prose-invert max-w-none
         prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white
@@ -119,6 +165,70 @@
         base-post-body">
         @yield('post_content')
     </section>
+
+    {{-- Related Posts --}}
+    @php
+        $relatedPosts = $page->getRelatedPosts(3);
+    @endphp
+    @if($relatedPosts->count() > 0)
+    <section class="mt-12 pt-12 border-t border-gray-200 dark:border-gray-800">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+            <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+            </svg>
+            Related Articles
+        </h2>
+
+        <div class="grid md:grid-cols-{{ $relatedPosts->count() === 2 ? '2' : '3' }} gap-6">
+            @foreach($relatedPosts as $post)
+            <a href="{{ $post->getUrl() }}" class="group relative bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-200 dark:border-gray-700">
+                {{-- Cover Image --}}
+                <div class="relative aspect-video overflow-hidden bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800">
+                    <img src="{{ $post->getCoverImage() }}"
+                         alt="{{ $post->title }}"
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                         loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+
+                {{-- Content --}}
+                <div class="p-4">
+                    {{-- Similarity Badge --}}
+                    <div class="flex items-center gap-2 mb-2 text-xs">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 font-semibold">
+                            {{ $post->similarityScore }} {{ $post->similarityScore === 1 ? 'shared tag' : 'shared tags' }}
+                        </span>
+                        <time datetime="{{ $post->getDate()->format('Y-m-d') }}" class="text-gray-500 dark:text-gray-400">
+                            {{ $post->getDate()->format('M j, Y') }}
+                        </time>
+                    </div>
+
+                    {{-- Title --}}
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors line-clamp-2">
+                        {{ $post->title }}
+                    </h3>
+
+                    {{-- Excerpt --}}
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">
+                        {!! $post->getExcerpt(100) !!}
+                    </p>
+
+                    {{-- Tags --}}
+                    @if($post->tags)
+                    <div class="flex flex-wrap gap-1.5">
+                        @foreach(array_slice($post->tags, 0, 3) as $tag)
+                        <span class="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
+                            {{ $tag }}
+                        </span>
+                        @endforeach
+                    </div>
+                    @endif
+                </div>
+            </a>
+            @endforeach
+        </div>
+    </section>
+    @endif
 
     {{-- Footer --}}
     <footer class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">

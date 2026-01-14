@@ -51,6 +51,14 @@
                         <span class="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-700"></span>
                         <span class="text-accent-600 dark:text-accent-400">Updated: {{ $post->getUpdatedAt()->format('M j, Y') }}</span>
                     @endif
+
+                    <span class="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-700"></span>
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"></path>
+                        </svg>
+                        <span>{{ $post->getReadingTime() }} min</span>
+                    </div>
                 </div>
 
                 {{-- Title --}}

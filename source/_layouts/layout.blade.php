@@ -26,9 +26,18 @@
 
 <title>@section('title'){{ $page->siteName }}@show</title>
 
+{{-- Optimized Font Loading with Preconnect --}}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+{{-- Preload critical font files for faster rendering --}}
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap">
+
+{{-- Load fonts with display=swap to prevent FOIT (Flash of Invisible Text) --}}
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</noscript>
 @viteRefresh()
 <link rel="stylesheet" href="{{ vite('source/_assets/css/app.css') }}">
 <script type="module" src="{{ vite('source/_assets/js/app.js') }}"></script>
@@ -62,7 +71,7 @@
                 <div class="flex justify-between items-center h-10 sm:h-12">
                     {{-- Logo --}}
                     <div class="flex items-center">
-                        <a href="{{ $page->baseUrl }}" class="flex items-center space-x-2 group">
+                        <a href="{{ $page->localUrl('/') }}" class="flex items-center space-x-2 group">
                             <img src="{{ $page->baseUrl }}/assets/images/logo.png" class="w-7 h-7 sm:w-8 sm:h-8 transition-transform duration-500 group-hover:rotate-12" alt="Awssat" aria-roledescription="Logo of Awssat">
                             <span class="text-lg sm:text-xl font-bold tracking-tight text-gray-900 dark:text-white"
                                   :class="{ 'text-base sm:text-lg': scrolled }">Awssat</span>
@@ -71,12 +80,12 @@
 
                     {{-- Desktop Navigation --}}
                     <div class="hidden md:flex items-center space-x-1">
-                        <a href="{{ $page->baseUrl }}/{{ ($page->locale ?? 'en') === 'ar' ? 'ar/' : '' }}portfolio"
+                        <a href="{{ $page->localUrl('portfolio') }}"
                            class="relative px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors group">
                             <span>{{ $page->trans('nav.portfolio') ?? 'Portfolio' }}</span>
                             <span class="absolute inset-x-0 bottom-0 h-0.5 bg-primary-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
                         </a>
-                        <a href="{{ $page->baseUrl }}/blog"
+                        <a href="{{ $page->localUrl('blog') }}"
                            class="relative px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors group">
                             <span>{{ $page->trans('nav.blog') ?? 'Blog' }}</span>
                             <span class="absolute inset-x-0 bottom-0 h-0.5 bg-primary-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
@@ -126,12 +135,12 @@
                      class="md:hidden mt-4 pt-4 border-t border-gray-200 dark:border-gray-800 relative z-50">
                     <div class="flex flex-col space-y-1">
                         {{-- Navigation Links --}}
-                        <a href="{{ $page->baseUrl }}/{{ ($page->locale ?? 'en') === 'ar' ? 'ar/' : '' }}portfolio"
+                        <a href="{{ $page->localUrl('portfolio') }}"
                            @click="mobileMenuOpen = false"
                            class="px-4 py-3 rounded-xl text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors @if($page->isPath('*portfolio*')) bg-gray-100 dark:bg-gray-800 text-primary-600 dark:text-primary-400 @endif">
                             {{ $page->trans('nav.portfolio') ?? 'Portfolio' }}
                         </a>
-                        <a href="{{ $page->baseUrl }}/blog"
+                        <a href="{{ $page->localUrl('blog') }}"
                            @click="mobileMenuOpen = false"
                            class="px-4 py-3 rounded-xl text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors @if($page->isPath('blog*')) bg-gray-100 dark:bg-gray-800 text-primary-600 dark:text-primary-400 @endif">
                             {{ $page->trans('nav.blog') ?? 'Blog' }}

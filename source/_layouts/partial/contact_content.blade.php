@@ -127,6 +127,329 @@
             </a>
         </div>
 
+        {{-- Contact Form --}}
+        <div class="mb-12 animate-on-scroll">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-3">
+                    {{ $isArabic ? 'أرسل لنا رسالة' : 'Send Us a Message' }}
+                </h2>
+                <p class="text-gray-600 dark:text-gray-400">
+                    {{ $isArabic ? 'املأ النموذج أدناه وسنعود إليك في أقرب وقت ممكن' : 'Fill out the form below and we\'ll get back to you as soon as possible' }}
+                </p>
+            </div>
+
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="bg-white dark:bg-gray-900 rounded-2xl p-6 sm:p-8 border border-gray-200 dark:border-gray-800 shadow-lg">
+                {{-- Name Field --}}
+                <div class="mb-6">
+                    <label for="name" class="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+                        {{ $isArabic ? 'الاسم' : 'Name' }} <span class="text-red-500">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                        placeholder="{{ $isArabic ? 'أدخل اسمك' : 'Enter your name' }}"
+                    >
+                </div>
+
+                {{-- Email Field --}}
+                <div class="mb-6">
+                    <label for="email" class="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+                        {{ $isArabic ? 'البريد الإلكتروني' : 'Email' }} <span class="text-red-500">*</span>
+                    </label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                        placeholder="{{ $isArabic ? 'أدخل بريدك الإلكتروني' : 'Enter your email' }}"
+                    >
+                </div>
+
+                {{-- Project Type Field --}}
+                <div class="mb-6">
+                    <label for="project_type" class="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+                        {{ $isArabic ? 'نوع المشروع' : 'Project Type' }}
+                    </label>
+                    <select
+                        id="project_type"
+                        name="project_type"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                    >
+                        @if($isArabic)
+                            <option value="">اختر نوع المشروع</option>
+                            <option value="web-app">تطبيق ويب</option>
+                            <option value="api">تطوير API</option>
+                            <option value="mobile">تطبيق موبايل</option>
+                            <option value="audit">فحص كود / مراجعة أمنية</option>
+                            <option value="consultation">استشارة تقنية</option>
+                            <option value="other">أخرى</option>
+                        @else
+                            <option value="">Select project type</option>
+                            <option value="web-app">Web Application</option>
+                            <option value="api">API Development</option>
+                            <option value="mobile">Mobile App</option>
+                            <option value="audit">Code Audit / Security Review</option>
+                            <option value="consultation">Technical Consultation</option>
+                            <option value="other">Other</option>
+                        @endif
+                    </select>
+                </div>
+
+                {{-- Message Field --}}
+                <div class="mb-6">
+                    <label for="message" class="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+                        {{ $isArabic ? 'الرسالة' : 'Message' }} <span class="text-red-500">*</span>
+                    </label>
+                    <textarea
+                        id="message"
+                        name="message"
+                        required
+                        rows="5"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-y"
+                        placeholder="{{ $isArabic ? 'أخبرنا عن مشروعك...' : 'Tell us about your project...' }}"
+                    ></textarea>
+                </div>
+
+                {{-- Submit Button --}}
+                <button
+                    type="submit"
+                    class="w-full bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-800 flex items-center justify-center gap-2 group"
+                >
+                    <span>{{ $isArabic ? 'إرسال الرسالة' : 'Send Message' }}</span>
+                    <svg class="w-5 h-5 {{ $isArabic ? 'group-hover:-translate-x-1 rotate-180' : 'group-hover:translate-x-1' }} transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
+                </button>
+
+                {{-- Form Info Note --}}
+                <p class="mt-4 text-xs text-center text-gray-500 dark:text-gray-400">
+                    {{ $isArabic ? 'نحترم خصوصيتك. لن يتم مشاركة معلوماتك مع أي طرف ثالث.' : 'We respect your privacy. Your information will never be shared with third parties.' }}
+                </p>
+            </form>
+        </div>
+
+        {{-- FAQ Section --}}
+        <div class="mb-12 animate-on-scroll">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-3">
+                    {{ $isArabic ? 'الأسئلة الشائعة' : 'Frequently Asked Questions' }}
+                </h2>
+                <p class="text-gray-600 dark:text-gray-400">
+                    {{ $isArabic ? 'إجابات على الأسئلة الأكثر شيوعًا حول خدماتنا' : 'Answers to the most common questions about our services' }}
+                </p>
+            </div>
+
+            <div class="space-y-4" x-data="{ openFaq: null }">
+                {{-- FAQ 1: Project Timeline --}}
+                <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
+                    <button
+                        @click="openFaq = openFaq === 1 ? null : 1"
+                        class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                    >
+                        <span class="font-semibold text-gray-900 dark:text-white {{ $isArabic ? 'text-right flex-1 ml-4' : 'flex-1 mr-4' }}">
+                            {{ $isArabic ? 'كم من الوقت يستغرق إكمال المشروع؟' : 'How long does it take to complete a project?' }}
+                        </span>
+                        <svg
+                            class="w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform {{ $isArabic ? 'ml-auto' : 'mr-auto' }}"
+                            :class="{ 'rotate-180': openFaq === 1 }"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div
+                        x-show="openFaq === 1"
+                        x-collapse
+                        class="px-6 pb-4"
+                    >
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                            @if($isArabic)
+                                يعتمد الإطار الزمني على نطاق ومتطلبات المشروع. عادةً ما تستغرق المشاريع البسيطة 2-4 أسابيع، بينما التطبيقات الأكثر تعقيدًا قد تستغرق 8-16 أسبوعًا. سنقدم لك جدولاً زمنيًا مفصلاً بعد مناقشة متطلباتك.
+                            @else
+                                The timeline depends on the project scope and requirements. Typically, simple projects take 2-4 weeks, while more complex applications may take 8-16 weeks. We'll provide you with a detailed timeline after discussing your requirements.
+                            @endif
+                        </p>
+                    </div>
+                </div>
+
+                {{-- FAQ 2: Types of Projects --}}
+                <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
+                    <button
+                        @click="openFaq = openFaq === 2 ? null : 2"
+                        class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                    >
+                        <span class="font-semibold text-gray-900 dark:text-white {{ $isArabic ? 'text-right flex-1 ml-4' : 'flex-1 mr-4' }}">
+                            {{ $isArabic ? 'ما أنواع المشاريع التي تقبلونها؟' : 'What types of projects do you accept?' }}
+                        </span>
+                        <svg
+                            class="w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform {{ $isArabic ? 'ml-auto' : 'mr-auto' }}"
+                            :class="{ 'rotate-180': openFaq === 2 }"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div
+                        x-show="openFaq === 2"
+                        x-collapse
+                        class="px-6 pb-4"
+                    >
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                            @if($isArabic)
+                                نتخصص في تطوير تطبيقات Laravel، وتطوير الـ APIs، والتطبيقات الموبايل، وفحص الكود الأمني، والاستشارات التقنية. نعمل مع الشركات الناشئة والمؤسسات على حدٍ سواء، ونركز على المشاريع التي تتطلب جودة عالية وقابلية توسع.
+                            @else
+                                We specialize in Laravel application development, API development, mobile apps, code audits, and technical consultations. We work with both startups and enterprises, focusing on projects that require high quality and scalability.
+                            @endif
+                        </p>
+                    </div>
+                </div>
+
+                {{-- FAQ 3: Pricing --}}
+                <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
+                    <button
+                        @click="openFaq = openFaq === 3 ? null : 3"
+                        class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                    >
+                        <span class="font-semibold text-gray-900 dark:text-white {{ $isArabic ? 'text-right flex-1 ml-4' : 'flex-1 mr-4' }}">
+                            {{ $isArabic ? 'كيف تحسبون تكلفة المشروع؟' : 'How do you calculate project costs?' }}
+                        </span>
+                        <svg
+                            class="w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform {{ $isArabic ? 'ml-auto' : 'mr-auto' }}"
+                            :class="{ 'rotate-180': openFaq === 3 }"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div
+                        x-show="openFaq === 3"
+                        x-collapse
+                        class="px-6 pb-4"
+                    >
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                            @if($isArabic)
+                                نقدم أسعارًا ثابتة للمشاريع المحددة بوضوح، أو أسعارًا بالساعة للمشاريع الأكثر مرونة. بعد مناقشة متطلباتك، سنقدم عرض أسعار تفصيليًا يتضمن نطاق العمل والميزانية والجدول الزمني المقدر.
+                            @else
+                                We offer fixed-price quotes for well-defined projects or hourly rates for more flexible engagements. After discussing your requirements, we'll provide a detailed proposal including scope, budget, and estimated timeline.
+                            @endif
+                        </p>
+                    </div>
+                </div>
+
+                {{-- FAQ 4: Development Process --}}
+                <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
+                    <button
+                        @click="openFaq = openFaq === 4 ? null : 4"
+                        class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                    >
+                        <span class="font-semibold text-gray-900 dark:text-white {{ $isArabic ? 'text-right flex-1 ml-4' : 'flex-1 mr-4' }}">
+                            {{ $isArabic ? 'كيف تسير عملية التطوير؟' : 'What does your development process look like?' }}
+                        </span>
+                        <svg
+                            class="w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform {{ $isArabic ? 'ml-auto' : 'mr-auto' }}"
+                            :class="{ 'rotate-180': openFaq === 4 }"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div
+                        x-show="openFaq === 4"
+                        x-collapse
+                        class="px-6 pb-4"
+                    >
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                            @if($isArabic)
+                                نتبع نهجًا شفافًا ومتكررًا: (1) الاكتشاف - نفهم أهدافك التجارية والمتطلبات التقنية، (2) التصميم - نحدد المعمارية ونخطط الميزات، (3) البناء - تطوير متكرر مع تحديثات منتظمة، (4) الإطلاق والتوسع - نشر ومراقبة ودعم مستمر.
+                            @else
+                                We follow a transparent, iterative approach: (1) Discovery - Understanding your business goals and technical requirements, (2) Design - Defining architecture and planning features, (3) Build - Iterative development with regular updates, (4) Launch & Scale - Deployment, monitoring, and ongoing support.
+                            @endif
+                        </p>
+                    </div>
+                </div>
+
+                {{-- FAQ 5: Post-Launch Support --}}
+                <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
+                    <button
+                        @click="openFaq = openFaq === 5 ? null : 5"
+                        class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                    >
+                        <span class="font-semibold text-gray-900 dark:text-white {{ $isArabic ? 'text-right flex-1 ml-4' : 'flex-1 mr-4' }}">
+                            {{ $isArabic ? 'هل تقدمون دعمًا بعد إطلاق المشروع؟' : 'Do you provide post-launch support?' }}
+                        </span>
+                        <svg
+                            class="w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform {{ $isArabic ? 'ml-auto' : 'mr-auto' }}"
+                            :class="{ 'rotate-180': openFaq === 5 }"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div
+                        x-show="openFaq === 5"
+                        x-collapse
+                        class="px-6 pb-4"
+                    >
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                            @if($isArabic)
+                                نعم! نقدم فترة ضمان بعد الإطلاق لإصلاح أي أخطاء، بالإضافة إلى خطط صيانة ودعم مستمرة. سواء كنت بحاجة لإصلاحات سريعة أو تحديثات منتظمة أو ميزات جديدة، نحن هنا لدعم نجاح مشروعك على المدى الطويل.
+                            @else
+                                Yes! We provide a post-launch warranty period to fix any bugs, plus ongoing maintenance and support plans. Whether you need bug fixes, regular updates, or new features, we're here to support your project's long-term success.
+                            @endif
+                        </p>
+                    </div>
+                </div>
+
+                {{-- FAQ 6: Communication --}}
+                <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
+                    <button
+                        @click="openFaq = openFaq === 6 ? null : 6"
+                        class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                    >
+                        <span class="font-semibold text-gray-900 dark:text-white {{ $isArabic ? 'text-right flex-1 ml-4' : 'flex-1 mr-4' }}">
+                            {{ $isArabic ? 'كيف نتواصل خلال المشروع؟' : 'How do we communicate during the project?' }}
+                        </span>
+                        <svg
+                            class="w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform {{ $isArabic ? 'ml-auto' : 'mr-auto' }}"
+                            :class="{ 'rotate-180': openFaq === 6 }"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div
+                        x-show="openFaq === 6"
+                        x-collapse
+                        class="px-6 pb-4"
+                    >
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                            @if($isArabic)
+                                نؤمن بالتواصل الشفاف والمنتظم. نستخدم Slack أو Discord للمحادثات اليومية، وعقد اجتماعات أسبوعية للتحديثات، ونوفر الوصول إلى لوحات المشروع (مثل GitHub Projects) لتتبع التقدم في الوقت الفعلي.
+                            @else
+                                We believe in transparent, regular communication. We use Slack or Discord for daily conversations, hold weekly update meetings, and provide access to project boards (like GitHub Projects) for real-time progress tracking.
+                            @endif
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         {{-- Additional Info --}}
         <div class="bg-gradient-to-br from-primary-50 to-accent-50 dark:from-primary-900/20 dark:to-accent-900/20 rounded-2xl p-6 sm:p-8 border border-primary-200 dark:border-primary-800 text-center animate-on-scroll">
             <p class="text-gray-700 dark:text-gray-300 leading-relaxed">

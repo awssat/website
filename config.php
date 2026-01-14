@@ -246,4 +246,152 @@ return [
         $collectionName = "posts_{$locale}";
         return $page->{$collectionName} ?? collect();
     },
+
+    // Calculate reading time in minutes
+    'getReadingTime' => function ($page) {
+        $content = $page->getContent();
+
+        // Strip HTML tags and decode entities
+        $text = strip_tags($content);
+        $text = html_entity_decode($text, ENT_QUOTES, 'UTF-8');
+
+        // Count words
+        $wordCount = str_word_count($text);
+
+        // Average reading speed is 200 words per minute
+        $minutes = ceil($wordCount / 200);
+
+        // Return at least 1 minute
+        return max(1, $minutes);
+    },
+
+    // Extract table of contents from post content
+    'getTableOfContents' => function ($page) {
+        $content = $page->getContent();
+
+        // Suppress warnings from loadHTML
+        libxml_use_internal_errors(true);
+
+        $dom = new DOMDocument();
+        $dom->loadHTML('<?xml encoding="UTF-8">' . $content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+        libxml_clear_errors();
+
+        $headings = [];
+        $xpath = new DOMXPath($dom);
+
+        // Find all h2, h3, h4 headings
+        $nodes = $xpath->query('//h2|//h3|//h4');
+
+        foreach ($nodes as $node) {
+            $text = trim($node->textContent);
+            $level = (int) substr($node->nodeName, 1);
+
+            // Generate ID from text if not present
+            $id = $node->getAttribute('id');
+            if (empty($id)) {
+                $id = Str::slug($text);
+                $node->setAttribute('id', $id);
+            }
+
+            $headings[] = [
+                'level' => $level,
+                'text' => $text,
+                'id' => $id,
+            ];
+        }
+
+        return $headings;
+    },
+
+    // Get processed content with heading IDs for TOC
+    'getContentWithHeadingIds' => function ($page) {
+        $content = $page->getContent();
+
+        // Suppress warnings from loadHTML
+        libxml_use_internal_errors(true);
+
+        $dom = new DOMDocument();
+        $dom->loadHTML('<?xml encoding="UTF-8">' . mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+        libxml_clear_errors();
+
+        $xpath = new DOMXPath($dom);
+        $nodes = $xpath->query('//h2|//h3|//h4');
+
+        foreach ($nodes as $node) {
+            $text = trim($node->textContent);
+            $id = $node->getAttribute('id');
+
+            // Generate ID if not present
+            if (empty($id)) {
+                $id = Str::slug($text);
+                $node->setAttribute('id', $id);
+            }
+        }
+
+        // Return the HTML with IDs added
+        $html = $dom->saveHTML();
+
+        // Clean up the <?xml encoding tag that was added
+        $html = preg_replace('/<\?xml[^>]+\?>/', '', $html);
+
+        return $html;
+    },
+
+    // Generate locale-aware URL
+    'localUrl' => function ($page, $path = '/') {
+        $locale = $page->locale ?? 'en';
+
+        // Remove leading slash if present
+        $path = ltrim($path, '/');
+
+        // For English (default locale), return path without locale prefix
+        if ($locale === 'en') {
+            return url($path ? "/{$path}" : '/');
+        }
+
+        // For other locales, prepend the locale
+        return url($path ? "/{$locale}/{$path}" : "/{$locale}");
+    },
+
+    // Get related posts based on shared tags
+    'getRelatedPosts' => function ($page, $limit = 3) {
+        // Get current post's tags
+        $currentTags = $page->tags ?? [];
+        if (empty($currentTags)) {
+            return collect();
+        }
+
+        // Get all posts in the same locale
+        $locale = $page->locale ?? 'en';
+        $collectionName = "posts_{$locale}";
+        $allPosts = $page->{$collectionName} ?? collect();
+
+        // Calculate similarity score for each post
+        $scored = $allPosts
+            ->filter(function ($post) use ($page) {
+                // Exclude current post
+                return $post->getFilename() !== $page->getFilename();
+            })
+            ->map(function ($post) use ($currentTags) {
+                $postTags = $post->tags ?? [];
+
+                // Count shared tags
+                $sharedTags = count(array_intersect($currentTags, $postTags));
+
+                // Add score to post
+                $post->similarityScore = $sharedTags;
+
+                return $post;
+            })
+            ->filter(function ($post) {
+                // Only include posts with at least 1 shared tag
+                return $post->similarityScore > 0;
+            })
+            ->sortByDesc('similarityScore') // Sort by similarity score
+            ->take($limit);
+
+        return $scored;
+    },
 ];
