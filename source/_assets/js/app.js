@@ -126,6 +126,42 @@ observer.observe(document.documentElement, {
 
 Alpine.start();
 
+// Language auto-redirect and persistence
+document.addEventListener('DOMContentLoaded', () => {
+  const currentPath = window.location.pathname;
+  const isRootPage = currentPath === '/' || currentPath === '';
+  const isArPage = currentPath.startsWith('/ar');
+
+  // Check if user has manually set a language preference
+  const savedLanguage = localStorage.getItem('language-preference');
+
+  // Only auto-redirect on root page if no preference is saved
+  if (isRootPage && !savedLanguage) {
+    const browserLang = navigator.language || navigator.userLanguage;
+
+    // If browser language is Arabic, redirect to /ar
+    if (browserLang.startsWith('ar')) {
+      window.location.href = '/ar';
+      return;
+    }
+  }
+
+  // Save current language based on page
+  if (!savedLanguage) {
+    const currentLang = isArPage ? 'ar' : 'en';
+    localStorage.setItem('language-preference', currentLang);
+  }
+
+  // Listen for language switcher clicks to save preference
+  document.addEventListener('click', (e) => {
+    const langLink = e.target.closest('a[hreflang]');
+    if (langLink) {
+      const targetLang = langLink.getAttribute('hreflang');
+      localStorage.setItem('language-preference', targetLang);
+    }
+  });
+});
+
 // Fix mobile menu state persistence on navigation (especially on mobile browsers with bfcache)
 window.addEventListener('pageshow', (event) => {
   // Reset mobile menu state when page is restored from bfcache or loaded

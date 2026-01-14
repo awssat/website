@@ -378,6 +378,32 @@ html {
   will-change: transform;
 }
 
+/* Hardware Acceleration for Animated Elements */
+.animate-on-scroll,
+.card-3d,
+.hover-lift,
+.hover-scale,
+.magnetic-button,
+.float,
+.float-slow,
+.float-fast,
+.animate-float-gentle {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Remove will-change after animation completes to free up resources */
+.animate-on-scroll.is-visible {
+  will-change: auto;
+}
+
+/* Hardware acceleration for cards with mouse effects */
+.perspective-container {
+  transform: translateZ(0);
+}
+
 /* Delay Utilities */
 .delay-100 { animation-delay: 0.1s; }
 .delay-200 { animation-delay: 0.2s; }

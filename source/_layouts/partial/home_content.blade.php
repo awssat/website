@@ -394,6 +394,97 @@
         </div>
     </section>
 
+    {{-- How We Work Process Section --}}
+    <section class="py-24 px-4 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 border-y border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+                    {{ $locale === 'ar' ? 'كيف نعمل' : 'How We Work' }}
+                </h2>
+                <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    {{ $locale === 'ar' ? 'عملية منظمة ومرنة تضمن نجاح مشروعك من البداية إلى الإطلاق.' : 'A structured yet flexible process that ensures your project succeeds from start to launch.' }}
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8 relative">
+                {{-- Connecting Line (Desktop Only) --}}
+                <div class="hidden md:block absolute top-16 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-200 via-primary-500 to-accent-500 dark:from-primary-900 dark:via-primary-700 dark:to-accent-700" style="width: calc(100% - 8rem); margin-left: 4rem;"></div>
+
+                {{-- Step 1: Discovery --}}
+                <div class="relative animate-on-scroll">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-primary-500/30 relative z-10 mb-6">
+                            1
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                            {{ $locale === 'ar' ? 'الاستكشاف' : 'Discovery' }}
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                            {{ $locale === 'ar' ? 'نفهم رؤيتك، أهدافك، وتحدياتك بعمق من خلال جلسات نقاش مفصلة.' : 'We deeply understand your vision, goals, and challenges through detailed discussion sessions.' }}
+                        </p>
+                    </div>
+                </div>
+
+                {{-- Step 2: Design --}}
+                <div class="relative animate-on-scroll delay-100">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-indigo-500/30 relative z-10 mb-6">
+                            2
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                            {{ $locale === 'ar' ? 'التصميم' : 'Design' }}
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                            {{ $locale === 'ar' ? 'نرسم خارطة طريق تقنية واضحة ونصمم واجهات مستخدم جذابة وسهلة الاستخدام.' : 'We map out a clear technical roadmap and design attractive, user-friendly interfaces.' }}
+                        </p>
+                    </div>
+                </div>
+
+                {{-- Step 3: Build --}}
+                <div class="relative animate-on-scroll delay-200">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-blue-500/30 relative z-10 mb-6">
+                            3
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                            {{ $locale === 'ar' ? 'البناء' : 'Build' }}
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                            {{ $locale === 'ar' ? 'نبرمج بدقة عالية مع اختبارات مستمرة لضمان الجودة والأداء الأمثل.' : 'We code with high precision with continuous testing to ensure quality and optimal performance.' }}
+                        </p>
+                    </div>
+                </div>
+
+                {{-- Step 4: Launch & Scale --}}
+                <div class="relative animate-on-scroll delay-300">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-accent-500 to-accent-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-accent-500/30 relative z-10 mb-6">
+                            4
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                            {{ $locale === 'ar' ? 'الإطلاق والتطوير' : 'Launch & Scale' }}
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                            {{ $locale === 'ar' ? 'نطلق المشروع بثقة ونبقى معك لتطويره ودعمه على المدى الطويل.' : 'We launch confidently and stay with you for long-term development and support.' }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Additional Info --}}
+            <div class="mt-16 text-center animate-on-scroll delay-400">
+                <div class="inline-flex items-center gap-2 px-6 py-3 bg-primary-50 dark:bg-primary-900/20 rounded-full border border-primary-200 dark:border-primary-800">
+                    <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    <span class="text-primary-700 dark:text-primary-300 font-semibold">
+                        {{ $locale === 'ar' ? 'نعمل بمنهجية Agile مع تحديثات أسبوعية' : 'We work Agile with weekly updates' }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     {{-- Featured Projects Showcase --}}
     @if(isset($page->portfolio_en) && $page->portfolio_en->count() > 0)
     <section class="py-24 px-4 bg-gray-50 dark:bg-gray-950">
@@ -437,6 +528,79 @@
         </div>
     </section>
     @endif
+
+    {{-- Trusted By / Social Proof Section --}}
+    <section class="py-20 px-4 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12 animate-on-scroll">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                    {{ $locale === 'ar' ? 'موثوق به من قبل المطورين حول العالم' : 'Trusted by Developers Worldwide' }}
+                </h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400">
+                    {{ $locale === 'ar' ? 'أدواتنا مفتوحة المصدر تُستخدم من قبل آلاف المطورين يومياً' : 'Our open-source tools are used by thousands of developers daily' }}
+                </p>
+            </div>
+
+            {{-- GitHub Stats Grid --}}
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 animate-on-scroll">
+                <div class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700">
+                    <div class="text-4xl font-bold text-primary-600 dark:text-primary-400 mb-2">2.2k+</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">{{ $locale === 'ar' ? 'نجمة على GitHub' : 'GitHub Stars' }}</div>
+                </div>
+                <div class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700">
+                    <div class="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">6</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">{{ $locale === 'ar' ? 'مساهمة في Laravel' : 'Laravel PRs' }}</div>
+                </div>
+                <div class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700">
+                    <div class="text-4xl font-bold text-accent-600 dark:text-accent-400 mb-2">150+</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">{{ $locale === 'ar' ? 'تفريعة' : 'Forks' }}</div>
+                </div>
+                <div class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700">
+                    <div class="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">10+</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">{{ $locale === 'ar' ? 'مشاريع نشطة' : 'Active Projects' }}</div>
+                </div>
+            </div>
+
+            {{-- Tech Stack Badges Marquee --}}
+            <div class="animate-on-scroll">
+                <p class="text-center text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 font-semibold mb-8">
+                    {{ $locale === 'ar' ? 'التقنيات التي نتقنها' : 'Technologies We Master' }}
+                </p>
+                <div class="relative overflow-hidden py-4 mask-border-fade">
+                    <div class="flex animate-marquee-smooth">
+                        <div class="flex gap-8 px-4">
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">Laravel</span>
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">PHP</span>
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">Vue.js</span>
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">Alpine.js</span>
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">Tailwind CSS</span>
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">Livewire</span>
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">Inertia.js</span>
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">MySQL</span>
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">Redis</span>
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">PostgreSQL</span>
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">Docker</span>
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">AWS</span>
+                        </div>
+                        <div class="flex gap-8 px-4" aria-hidden="true">
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">Laravel</span>
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">PHP</span>
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">Vue.js</span>
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">Alpine.js</span>
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">Tailwind CSS</span>
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">Livewire</span>
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">Inertia.js</span>
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">MySQL</span>
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">Redis</span>
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">PostgreSQL</span>
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">Docker</span>
+                            <span class="px-6 py-3 bg-white dark:bg-gray-800 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 whitespace-nowrap shadow-sm">AWS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     {{-- CTA Section --}}
     <section id="contact" class="relative py-32 px-4 overflow-hidden border-t border-gray-200 dark:border-gray-800">
