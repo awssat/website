@@ -116,7 +116,8 @@
                      x-transition:leave="transition ease-in duration-150"
                      x-transition:leave-start="opacity-100 scale-100"
                      x-transition:leave-end="opacity-0 scale-95"
-                     class="md:hidden mt-4 pt-4 border-t border-gray-200 dark:border-gray-800">
+                     @click.stop
+                     class="md:hidden mt-4 pt-4 border-t border-gray-200 dark:border-gray-800 relative z-50">
                     <div class="flex flex-col space-y-1">
                         {{-- Navigation Links --}}
                         <a href="{{ $page->baseUrl }}/{{ ($page->locale ?? 'en') === 'ar' ? 'ar/' : '' }}portfolio"
@@ -142,14 +143,12 @@
                         <div class="px-4 py-2">
                             <div class="flex items-center justify-between gap-4">
                                 {{-- Dark Mode Toggle --}}
-                                <div class="flex items-center gap-2">
-                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Theme</span>
+                                <div class="flex items-center">
                                     @include('_layouts.partial.dark_mode_toggle')
                                 </div>
 
                                 {{-- Language Switcher --}}
-                                <div class="flex items-center gap-2">
-                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Language</span>
+                                <div class="flex items-center">
                                     @include('_layouts.partial.language_switcher')
                                 </div>
                             </div>

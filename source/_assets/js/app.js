@@ -122,6 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
+        // Unobserve after animation triggers (performance optimization)
+        observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
@@ -129,5 +131,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // Observe all elements with .animate-on-scroll class
   document.querySelectorAll('.animate-on-scroll').forEach(el => {
     observer.observe(el);
+
+    // Check if element is already in viewport on page load
+    const rect = el.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const isInViewport = (
+      rect.top >= 0 &&
+      rect.top <= viewportHeight - 100 // Match the rootMargin offset
+    );
+
+    if (isInViewport) {
+      // Element is already visible, show it immediately
+      el.classList.add('is-visible');
+      observer.unobserve(el);
+    }
   });
 });
