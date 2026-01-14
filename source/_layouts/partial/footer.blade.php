@@ -1,4 +1,4 @@
-<footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 mt-auto">
+<footer class="bg-gray-50 dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800 mt-auto">
     <div class="max-w-7xl mx-auto px-4 py-12">
         <div class="grid md:grid-cols-3 gap-8">
             {{-- Brand Column --}}
@@ -79,9 +79,14 @@
 
         {{-- Bottom Bar --}}
         <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-gray-600 dark:text-gray-400 text-sm">
-                &copy; {{ date('Y') }} Awssat. {{ $page->trans('footer.rights') ?? 'All rights reserved.' }}
-            </p>
+            <div class="text-center md:text-left">
+                <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    &copy; {{ date('Y') }} Awssat. {{ $page->trans('footer.rights') ?? 'All rights reserved.' }}
+                </p>
+                <p class="text-gray-500 dark:text-gray-500 text-xs mt-1">
+                    Made with <span class="text-red-500">❤️</span> using <a href="https://laravel.com" class="hover:text-primary-500 transition-colors">Laravel</a> & <a href="https://jigsaw.tighten.co" class="hover:text-primary-500 transition-colors">Jigsaw</a>
+                </p>
+            </div>
             <div class="flex items-center gap-4">
                 @include('_layouts.partial.dark_mode_toggle')
                 @if(isset($page->locale))

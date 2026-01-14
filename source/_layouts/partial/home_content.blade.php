@@ -116,21 +116,23 @@
 
             <div class="grid md:grid-cols-3 gap-8">
                 {{-- Laravel Core Contributor --}}
-                <div class="relative group animate-on-scroll" x-data="tiltCard()" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
-                    <div class="absolute inset-0 bg-gradient-to-br from-primary-500 to-primary-600 rounded-3xl opacity-0 group-hover:opacity-10 transition-opacity"></div>
-                    <div class="relative p-8 bg-gray-50 dark:bg-gray-700 rounded-3xl border-2 border-gray-200 dark:border-gray-600 hover:border-primary-500 dark:hover:border-primary-500 transition-all">
-                        <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900 rounded-2xl flex items-center justify-center mb-6">
+                <div class="relative group bg-white dark:bg-gray-900 rounded-3xl overflow-hidden shadow-lg hover-lift transition-all duration-300 animate-on-scroll" x-data="tiltCard()" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
+                    <div class="absolute inset-0 rounded-3xl border-2 border-transparent bg-gradient-to-br from-primary-500 to-primary-600 opacity-0 group-hover:opacity-100 mask-border transition-opacity duration-300 pointer-events-none z-0"></div>
+                    <div class="absolute inset-0 rounded-3xl border border-gray-200 dark:border-gray-700 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none z-0"></div>
+                    
+                    <div class="relative p-8 z-10 h-full flex flex-col">
+                        <div class="w-16 h-16 bg-primary-50 dark:bg-primary-900/50 rounded-2xl flex items-center justify-center mb-6 border border-primary-100 dark:border-primary-800">
                             <svg class="w-8 h-8 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                             </svg>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Laravel Core Contributor</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Laravel Core Contributor</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-6 flex-grow leading-relaxed">
                             6 merged PRs to Laravel framework fixing critical bugs in Eloquent, routing, and SQLite. Trusted by the Laravel core team.
                         </p>
-                        <a href="{{ $page->baseUrl }}/{{ $locale === 'ar' ? 'ar/' : '' }}portfolio" class="text-primary-600 dark:text-primary-400 font-semibold inline-flex items-center group">
+                        <a href="{{ $page->baseUrl }}/{{ $locale === 'ar' ? 'ar/' : '' }}portfolio" class="text-primary-600 dark:text-primary-400 font-bold inline-flex items-center group-hover:translate-x-1 transition-transform mt-auto">
                             See contributions
-                            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                             </svg>
                         </a>
@@ -138,21 +140,23 @@
                 </div>
 
                 {{-- Open Source Leaders --}}
-                <div class="relative group animate-on-scroll" x-data="tiltCard()" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
-                    <div class="absolute inset-0 bg-gradient-to-br from-accent-500 to-accent-600 rounded-3xl opacity-0 group-hover:opacity-10 transition-opacity"></div>
-                    <div class="relative p-8 bg-gray-50 dark:bg-gray-700 rounded-3xl border-2 border-gray-200 dark:border-gray-600 hover:border-accent-500 dark:hover:border-accent-500 transition-all">
-                        <div class="w-16 h-16 bg-accent-100 dark:bg-accent-900 rounded-2xl flex items-center justify-center mb-6">
+                <div class="relative group bg-white dark:bg-gray-900 rounded-3xl overflow-hidden shadow-lg hover-lift transition-all duration-300 animate-on-scroll delay-100" x-data="tiltCard()" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
+                    <div class="absolute inset-0 rounded-3xl border-2 border-transparent bg-gradient-to-br from-accent-500 to-accent-600 opacity-0 group-hover:opacity-100 mask-border transition-opacity duration-300 pointer-events-none z-0"></div>
+                    <div class="absolute inset-0 rounded-3xl border border-gray-200 dark:border-gray-700 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none z-0"></div>
+
+                    <div class="relative p-8 z-10 h-full flex flex-col">
+                        <div class="w-16 h-16 bg-accent-50 dark:bg-accent-900/50 rounded-2xl flex items-center justify-center mb-6 border border-accent-100 dark:border-accent-800">
                             <svg class="w-8 h-8 text-accent-600 dark:text-accent-400" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Open Source Leaders</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">Open Source Leaders</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-6 flex-grow leading-relaxed">
                             2,200+ GitHub stars across projects like Tailwindo (1.1k★) and Laravel Visits (975★). Used by thousands of developers worldwide.
                         </p>
-                        <a href="https://github.com/awssat" target="_blank" class="text-accent-600 dark:text-accent-400 font-semibold inline-flex items-center group">
+                        <a href="https://github.com/awssat" target="_blank" class="text-accent-600 dark:text-accent-400 font-bold inline-flex items-center group-hover:translate-x-1 transition-transform mt-auto">
                             View on GitHub
-                            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                             </svg>
                         </a>
@@ -160,19 +164,26 @@
                 </div>
 
                 {{-- Production Ready --}}
-                <div class="relative group animate-on-scroll" x-data="tiltCard()" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
-                    <div class="absolute inset-0 bg-gradient-to-br from-green-500 to-green-600 rounded-3xl opacity-0 group-hover:opacity-10 transition-opacity"></div>
-                    <div class="relative p-8 bg-gray-50 dark:bg-gray-700 rounded-3xl border-2 border-gray-200 dark:border-gray-600 hover:border-green-500 dark:hover:border-green-500 transition-all">
-                        <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-2xl flex items-center justify-center mb-6">
+                <div class="relative group bg-white dark:bg-gray-900 rounded-3xl overflow-hidden shadow-lg hover-lift transition-all duration-300 animate-on-scroll delay-200" x-data="tiltCard()" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
+                    <div class="absolute inset-0 rounded-3xl border-2 border-transparent bg-gradient-to-br from-green-500 to-green-600 opacity-0 group-hover:opacity-100 mask-border transition-opacity duration-300 pointer-events-none z-0"></div>
+                    <div class="absolute inset-0 rounded-3xl border border-gray-200 dark:border-gray-700 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none z-0"></div>
+
+                    <div class="relative p-8 z-10 h-full flex flex-col">
+                        <div class="w-16 h-16 bg-green-50 dark:bg-green-900/50 rounded-2xl flex items-center justify-center mb-6 border border-green-100 dark:border-green-800">
                             <svg class="w-8 h-8 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path>
                             </svg>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Battle-Tested Code</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">Battle-Tested Code</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-6 flex-grow leading-relaxed">
                             Our code runs in production for thousands of users. We write clean, maintainable, and performant solutions.
                         </p>
-                        <span class="text-green-600 dark:text-green-400 font-semibold">Production quality guaranteed</span>
+                        <span class="text-green-600 dark:text-green-400 font-bold inline-flex items-center mt-auto">
+                            Production quality guaranteed
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </span>
                     </div>
                 </div>
             </div>
