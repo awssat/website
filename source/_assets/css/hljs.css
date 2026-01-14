@@ -1,18 +1,97 @@
-.hljs {
-    display: block;
-    overflow: auto;
-    color: #333;
-    padding: 4px;
-    @apply pl-12;
+/* Code Block Container */
+pre {
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
     background: #282a36;
-    font-size: 1.0625rem;
-    line-height: 2;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin: 5px 0;
-    font-family: "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace";
-    font-weight: 400;
+    border-radius: 0.75rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
+/* Hide scrollbar when not needed, show only on hover or when scrolling */
+pre::-webkit-scrollbar {
+    height: 8px;
+}
+
+pre::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+pre::-webkit-scrollbar-thumb {
+    background: #3e4154;
+    border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+    background: #505364;
+}
+
+/* Code Element Inside Pre */
+.hljs {
+    display: block;
+    overflow-x: visible;
+    overflow-y: visible;
+    color: #f8f8f2;
+    padding: 1.25rem 1rem 1.25rem 3.5rem;
+    background: transparent;
+    font-size: 0.875rem;
+    line-height: 1.75rem;
+    font-family: "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace";
+    font-weight: 400;
+    white-space: pre;
+    word-wrap: normal;
+    tab-size: 4;
+    min-width: fit-content;
+}
+
+/* Line Numbers Container */
+.line-numbers-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3rem;
+    height: 100%;
+    padding: 1.25rem 0.5rem;
+    background: #1e1f29;
+    border-right: 1px solid #3e4154;
+    user-select: none;
+    pointer-events: none;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Individual Line Number */
+.line-numbers-container .line-number {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 1.75rem;
+    font-size: 0.75rem;
+    line-height: 1.75rem;
+    color: #6272a4;
+    font-family: "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace";
+    text-align: right;
+    padding-right: 0.5rem;
+}
+
+/* Dark Mode Support */
+.dark pre {
+    background: #1a1b26;
+}
+
+.dark .hljs {
+    background: transparent;
+}
+
+.dark .line-numbers-container {
+    background: #16161e;
+    border-right-color: #2a2b3d;
+}
+
+/* Syntax Highlighting Colors - Dracula Theme */
 .hljs-built_in,
 .hljs-selector-tag,
 .hljs-section,
@@ -22,14 +101,15 @@
 
 .hljs-keyword {
     color: #ff79c6;
+    font-weight: 600;
 }
 
-.hljs,
 .hljs-subst {
     color: #f8f8f2;
 }
 
-.hljs-title {
+.hljs-title,
+.hljs-attr {
     color: #50fa7b;
 }
 
@@ -37,7 +117,6 @@
 .hljs-meta,
 .hljs-name,
 .hljs-type,
-.hljs-attr,
 .hljs-symbol,
 .hljs-bullet,
 .hljs-addition,
@@ -51,9 +130,14 @@
 .hljs-quote,
 .hljs-deletion {
     color: #6272a4;
+    font-style: italic;
 }
 
-.hljs-keyword,
+.hljs-literal,
+.hljs-number {
+    color: #bd93f9;
+}
+
 .hljs-selector-tag,
 .hljs-literal,
 .hljs-title,
@@ -62,21 +146,51 @@
 .hljs-type,
 .hljs-name,
 .hljs-strong {
-    font-weight: bold;
-}
-
-.hljs-literal,
-.hljs-number {
-    color: #bd93f9;
+    font-weight: 600;
 }
 
 .hljs-emphasis {
     font-style: italic;
 }
 
+/* Diff Syntax */
 .diff-addition {
-    background-color: #4e9a0640;
+    background-color: rgba(78, 154, 6, 0.25);
+    display: inline-block;
+    width: 100%;
 }
+
 .diff-subtraction {
-    background-color: #cc000040;
+    background-color: rgba(204, 0, 0, 0.25);
+    display: inline-block;
+    width: 100%;
+}
+
+/* Small Code Blocks (< 5 lines) - No Line Numbers */
+pre.no-line-numbers .hljs {
+    padding-left: 1rem;
+}
+
+/* Mobile Optimization */
+@media (max-width: 640px) {
+    .hljs {
+        font-size: 0.8125rem;
+        line-height: 1.5rem;
+        padding: 1rem 0.75rem 1rem 3rem;
+    }
+
+    .line-numbers-container {
+        width: 2.5rem;
+        padding: 1rem 0.25rem;
+    }
+
+    .line-numbers-container .line-number {
+        height: 1.5rem;
+        line-height: 1.5rem;
+        font-size: 0.6875rem;
+    }
+
+    pre.no-line-numbers .hljs {
+        padding-left: 0.75rem;
+    }
 }

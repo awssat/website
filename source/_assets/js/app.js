@@ -258,27 +258,33 @@ document.addEventListener("DOMContentLoaded", (event) => {
             pre.appendChild(copyButton);
         }
 
-        //add line numbers
-        var lh = parseInt(window.getComputedStyle(block, null).getPropertyValue("line-height")) || 39.1;
-        var ln = Math.floor(block.offsetHeight / lh);
+        // Add line numbers
+        const lh = parseInt(window.getComputedStyle(block, null).getPropertyValue("line-height")) || 28; // 1.75rem = 28px
+        const ln = Math.floor(block.offsetHeight / lh);
+
+        // Skip line numbers for small code blocks (< 5 lines)
         if (ln < 5) {
+            pre.classList.add('no-line-numbers');
+            block.style.paddingLeft = '1rem';
             return;
         }
-        var node = document.createElement("ul");
-        node.classList.add("absolute", "top-0", "left-0", "h-full", "w-10", "z-10", "px-1", "border-r", "text-gray-500", "text-sm", "overflow-hidden");
-        node.style.lineHeight = lh + "px";
-        node.style.borderColor = "#3e4154";
-        node.style.backgroundColor = "#282a36";
-        node.style.color = "#484b61";
+
+        // Create line numbers container
+        const lineNumbersContainer = document.createElement("div");
+        lineNumbersContainer.className = "line-numbers-container";
+
+        // Generate individual line numbers
         for (let index = 0; index < ln; index++) {
-            var li = document.createElement("li");
-            li.innerText = index + 1;
-            li.classList.add("flex", "items-center", "justify-center", "h-9", "w-full");
-            node.appendChild(li);
+            const lineNumber = document.createElement("div");
+            lineNumber.className = "line-number";
+            lineNumber.textContent = index + 1;
+            lineNumbersContainer.appendChild(lineNumber);
         }
-        block.parentElement.appendChild(node);
-        block.parentElement.classList.add("relative");
-        block.classList.add("hljs");
+
+        // Ensure code has proper padding to not be hidden by line numbers
+        block.style.paddingLeft = '3.5rem';
+
+        pre.appendChild(lineNumbersContainer);
     });
 });
 
