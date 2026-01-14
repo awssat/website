@@ -4,18 +4,18 @@
 
 <div class="w-full overflow-hidden bg-gray-50 dark:bg-gray-950 transition-colors duration-500">
     {{-- Epic Hero Section --}}
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden gradient-mesh -mt-20 pt-20"
+    <section class="relative min-h-[calc(100vh-5rem)] sm:min-h-screen flex items-center justify-center overflow-x-hidden gradient-mesh -mt-20 pt-20"
              x-data="{ x: 0, y: 0 }"
              @mousemove="x = $event.clientX; y = $event.clientY">
-        
+
         {{-- Spotlight Effect (Reveals the pattern) --}}
-        <div class="absolute inset-0 pointer-events-none z-0" 
+        <div class="absolute inset-0 pointer-events-none z-0 hidden sm:block"
              :style="`background: radial-gradient(circle 800px at ${x}px ${y}px, rgba(139, 92, 246, 0.15), transparent 70%);`">
         </div>
 
         {{-- Main Hero Logo (Central, Large, Nice Gradient) --}}
         <div class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none z-0">
-            <svg class="w-[600px] h-[600px] md:w-[900px] md:h-[900px] opacity-10 dark:opacity-5 animate-float-gentle" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-[280px] h-[280px] sm:w-[500px] sm:h-[500px] md:w-[700px] md:h-[700px] lg:w-[900px] lg:h-[900px] opacity-10 dark:opacity-5 animate-float-gentle" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" style="stop-color: #8b5cf6" />   {{-- Purple --}}
@@ -38,9 +38,9 @@
         </div>
 
         {{-- Hero Content --}}
-        <div class="relative z-10 text-center max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 md:py-32">
+        <div class="relative z-10 text-center w-full max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20 md:py-28">
             {{-- Badge --}}
-            <div class="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/50 dark:bg-gray-900/50 backdrop-blur-xl border border-primary-100 dark:border-primary-900/30 shadow-lg shadow-primary-500/10 mb-6 md:mb-8 animate-on-scroll hover:scale-105 transition-transform duration-300 ring-1 ring-white/20">
+            <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-full bg-white/50 dark:bg-gray-900/50 backdrop-blur-xl border border-primary-100 dark:border-primary-900/30 shadow-lg shadow-primary-500/10 mb-5 sm:mb-6 md:mb-8 animate-on-scroll hover:scale-105 transition-transform duration-300 ring-1 ring-white/20">
                 <span class="flex h-2 w-2 relative">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -49,16 +49,16 @@
             </div>
 
             {{-- Main Headline --}}
-            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 md:mb-8 leading-tight animate-on-scroll delay-100 tracking-tight text-balance drop-shadow-2xl">
-                <span class="block text-gray-900 dark:text-white">{{ $locale === 'ar' ? 'نبني' : 'We Build' }}</span>
-                <span class="block text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-indigo-500 to-accent-500 animate-gradient-x pb-1 md:pb-2 filter brightness-110">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-5 md:mb-6 lg:mb-8 leading-tight animate-on-scroll delay-100 tracking-tight text-balance drop-shadow-2xl">
+                <span class="block text-gray-900 dark:text-white mb-1 sm:mb-2">{{ $locale === 'ar' ? 'نبني' : 'We Build' }}</span>
+                <span class="block text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-indigo-500 to-accent-500 animate-gradient-x pb-1 md:pb-2 filter brightness-110 mb-1 sm:mb-2">
                     {{ $locale === 'ar' ? 'تجارب ويب استثنائية' : 'Exceptional Web' }}
                 </span>
                 <span class="block text-gray-900 dark:text-white">{{ $locale === 'ar' ? '' : 'Experiences' }}</span>
             </h1>
 
             {{-- Subheadline --}}
-            <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8 md:mb-12 animate-on-scroll delay-200 leading-relaxed text-balance font-medium px-4">
+            <p class="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-6 sm:mb-8 md:mb-10 animate-on-scroll delay-200 leading-relaxed text-balance font-medium">
                 @if($locale === 'ar')
                     هندسة Laravel متميزة. نصنع تطبيقات قوية وقابلة للتطوير مع <span class="font-bold text-primary-600 dark:text-primary-400 border-b-2 border-primary-500/20">6 مساهمات مدمجة</span> في الإطار الأساسي و <span class="font-bold text-accent-600 dark:text-accent-400 border-b-2 border-accent-500/20">2,200+ نجمة</span> على GitHub.
                 @else
@@ -67,30 +67,30 @@
             </p>
 
             {{-- CTA Buttons --}}
-            <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-stretch sm:items-center animate-on-scroll delay-300 px-4">
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center items-stretch sm:items-center animate-on-scroll delay-300 max-w-lg mx-auto">
                 <a href="{{ $page->baseUrl }}/{{ $locale === 'ar' ? 'ar/' : '' }}portfolio"
-                   class="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full font-bold text-base sm:text-lg shadow-2xl hover:shadow-primary-500/30 transition-all duration-300 hover:-translate-y-1 overflow-hidden ring-4 ring-gray-900/5 dark:ring-white/5 text-center">
+                   class="group relative px-5 sm:px-6 md:px-7 py-3 sm:py-3.5 md:py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full font-bold text-sm sm:text-base md:text-lg shadow-2xl hover:shadow-primary-500/30 transition-all duration-300 hover:-translate-y-1 overflow-hidden ring-4 ring-gray-900/5 dark:ring-white/5 text-center whitespace-nowrap">
                     <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer"></div>
-                    <span class="relative flex items-center justify-center">
+                    <span class="relative flex items-center justify-center gap-2">
                         {{ $locale === 'ar' ? 'شاهد أعمالنا' : 'View Our Work' }}
-                        <svg class="w-4 h-4 sm:w-5 sm:h-5 {{ $locale === 'ar' ? 'mr-2 group-hover:-translate-x-1' : 'ml-2 group-hover:translate-x-1' }} transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 md:w-5 md:h-5 {{ $locale === 'ar' ? 'group-hover:-translate-x-1' : 'group-hover:translate-x-1' }} transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $locale === 'ar' ? 'M11 17l-5-5m0 0l5-5m-5 5h12' : 'M13 7l5 5m0 0l-5 5m5-5H6' }}"></path>
                         </svg>
                     </span>
                 </a>
                 <a href="#contact"
-                   class="px-6 sm:px-8 py-3 sm:py-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-md text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 hover:border-primary-500 dark:hover:border-primary-500 rounded-full font-bold text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center justify-center hover:-translate-y-1 text-center">
+                   class="px-5 sm:px-6 md:px-7 py-3 sm:py-3.5 md:py-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-md text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 hover:border-primary-500 dark:hover:border-primary-500 rounded-full font-bold text-sm sm:text-base md:text-lg shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center justify-center hover:-translate-y-1 text-center whitespace-nowrap">
                     {{ $locale === 'ar' ? 'لنتحدث' : 'Let\'s Talk' }}
                 </a>
             </div>
 
             {{-- Tech Stack Marquee --}}
-            <div class="mt-16 sm:mt-20 md:mt-24 w-full overflow-hidden animate-on-scroll delay-500 opacity-60 hover:opacity-100 transition-all duration-500 mask-border-fade">
+            <div class="mt-10 sm:mt-14 md:mt-20 w-full overflow-hidden animate-on-scroll delay-500 opacity-60 hover:opacity-100 transition-all duration-500 mask-border-fade -mx-4 sm:mx-0">
                 <div class="inline-flex w-max animate-marquee-smooth {{ $locale === 'ar' ? 'flex-row-reverse' : '' }}">
-                    <div class="flex gap-8 sm:gap-12 md:gap-16 px-4 sm:px-6 md:px-8 py-3 sm:py-4 text-gray-400 dark:text-gray-500 tracking-wide text-sm sm:text-base">
+                    <div class="flex gap-6 sm:gap-8 md:gap-12 px-4 sm:px-6 py-2 sm:py-3 text-gray-400 dark:text-gray-500 tracking-wide text-xs sm:text-sm md:text-base whitespace-nowrap">
                         @include('_layouts.partial.tech_stack_items')
                     </div>
-                    <div class="flex gap-8 sm:gap-12 md:gap-16 px-4 sm:px-6 md:px-8 py-3 sm:py-4 text-gray-400 dark:text-gray-500 tracking-wide text-sm sm:text-base" aria-hidden="true">
+                    <div class="flex gap-6 sm:gap-8 md:gap-12 px-4 sm:px-6 py-2 sm:py-3 text-gray-400 dark:text-gray-500 tracking-wide text-xs sm:text-sm md:text-base whitespace-nowrap" aria-hidden="true">
                         @include('_layouts.partial.tech_stack_items')
                     </div>
                 </div>

@@ -1,5 +1,5 @@
-/* Modern Typography - Inter Font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+/* Modern Typography - Outfit (Display) & Inter (Sans) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
@@ -51,7 +51,9 @@
   --color-awssat-light: #a78bfa;
 
   /* Typography */
+  --font-family-display: 'Outfit', 'Inter', system-ui, sans-serif;
   --font-family-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-family-arabic: 'IBM Plex Sans Arabic', sans-serif;
   --font-family-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
 
   /* Font Sizes - Modern Scale */
@@ -102,6 +104,11 @@
 /* RTL Support */
 [dir="rtl"] {
   direction: rtl;
+}
+
+[lang="ar"] {
+  --font-family-sans: var(--font-family-arabic);
+  --font-family-display: var(--font-family-arabic);
 }
 
 [dir="ltr"] {
@@ -324,8 +331,9 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-  letter-spacing: -0.025em;
+  font-family: var(--font-family-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 h1 {
