@@ -115,7 +115,7 @@ pagination:
 {{-- Modern Pagination --}}
 @if ($pagination->pages->count() > 1)
 <nav class="flex justify-center my-16 animate-on-scroll">
-    <div class="inline-flex items-center p-1 rounded-full bg-white/80 dark:bg-gray-900/80 shadow-xl border border-gray-200 dark:border-gray-800 backdrop-blur-xl">
+    <div class="inline-flex items-center p-1 rounded-full bg-white dark:bg-gray-900 shadow-xl border border-gray-200 dark:border-gray-800">
         {{-- Previous Link --}}
         @if ($previous = $pagination->previous)
         <a href="{{ $previous }}" 

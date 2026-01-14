@@ -366,6 +366,15 @@ html {
   transform: translateY(0);
 }
 
+/* Mobile optimizations - faster, simpler animations */
+@media (max-width: 767px) {
+  .animate-on-scroll {
+    transform: translateY(10px);
+    transition: opacity 0.4s ease-out,
+                transform 0.4s ease-out;
+  }
+}
+
 /* Fallback for when JavaScript is disabled */
 .no-js .animate-on-scroll {
   opacity: 1;

@@ -46,14 +46,14 @@
     <header x-data="{ mobileMenuOpen: false, scrolled: false }"
             @scroll.window="scrolled = (window.pageYOffset > 20)"
             @click.away="mobileMenuOpen = false"
-            class="fixed top-0 w-full z-50 transition-all duration-500 ease-in-out py-3 md:py-4">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-6 lg:px-8 transition-all duration-500"
+            class="fixed top-0 w-full z-50 py-3 md:py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-6 lg:px-8 transition-[padding] duration-300"
              :class="{ 'md:px-4 lg:px-6': scrolled }">
-            <div class="relative mx-auto transition-all duration-500 ease-in-out bg-white/70 dark:bg-gray-900/70 backdrop-blur-md shadow-md rounded-2xl max-w-6xl px-4 sm:px-6 py-2 border border-white/10 dark:border-gray-800/50 md:bg-transparent md:backdrop-blur-none md:shadow-none md:border-transparent"
+            <div class="relative mx-auto transition-[background-color,box-shadow,max-width,padding,border-color] duration-300 ease-out bg-white/95 dark:bg-gray-900/95 shadow-md rounded-2xl max-w-6xl px-4 sm:px-6 py-2 border border-gray-200/50 dark:border-gray-800/50 md:bg-transparent md:shadow-none md:border-transparent"
                  :class="{
-                    '!bg-white/90 dark:!bg-gray-900/90 !backdrop-blur-xl !shadow-lg !max-w-5xl !px-6 !border-white/20 dark:!border-gray-700/50': scrolled
+                    '!bg-white/95 dark:!bg-gray-900/95 !shadow-lg !max-w-5xl !px-6 !border-gray-200/70 dark:!border-gray-700/70': scrolled
                  }">
-                <div class="flex justify-between items-center h-10 sm:h-12 transition-all duration-300">
+                <div class="flex justify-between items-center h-10 sm:h-12">
                     {{-- Logo --}}
                     <div class="flex items-center">
                         <a href="{{ $page->baseUrl }}" class="flex items-center space-x-2 group">
@@ -110,12 +110,12 @@
 
                 {{-- Mobile Menu --}}
                 <div x-show="mobileMenuOpen"
-                     x-transition:enter="transition ease-out duration-200"
-                     x-transition:enter-start="opacity-0 scale-95"
-                     x-transition:enter-end="opacity-100 scale-100"
-                     x-transition:leave="transition ease-in duration-150"
-                     x-transition:leave-start="opacity-100 scale-100"
-                     x-transition:leave-end="opacity-0 scale-95"
+                     x-transition:enter="transition ease-out duration-150"
+                     x-transition:enter-start="opacity-0 translate-y-[-8px]"
+                     x-transition:enter-end="opacity-100 translate-y-0"
+                     x-transition:leave="transition ease-in duration-100"
+                     x-transition:leave-start="opacity-100 translate-y-0"
+                     x-transition:leave-end="opacity-0 translate-y-[-8px]"
                      @click.stop
                      class="md:hidden mt-4 pt-4 border-t border-gray-200 dark:border-gray-800 relative z-50">
                     <div class="flex flex-col space-y-1">

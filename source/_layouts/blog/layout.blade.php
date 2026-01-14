@@ -16,10 +16,10 @@
         <aside class="w-full lg:w-1/4">
             <div class="lg:sticky lg:top-4 space-y-6">
                 {{-- About Widget - Enhanced Design --}}
-                <div class="relative bg-gradient-to-br from-white via-white to-primary-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-primary-900/20 rounded-3xl p-6 shadow-xl border border-gray-200 dark:border-gray-800 backdrop-blur-xl animate-on-scroll overflow-hidden">
-                    {{-- Decorative Background Elements --}}
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-primary-500/5 blur-3xl rounded-full"></div>
-                    <div class="absolute bottom-0 left-0 w-24 h-24 bg-accent-500/5 blur-2xl rounded-full"></div>
+                <div class="relative bg-gradient-to-br from-white via-white to-primary-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-primary-900/20 rounded-3xl p-6 shadow-xl border border-gray-200 dark:border-gray-800 animate-on-scroll overflow-hidden">
+                    {{-- Decorative Background Elements (hidden on mobile for performance) --}}
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-primary-500/5 rounded-full hidden md:block"></div>
+                    <div class="absolute bottom-0 left-0 w-24 h-24 bg-accent-500/5 rounded-full hidden md:block"></div>
 
                     <div class="relative">
                         <div class="flex items-center space-x-3 mb-4">
@@ -51,7 +51,7 @@
                 </div>
 
                 {{-- Tags Section - Enhanced with Floating Effect --}}
-                <nav role="navigation" class="bg-white/90 dark:bg-gray-900/90 rounded-3xl p-6 shadow-xl border border-gray-200 dark:border-gray-800 backdrop-blur-xl animate-on-scroll delay-100 hover:shadow-2xl transition-shadow duration-300">
+                <nav role="navigation" class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-xl border border-gray-200 dark:border-gray-800 animate-on-scroll delay-100 hover:shadow-2xl transition-shadow duration-300">
                     <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-5 uppercase tracking-wider flex items-center">
                         <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-primary-100 dark:bg-primary-900/30 mr-3">
                             <svg class="w-4 h-4 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20">

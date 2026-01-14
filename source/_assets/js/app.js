@@ -143,9 +143,11 @@ window.addEventListener('scroll', () => {
 
 // Intersection Observer for scroll animations
 document.addEventListener('DOMContentLoaded', () => {
+  // Mobile-friendly observer settings
+  const isMobile = window.innerWidth < 768;
   const observerOptions = {
-    threshold: 0.15,
-    rootMargin: '0px 0px -100px 0px'
+    threshold: isMobile ? 0.05 : 0.15, // Lower threshold for mobile
+    rootMargin: isMobile ? '0px 0px -50px 0px' : '0px 0px -100px 0px' // Less margin on mobile
   };
 
   const observer = new IntersectionObserver((entries) => {
@@ -167,14 +169,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
     const elementHeight = rect.height;
 
+    // Mobile-friendly bottom margin
+    const bottomMargin = isMobile ? 50 : 100;
+
     // Calculate how much of the element is visible
     const visibleTop = Math.max(0, rect.top);
-    const visibleBottom = Math.min(rect.bottom, viewportHeight - 100); // Match rootMargin
+    const visibleBottom = Math.min(rect.bottom, viewportHeight - bottomMargin);
     const visibleHeight = Math.max(0, visibleBottom - visibleTop);
     const visibleRatio = elementHeight > 0 ? visibleHeight / elementHeight : 0;
 
-    // Show if at least 15% of element is visible (matching threshold)
-    if (visibleRatio >= 0.15) {
+    // Show if enough of element is visible (lower threshold for mobile)
+    const requiredRatio = isMobile ? 0.05 : 0.15;
+    if (visibleRatio >= requiredRatio) {
       el.classList.add('is-visible');
       observer.unobserve(el);
     }

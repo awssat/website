@@ -1,6 +1,6 @@
 <div class="w-full min-h-screen py-12 md:py-20 lg:py-24 relative overflow-hidden">
-    {{-- Ambient Background --}}
-    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-0">
+    {{-- Ambient Background (disabled on mobile for performance) --}}
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 hidden md:block">
         <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary-500/5 rounded-full blur-[120px]"></div>
         <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-accent-500/5 rounded-full blur-[120px]"></div>
     </div>
@@ -40,9 +40,9 @@
                     
                     {{-- Visual Side (Mac Window) --}}
                     <div class="w-full lg:w-3/5 perspective-1000 relative">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-primary-500/20 to-accent-500/20 rounded-[2rem] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                        
-                        <div class="relative bg-gray-100 dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 transform transition-transform duration-700 group-hover:scale-[1.02] group-hover:rotate-y-2 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-primary-500/10 to-accent-500/10 rounded-[2rem] opacity-0 md:group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                        <div class="relative bg-gray-100 dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 transition-transform duration-300 md:group-hover:scale-[1.02] overflow-hidden">
                             {{-- Window Controls --}}
                             <div class="h-10 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex items-center px-4 gap-2">
                                 <div class="w-3 h-3 rounded-full bg-red-400"></div>
@@ -70,7 +70,7 @@
                                     <div class="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/10 dark:to-white/5"></div>
 
                                     {{-- Live Badge --}}
-                                    <div class="absolute top-4 right-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/90 backdrop-blur-sm text-white text-xs font-semibold shadow-lg">
+                                    <div class="absolute top-4 right-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500 text-white text-xs font-semibold shadow-lg">
                                         <div class="w-2 h-2 rounded-full bg-white animate-pulse"></div>
                                         Live
                                     </div>

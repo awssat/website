@@ -13,7 +13,7 @@
 
             {{-- External Link Badge --}}
             @if(!empty($post->external_link))
-            <div class="absolute top-3 right-3 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-2.5 py-1 rounded-lg text-xs font-mono text-gray-600 dark:text-gray-400 shadow-lg">
+            <div class="absolute top-3 right-3 bg-white dark:bg-gray-900 px-2.5 py-1 rounded-lg text-xs font-mono text-gray-600 dark:text-gray-400 shadow-lg">
                 {{ $post->getExternalDomain() }}
             </div>
             @endif

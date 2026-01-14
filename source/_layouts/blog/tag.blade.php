@@ -11,7 +11,7 @@
 
         <div class="relative">
             {{-- Breadcrumb / Badge --}}
-            <div class="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-primary-100/80 to-accent-100/80 dark:from-primary-900/40 dark:to-accent-900/40 backdrop-blur-sm border border-primary-200/50 dark:border-primary-800/50 text-primary-700 dark:text-primary-300 text-xs sm:text-sm font-semibold mb-4 sm:mb-6 shadow-lg">
+            <div class="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-primary-100 to-accent-100 dark:from-primary-900/50 dark:to-accent-900/50 border border-primary-200/50 dark:border-primary-800/50 text-primary-700 dark:text-primary-300 text-xs sm:text-sm font-semibold mb-4 sm:mb-6 shadow-lg">
                 <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
                 </svg>

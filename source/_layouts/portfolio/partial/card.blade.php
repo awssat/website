@@ -9,14 +9,14 @@
     {{-- Type Badge --}}
     <div class="absolute top-4 {{ $page->locale === 'ar' ? 'left-4' : 'right-4' }} z-10">
         @if($item->type === 'laravel-pr')
-            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary-100 text-primary-700 dark:bg-primary-900 dark:text-primary-300 shadow-sm backdrop-blur-sm bg-opacity-90">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary-100 text-primary-700 dark:bg-primary-900 dark:text-primary-300 shadow-sm">
                 <svg class="w-3 h-3 {{ $page->locale === 'ar' ? 'ml-1' : 'mr-1' }}" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
                 </svg>
                 {{ $page->trans('portfolio.type.laravel_pr') }}
             </span>
         @else
-            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-accent-100 text-accent-700 dark:bg-accent-900 dark:text-accent-300 shadow-sm backdrop-blur-sm bg-opacity-90">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-accent-100 text-accent-700 dark:bg-accent-900 dark:text-accent-300 shadow-sm">
                 <svg class="w-3 h-3 {{ $page->locale === 'ar' ? 'ml-1' : 'mr-1' }}" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2 6a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 100 4v2a2 2 0 01-2 2H4a2 2 0 01-2-2v-2a2 2 0 100-4V6z"></path>
                 </svg>
