@@ -290,26 +290,26 @@ class ModernCoverGenerator
         try {
             $logo = $this->imageManager->read($pngPath);
 
-            // Scale logo to desired size on cover (250-350px)
-            $logoSizes = [250, 280, 300, 320, 350];
+            // Scale logo to desired size on cover (200-300px for better balance)
+            $logoSizes = [200, 220, 250, 280, 300];
             $logoSize = $logoSizes[$seed % count($logoSizes)];
             $logo->scale($logoSize, $logoSize);
 
-            // Position logo (bottom-right, bottom-left, center, etc.)
+            // Better centered positions with proper balance
             $positions = [
-                ['bottom-right', -60, -60],
-                ['bottom-left', 60, -60],
-                ['center', 200, 150],
-                ['center', -200, 150],
-                ['center', 0, -100],
+                ['center', 0, 0],        // Perfect center
+                ['center', 0, -50],      // Center slightly up
+                ['center', 0, 50],       // Center slightly down
+                ['center', -100, 0],     // Center left
+                ['center', 100, 0],      // Center right
             ];
 
             $position = $positions[$seed % count($positions)];
 
-            // Apply subtle opacity by converting to grayscale and reducing opacity
+            // Apply subtle opacity by converting to grayscale and light transparency
             $logo->greyscale();
 
-            // Place the logo
+            // Place the logo centered
             $img->place($logo, $position[0], $position[1], $position[2]);
 
             // Cleanup temp files
