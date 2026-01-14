@@ -82,30 +82,12 @@
 
             {{-- Tech Stack Marquee --}}
             <div class="mt-24 w-full overflow-hidden animate-on-scroll delay-500 opacity-60 hover:opacity-100 transition-all duration-500 mask-border-fade">
-                <div class="relative flex overflow-x-hidden group">
-                    <div class="animate-marquee whitespace-nowrap flex gap-16 py-4 font-bold text-lg text-gray-400 dark:text-gray-500 tracking-wide">
-                        <span>Laravel</span>
-                        <span>Vue.js</span>
-                        <span>Tailwind CSS</span>
-                        <span>Alpine.js</span>
-                        <span>Livewire</span>
-                        <span>Inertia</span>
-                        <span>PHP</span>
-                        <span>MySQL</span>
-                        <span>Redis</span>
-                        <span>Docker</span>
+                <div class="inline-flex w-max animate-marquee-smooth">
+                    <div class="flex gap-16 px-8 py-4 text-gray-400 dark:text-gray-500 tracking-wide">
+                        @include('_layouts.partial.tech_stack_items')
                     </div>
-                    <div class="absolute top-0 animate-marquee2 whitespace-nowrap flex gap-16 py-4 font-bold text-lg text-gray-400 dark:text-gray-500 tracking-wide">
-                        <span>Laravel</span>
-                        <span>Vue.js</span>
-                        <span>Tailwind CSS</span>
-                        <span>Alpine.js</span>
-                        <span>Livewire</span>
-                        <span>Inertia</span>
-                        <span>PHP</span>
-                        <span>MySQL</span>
-                        <span>Redis</span>
-                        <span>Docker</span>
+                    <div class="flex gap-16 px-8 py-4 text-gray-400 dark:text-gray-500 tracking-wide" aria-hidden="true">
+                        @include('_layouts.partial.tech_stack_items')
                     </div>
                 </div>
             </div>
