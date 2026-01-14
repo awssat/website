@@ -75,7 +75,7 @@
 
 {{-- MySQL --}}
 <div class="flex items-center gap-3">
-    <svg class="w-10 h-10" viewBox="0 0 100 75" xmlns="http://www.w3.org/2000/svg">
+    <svg class="w-10 h-10" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
         <!-- Dolphin body (simplified) -->
         <path fill="currentColor" opacity="0.85" d="M75 24c-3.5-.1-5.6.3-7.5 1.2-.6.3-1.5.3-1.6 1 .3.3.4.8.6 1.2.5.8 1.3 1.8 2 2.3.8.6 1.6 1.2 2.4 1.7 1.5.9 3.2 1.4 4.6 2.3.8.5 1.7 1.2 2.5 1.8.4.3.7.8 1.2 1v-.1c-.3-.3-.4-.8-.6-1.2l-1.1-1.1c-1.1-1.5-2.5-2.7-4-3.8-1.2-.8-3.9-1.9-4.4-3.3l-.1-.1c.9-.1 1.9-.4 2.7-.6 1.3-.3 2.5-.3 3.8-.6.6-.2 1.2-.3 1.8-.5v-.3c-.7-.7-1.2-1.6-1.9-2.2-2-1.6-4.1-3.3-6.3-4.6-1.2-.8-2.7-1.2-4-1.9-.5-.2-1.2-.3-1.5-.7-.7-.8-1.1-1.9-1.6-2.9-1.1-2.1-2.2-4.4-3.1-6.6-.7-1.5-1.1-3-2-4.3-4-6.5-8.3-10.5-15-14.3-1.4-.8-3.1-1.1-4.9-1.6l-2.9-.1c-.6-.3-1.2-1-1.8-1.3-2.2-1.4-7.8-4.4-9.4-.4-1 2.5 1.5 4.9 2.4 6.2.7.9 1.5 1.9 2 2.9.3.6.3 1.3.6 2 .6 1.7 1.2 3.6 2 5.1.4.8.9 1.6 1.4 2.4.3.4.8.6 1 1.3-.5.8-.6 1.9-.9 2.9-1.4 4.3-.8 9.7 1.1 12.8.6 1 2.1 3.1 4 2.3 1.7-.7 1.3-2.9 1.8-4.8.1-.5 0-.8.3-1.1v.1c.5 1.1 1.1 2.1 1.6 3.2 1.2 1.9 3.3 3.8 5 5.1.9.7 1.6 1.9 2.8 2.3v-.2h-.1c-.2-.3-.6-.5-.9-.8-.7-.7-1.5-1.5-2-2.3-1.6-2.1-3-4.5-4.3-7-.6-1.2-1.2-2.5-1.6-3.7-.2-.5-.2-1.2-.6-1.4-.6.8-1.4 1.6-1.8 2.6-.7 1.6-.8 3.7-1.1 5.8l-.1.1c-1.2-.3-1.6-1.6-2.1-2.6-1.1-2.7-1.3-7.1-.3-10.2.3-.8 1.4-3.3.9-4.1-.2-.7-1-1.1-1.4-1.7-.5-.7-1-1.6-1.4-2.4-.9-2.1-1.4-4.5-2.4-6.6-.5-1-1.3-2-1.9-3-.7-1-1.5-1.7-2.1-3-.2-.4-.5-1.1-.2-1.6.1-.3.2-.4.5-.5.5-.4 1.9.1 2.4.3 1.4.6 2.6 1.1 3.8 1.9.5.4 1.1 1.1 1.8 1.3h.8c1.2.3 2.6.1 3.8.4 2 .7 3.9 1.6 5.5 2.6 5 3.2 9.2 7.7 12 13.1.5.9.7 1.7 1.1 2.6.8 1.9 1.8 3.8 2.6 5.6.8 1.8 1.6 3.6 2.7 5.1.6.8 2.9 1.2 3.9 1.6.8.3 2 .6 2.7 1.1 1.3.8 2.6 1.7 3.8 2.6.6.5 2.5 1.4 2.6 2.2"/>
         <!-- Eye -->
@@ -123,4 +123,58 @@
         </g>
     </svg>
     <span class="font-bold text-lg">Docker</span>
+</div>
+
+{{-- Rust --}}
+<div class="flex items-center gap-3">
+    <svg class="w-10 h-10" viewBox="0 0 106 106" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(53, 53)">
+            <path id="r" transform="translate(0.5, 0.5)" fill="currentColor" opacity="0.9" d="M -9,-15 H 4 C 12,-15 12,-7 4,-7 H -9 Z M -40,22 H 0 V 11 H -9 V 3 H 1 C 12,3 6,22 15,22 H 40 V 3 H 34 V 5 C 34,13 25,12 24,7 C 23,2 19,-2 18,-2 C 33,-10 24,-26 12,-26 H -35 V -15 H -25 V 11 H -40 Z"/>
+            <g id="gear">
+                <circle r="43" fill="none" stroke="currentColor" opacity="0.85" stroke-width="9"/>
+                <g id="cogs">
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(11.25)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(22.50)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(33.75)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(45.00)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(56.25)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(67.50)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(78.75)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(90.00)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(101.25)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(112.50)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(123.75)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(135.00)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(146.25)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(157.50)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(168.75)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(180.00)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(191.25)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(202.50)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(213.75)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(225.00)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(236.25)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(247.50)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(258.75)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(270.00)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(281.25)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(292.50)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(303.75)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(315.00)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(326.25)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(337.50)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="3" stroke-linejoin="round" fill="none" points="46,3 51,0 46,-3" transform="rotate(348.75)"/>
+                </g>
+                <g id="mounts">
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="6" stroke-linejoin="round" fill="none" points="-7,-42 0,-35 7,-42"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="6" stroke-linejoin="round" fill="none" points="-7,-42 0,-35 7,-42" transform="rotate(72)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="6" stroke-linejoin="round" fill="none" points="-7,-42 0,-35 7,-42" transform="rotate(144)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="6" stroke-linejoin="round" fill="none" points="-7,-42 0,-35 7,-42" transform="rotate(216)"/>
+                    <polygon stroke="currentColor" opacity="0.85" stroke-width="6" stroke-linejoin="round" fill="none" points="-7,-42 0,-35 7,-42" transform="rotate(288)"/>
+                </g>
+            </g>
+        </g>
+    </svg>
+    <span class="font-bold text-lg">Rust</span>
 </div>
