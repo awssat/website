@@ -216,19 +216,32 @@ body {
 }
 
 /* Advanced 3D Animations */
-@keyframes gyro-sync {
-  0% { transform: rotateX(60deg) rotateY(0deg) rotateZ(0deg); }
-  100% { transform: rotateX(60deg) rotateY(360deg) rotateZ(360deg); }
-}
-
 @keyframes float-breathing {
   0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
   50% { transform: translateY(-20px) scale(1.05); opacity: 0.6; }
 }
 
-@keyframes orbit {
-  from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
-  to { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+/* 2D Pattern Animations */
+@keyframes drift-1 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(20px, -20px) rotate(5deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes drift-2 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-30px, 15px) rotate(-8deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes drift-3 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(10px, 30px) scale(1.1); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+.animate-float-gentle {
+  animation: float-gentle 8s ease-in-out infinite;
 }
 
 /* Soulful Glows */

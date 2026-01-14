@@ -19,7 +19,7 @@
 @endif
 @stack('head')
 </head>
-<body class="antialiased bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
+<body class="antialiased bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
     {{-- Modern Floating Header --}}
     <header x-data="{ mobileMenuOpen: false, scrolled: false }" 
             @scroll.window="scrolled = (window.pageYOffset > 20)"

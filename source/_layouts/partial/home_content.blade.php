@@ -4,47 +4,43 @@
 
 <div class="w-full overflow-hidden bg-gray-50 dark:bg-gray-950 transition-colors duration-500">
     {{-- Epic Hero Section --}}
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden gradient-mesh perspective-1000"
-             x-data="{ 
-                x: 0, 
-                y: 0,
-                handleMove(e) {
-                    this.x = (e.clientX - window.innerWidth / 2) / 20;
-                    this.y = (e.clientY - window.innerHeight / 2) / 20;
-                }
-             }"
-             @mousemove="handleMove">
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden gradient-mesh -mt-20 pt-20"
+             x-data="{ x: 0, y: 0 }"
+             @mousemove="x = $event.clientX; y = $event.clientY">
         
-        {{-- Interactive Spotlight Background --}}
-        <div class="absolute inset-0 pointer-events-none z-0 transition-opacity duration-1000" 
-             :style="`background: radial-gradient(circle 1000px at ${x * 20 + window.innerWidth / 2}px ${y * 20 + window.innerHeight / 2}px, rgba(124, 58, 237, 0.08), transparent 60%);`">
+        {{-- Spotlight Effect (Reveals the pattern) --}}
+        <div class="absolute inset-0 pointer-events-none z-0" 
+             :style="`background: radial-gradient(circle 800px at ${x}px ${y}px, rgba(139, 92, 246, 0.15), transparent 70%);`">
         </div>
 
-        {{-- 3D Gyroscope System (Synchronized) --}}
-        <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0 opacity-60 dark:opacity-80"
-             :style="`transform: rotateX(${y * -0.3}deg) rotateY(${x * 0.3}deg)`">
-            <div class="relative w-[600px] h-[600px] md:w-[800px] md:h-[800px] preserve-3d animate-[gyro-sync_30s_linear_infinite]">
-                {{-- Core --}}
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-primary-500/20 rounded-full blur-3xl animate-pulse"></div>
-                
-                {{-- Outer Ring --}}
-                <div class="absolute inset-0 border-[2px] border-primary-500/40 rounded-full shadow-soul-primary"></div>
-                
-                {{-- Inner Ring --}}
-                <div class="absolute inset-24 border-[2px] border-accent-500/40 rounded-full shadow-soul-accent"></div>
-                
-                {{-- Connecting Spokes (adds to the 'soul') --}}
-                <div class="absolute inset-0 preserve-3d opacity-20">
-                    <div class="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary-500 to-transparent"></div>
-                    <div class="absolute top-0 left-1/2 w-[1px] h-full bg-gradient-to-b from-transparent via-primary-500 to-transparent"></div>
-                </div>
-            </div>
+        {{-- Main Hero Logo (Central, Large, Nice Gradient) --}}
+        <div class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none z-0">
+            <svg class="w-[600px] h-[600px] md:w-[900px] md:h-[900px] opacity-10 dark:opacity-5 animate-float-gentle" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color: #8b5cf6" />   {{-- Purple --}}
+                        <stop offset="50%" style="stop-color: #3b82f6" />   {{-- Blue --}}
+                        <stop offset="100%" style="stop-color: #06b6d4" />  {{-- Cyan --}}
+                    </linearGradient>
+                    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+                <g filter="url(#glow)">
+                    <path d="M29.855 0.001A30 30 0 0 0 0 30.001a30 30 0 0 0 29.855 30 30 30 0 0 0 30.145-30A30 30 0 0 0 29.855 0.001zm0.24 7.42a22.58 22.58 0 0 1 22.485 22.58 22.58 22.58 0 0 1-45.158 0 22.58 22.58 0 0 1 22.673-22.58z" fill="url(#heroGradient)"/>
+                    <path d="M29.835 11.906a18.1 18.1 0 0 0-17.932 18.096 18.1 18.1 0 0 0 36.194 0 18.1 18.1 0 0 0-18.262-18.096zm-0.014 7.553a10.54 10.54 0 0 1 10.725 10.543 10.54 10.54 0 0 1-21.09 0 10.54 10.54 0 0 1 10.365-10.543z" fill="url(#heroGradient)"/>
+                </g>
+            </svg>
         </div>
 
         {{-- Hero Content --}}
         <div class="relative z-10 text-center max-w-7xl mx-auto px-4 py-24 sm:py-32">
             {{-- Badge --}}
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border border-primary-100 dark:border-primary-900/50 shadow-lg shadow-primary-500/10 mb-8 animate-on-scroll hover:scale-105 transition-transform duration-300 ring-1 ring-white/20">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-gray-900/50 backdrop-blur-xl border border-primary-100 dark:border-primary-900/30 shadow-lg shadow-primary-500/10 mb-8 animate-on-scroll hover:scale-105 transition-transform duration-300 ring-1 ring-white/20">
                 <span class="flex h-2 w-2 relative">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -79,7 +75,7 @@
                     </span>
                 </a>
                 <a href="#contact"
-                   class="px-8 py-4 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 hover:border-primary-500 dark:hover:border-primary-500 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center hover:-translate-y-1">
+                   class="px-8 py-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-md text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 hover:border-primary-500 dark:hover:border-primary-500 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center hover:-translate-y-1">
                     Let's Talk
                 </a>
             </div>
@@ -165,7 +161,8 @@
                     <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-black"></div>
                     <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#4f46e5 1px, transparent 1px); background-size: 24px 24px;"></div>
                     <div class="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-500"
-                         style="background: radial-gradient(500px circle at var(--x)px var(--y)px, rgba(255, 255, 255, 0.1), transparent 40%);"></div>
+                         style="background: radial-gradient(500px circle at var(--x)px var(--y)px, rgba(255, 255, 255, 0.1), transparent 40%);">
+                    </div>
                     
                     <div class="relative z-10 h-full flex flex-col">
                         <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-sm border border-white/10">
@@ -301,13 +298,13 @@
                 Join the companies that trust us with their most critical infrastructure and applications.
             </p>
             <div class="flex flex-col sm:flex-row gap-6 justify-center animate-on-scroll delay-200">
-                <a href="https://github.com/awssat" target="_blank" class="px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-950 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center justify-center">
+                <a href="https://github.com/awssat" target="_blank" class="px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-950 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center justify-center">
                     <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
                     View GitHub Profile
                 </a>
-                <a href="/contact" class="px-8 py-4 bg-transparent border-2 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white rounded-full font-bold text-lg hover:border-gray-300 dark:hover:border-gray-600 transition-all inline-flex items-center justify-center">
+                <a href="/contact" class="px-8 py-4 bg-transparent border-2 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white rounded-2xl font-bold text-lg hover:border-gray-300 dark:hover:border-gray-600 transition-all inline-flex items-center justify-center">
                     Get In Touch
                 </a>
             </div>
