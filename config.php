@@ -148,6 +148,21 @@ return [
     'getCoverImage' => function ($page) {
         return $page->cover_image ?? url('/assets/images/covers/' . $page->getFilename() . '.png');
     },
+    'getScreenshot' => function ($page) {
+        // If custom screenshot provided, use it
+        if (!empty($page->screenshot)) {
+            return $page->screenshot;
+        }
+
+        // For websites, generate screenshot path from demo_url
+        if ($page->type === 'website' && !empty($page->demo_url)) {
+            $hash = md5($page->demo_url);
+            return url("/assets/images/portfolio/screenshots/{$hash}.jpg");
+        }
+
+        // Fallback to placeholder or custom cover
+        return $page->cover_image ?? url('/assets/images/portfolio/placeholder.jpg');
+    },
     'getExcerpt' => function ($page, $length = 255) {
         if ($page->excerpt) {
             return $page->excerpt;

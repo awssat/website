@@ -1,0 +1,5 @@
+# Portfolio Screenshots
+
+This directory contains automatically generated screenshots of live websites from the portfolio.
+
+Screenshots are generated during the build process using Puppeteer.
