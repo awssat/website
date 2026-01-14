@@ -5,7 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <script>document.documentElement.classList.remove('no-js')</script>
+<meta name="author" content="{{ $page->siteAuthor }}">
+<meta name="google" content="notranslate">
+<meta name="robots" content="index, follow">
+<meta name="applicable-device" content="pc, mobile">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="{{ $page->siteName }}">
+<meta name="theme-color" content="#8b5cf6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1f2937" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+{{-- Page-specific meta tags (overrideable) --}}
+@yield('seo-meta')
+
+{{-- Default fallback meta tags (only if page doesn't define seo-meta section) --}}
+@sectionMissing('seo-meta')
+    @include('_layouts.partial.meta_tags_default')
+@endif
+
 <title>@section('title'){{ $page->siteName }}@show</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
