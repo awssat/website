@@ -1,8 +1,12 @@
 @extends('_layouts.layout')
 
 @section('main')
-<div class="w-full min-h-screen py-12 bg-gray-50 dark:bg-gray-950">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row gap-8">
+<div class="w-full min-h-screen py-24 relative overflow-hidden">
+    {{-- Background Ambience --}}
+    <div class="fixed top-0 right-0 w-[500px] h-[500px] bg-primary-500/5 blur-[100px] rounded-full pointer-events-none z-0"></div>
+    <div class="fixed bottom-0 left-0 w-[500px] h-[500px] bg-accent-500/5 blur-[100px] rounded-full pointer-events-none z-0"></div>
+
+    <div class="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row gap-12 relative z-10">
         {{-- Main Content --}}
         <div class="flex-1 w-full lg:w-3/4">
             @yield('blog_main')
@@ -10,43 +14,89 @@
 
         {{-- Sidebar --}}
         <aside class="w-full lg:w-1/4">
-            <div class="lg:sticky lg:top-24">
-                {{-- Tags Section --}}
-                <nav role="navigation" class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-800 animate-on-scroll">
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
-                        <svg class="w-5 h-5 mr-2 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
-                        </svg>
-                        Tags
+            <div class="lg:sticky lg:top-32 space-y-6">
+                {{-- About Widget - Enhanced Design --}}
+                <div class="relative bg-gradient-to-br from-white via-white to-primary-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-primary-900/20 rounded-3xl p-6 shadow-xl border border-gray-200 dark:border-gray-800 backdrop-blur-xl animate-on-scroll overflow-hidden">
+                    {{-- Decorative Background Elements --}}
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-primary-500/5 blur-3xl rounded-full"></div>
+                    <div class="absolute bottom-0 left-0 w-24 h-24 bg-accent-500/5 blur-2xl rounded-full"></div>
+
+                    <div class="relative">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="relative">
+                                <img src="/assets/images/logo.png" class="w-12 h-12 transition-transform hover:rotate-12 duration-300" alt="Awssat Logo">
+                                <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-gray-900 animate-pulse"></div>
+                            </div>
+                            <div>
+                                <span class="font-bold text-xl text-gray-900 dark:text-white block">Awssat</span>
+                                <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Engineering Blog</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                            Building <span class="font-semibold text-primary-600 dark:text-primary-400">robust web apps</span>, contributing to <span class="font-semibold text-accent-600 dark:text-accent-400">open source</span>, and sharing Laravel expertise.
+                        </p>
+
+                        {{-- Quick Stats --}}
+                        <div class="grid grid-cols-2 gap-3 pt-4 border-t border-gray-200 dark:border-gray-800">
+                            <div class="text-center p-2 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+                                <div class="text-lg font-bold text-primary-600 dark:text-primary-400">2.2K+</div>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">GitHub Stars</div>
+                            </div>
+                            <div class="text-center p-2 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+                                <div class="text-lg font-bold text-accent-600 dark:text-accent-400">6</div>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">Laravel PRs</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Tags Section - Enhanced with Floating Effect --}}
+                <nav role="navigation" class="bg-white/90 dark:bg-gray-900/90 rounded-3xl p-6 shadow-xl border border-gray-200 dark:border-gray-800 backdrop-blur-xl animate-on-scroll delay-100 hover:shadow-2xl transition-shadow duration-300">
+                    <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-5 uppercase tracking-wider flex items-center">
+                        <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-primary-100 dark:bg-primary-900/30 mr-3">
+                            <svg class="w-4 h-4 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        Explore Topics
                     </h3>
-                    <div class="flex flex-wrap gap-2">
+                    <div class="flex flex-col gap-2">
                         @foreach ($tags as $tag)
                         <a href="{{ $page->getTagUrl($tag->filename) }}"
-                           title="all posts under {{ $tag->title }}"
-                           class="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium transition-all hover:scale-105 @if ($page->isActive($tag->filename)) bg-primary-600 text-white shadow-md @else bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 @endif">
-                            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                class="w-4 h-4 fill-current mr-1.5">
-                                @if ($tag->filename == 'tweet')
-                                <path d="M23.643 4.937c-.835.37-1.732.62-2.675.733a4.67 4.67 0 0 0 2.048-2.578 9.3 9.3 0 0 1-2.958 1.13 4.66 4.66 0 0 0-7.938 4.25 13.229 13.229 0 0 1-9.602-4.868c-.4.69-.63 1.49-.63 2.342A4.66 4.66 0 0 0 3.96 9.824a4.647 4.647 0 0 1-2.11-.583v.06a4.66 4.66 0 0 0 3.737 4.568 4.692 4.692 0 0 1-2.104.08 4.661 4.661 0 0 0 4.352 3.234 9.348 9.348 0 0 1-5.786 1.995 9.5 9.5 0 0 1-1.112-.065 13.175 13.175 0 0 0 7.14 2.093c8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602a9.47 9.47 0 0 0 2.323-2.41z"></path>
-                                @elseif($tag->filename == 'link')
-                                <path d="M0 0h24v24H0z" fill="none" />
-                                <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z" />
-                                @elseif($tag->filename == 'video')
-                                <path d="M0 0h24v24H0z" fill="none" />
-                                <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z" />
-                                @elseif($tag->filename == 'original')
-                                <g><rect fill="none" height="24" width="24" /></g>
-                                <g><path d="M23,12l-2.44-2.79l0.34-3.69l-3.61-0.82L15.4,1.5L12,2.96L8.6,1.5L6.71,4.69L3.1,5.5L3.44,9.2L1,12l2.44,2.79l-0.34,3.7 l3.61,0.82L8.6,22.5l3.4-1.47l3.4,1.46l1.89-3.19l3.61-0.82l-0.34-3.69L23,12z M10.09,16.72l-3.8-3.81l1.48-1.48l2.32,2.33 l5.85-5.87l1.48,1.48L10.09,16.72z" /></g>
-                                @else
-                                <path d="M0 0h24v24H0z" fill="none" />
-                                <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z" />
-                                @endif
+                           title="Browse {{ $tag->title }}"
+                           class="group flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200
+                                  @if ($page->isActive($tag->filename))
+                                      bg-gradient-to-r from-primary-600 to-primary-700 text-white shadow-lg shadow-primary-500/30 transform scale-[1.02]
+                                  @else
+                                      bg-gray-50 dark:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:text-primary-600 dark:hover:text-primary-400 hover:scale-[1.02] hover:shadow-md
+                                  @endif">
+                            <span class="text-sm font-semibold">{{ $tag->title }}</span>
+                            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                             </svg>
-                            {{ $tag->title }}
                         </a>
                         @endforeach
                     </div>
                 </nav>
+
+                {{-- RSS Feed - Enhanced Design --}}
+                <a href="/blog/feed.atom"
+                   class="group relative flex items-center justify-center p-5 rounded-2xl bg-gradient-to-br from-orange-500/10 via-orange-500/5 to-red-500/10 border border-orange-200/50 dark:border-orange-900/30 text-orange-600 dark:text-orange-400 hover:scale-[1.02] hover:shadow-xl transition-all duration-300 overflow-hidden">
+                    {{-- Animated Background --}}
+                    <div class="absolute inset-0 bg-gradient-to-r from-orange-500/0 via-orange-500/10 to-orange-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+
+                    <div class="relative flex items-center gap-3">
+                        <div class="flex items-center justify-center w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-900/30 group-hover:rotate-12 transition-transform duration-300">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="text-left">
+                            <div class="text-sm font-bold">Subscribe via RSS</div>
+                            <div class="text-xs text-orange-500/80 dark:text-orange-400/80">Never miss an update</div>
+                        </div>
+                    </div>
+                </a>
             </div>
         </aside>
     </div>

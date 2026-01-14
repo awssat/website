@@ -1,155 +1,126 @@
-#article-body h1 {
-    @apply text-2xl mt-6 mb-2 font-black;
+/* Modern Blog Styles */
+
+/* Clean up legacy styles, relying on Tailwind Typography plugin (prose) in the view */
+
+/* Specific overrides for Highlight.js to match the theme */
+.hljs {
+    @apply rounded-xl border border-gray-800 bg-gray-900 shadow-lg;
+    border-color: #1f2937 !important; /* gray-800 */
+    background-color: #111827 !important; /* gray-900 */
 }
 
-#article-body h2 {
-    @apply text-xl mt-6 mb-2 font-black;
+/* Blockquote refinement */
+.prose blockquote {
+    font-style: normal;
+    quotes: none;
 }
 
-#article-body h3 {
-    @apply text-lg mt-6 mb-2 font-black;
+/* Custom link underline animation for prose */
+.prose a {
+    text-decoration-color: theme('colors.primary.500');
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+    transition: all 0.2s;
 }
 
-#article-body h4 {
-    @apply text-md mt-6 mb-2 font-black;
+.prose a:hover {
+    text-decoration-color: theme('colors.primary.600');
+    text-decoration-thickness: 3px;
+    background-color: theme('colors.primary.50');
 }
 
-#article-body h5 {
-    @apply text-base mt-6 mb-2 font-bold;
+.dark .prose a:hover {
+    background-color: theme('colors.primary.900');
 }
 
-#article-body h6 {
-    @apply text-base mt-6 mb-2 font-bold;
+/* Enhanced Image improvements */
+.prose img {
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-@media (width >= 768px) {
-    #article-body h1 {
-        @apply text-4xl
-    }
-
-    #article-body h2 {
-        @apply text-3xl
-    }
-
-    #article-body h3 {
-        @apply text-2xl
-    }
-
-    #article-body h4 {
-        @apply text-xl
-    }
-
-    #article-body h5,
-    #article-body h6 {
-        @apply text-lg
-    }
+.prose img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
-#article-body p {
-    @apply py-4;
+/* Better heading spacing */
+.prose h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+    scroll-margin-top: 6rem;
 }
 
-#article-body>p>code {
-    @apply text-awssat bg-gray-300 font-mono px-1 rounded;
+.prose h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    scroll-margin-top: 6rem;
 }
 
-#article-body>:not(pre) {
-    @apply break-words;
+/* Heading anchor links */
+.heading-permalink {
+    @apply text-primary-500 opacity-0 transition-opacity ml-2 no-underline;
+    opacity: 0 !important;
 }
 
-#article-body>hr {
- @apply my-6 border-dashed border-gray-400;
+h2:hover .heading-permalink,
+h3:hover .heading-permalink {
+    opacity: 1 !important;
 }
 
-#article-body blockquote {
-    @apply relative pl-4 py-2 border-l-4 border-gray-700 bg-gray-200;
+/* Line clamp utilities for consistent truncation */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
 }
 
-
-#article-body>blockquote {
-    @apply pr-8;
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
 }
 
-#article-body>blockquote::before {
-    content: '\0022';
-    @apply absolute top-0 right-0 font-bold text-5xl text-gray-600 m-2;
+/* Code inline improvements */
+.prose code {
+    font-weight: 500;
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.375rem;
 }
 
-#article-body .footnotes ol {
-    @apply list-decimal bg-yellow-100 p-2 text-sm leading-loose;
+/* Table improvements */
+.prose table {
+    font-size: 0.875rem;
 }
 
-#article-body .footnotes li {
-    @apply ml-3;
+.prose thead {
+    border-bottom-width: 2px;
 }
 
-#article-body .footnotes p {
-    @apply py-0;
+.prose tbody tr {
+    border-bottom-width: 1px;
+    transition: background-color 0.2s;
 }
 
-#article-body .twitter-tweet {
-    @apply mx-auto clear-both;
+.prose tbody tr:hover {
+    background-color: rgba(139, 92, 246, 0.05);
 }
 
-#article-body img,
-#article-body video,
-#article-body embed,
-#article-body iframe,
-#article-body object,
-#article-body svg {
-    @apply block mx-auto max-w-full align-middle;
+/* List improvements */
+.prose ul > li::marker,
+.prose ol > li::marker {
+    color: theme('colors.primary.500');
+    font-weight: 600;
 }
 
-#article-body>ul {
-    @apply list-disc ml-8;
-}
-
-#article-body>ol {
-    @apply list-decimal ml-8;
-}
-
-#article-body>ol p {
-    @apply py-0;
-}
-
-#article-body>table {
-    @apply table-auto mx-auto clear-both;
-}
-
-#article-body>table>thead>tr>th {
-    @apply px-4 py-2
-}
-
-#article-body>table>tbody>tr>td {
-    @apply border px-4 py-2
-}
-
-#article-body .heading-permalink {
-    @apply text-awssat mr-2;
-}
-
-#article-body a {
-    @apply text-awssat;
-}
-
-#article-body a:hover {
-    @apply underline
-}
-
-#article-body a:visited {
-    @apply text-purple-600
-}
-
-
-
-.dark-mode #article-body blockquote {
-    @apply bg-gray-700 border-gray-500;
-}
-
-.dark-mode #article-body .footnotes ol {
-    @apply bg-yellow-500 text-gray-700;
-}
-
-.dark-mode #article-body a {
-    @apply text-awssat-light;
+/* Better focus states */
+.prose a:focus-visible {
+    outline: 2px solid theme('colors.primary.500');
+    outline-offset: 2px;
+    border-radius: 0.25rem;
 }

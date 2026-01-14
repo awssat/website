@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Helpers\PostCoverGenerator;
+use App\Helpers\ModernCoverGenerator;
 use TightenCo\Jigsaw\Jigsaw;
 
 class GenerateCoverImages
@@ -12,8 +12,10 @@ class GenerateCoverImages
         $posts = $jigsaw->getCollection('posts');
 
         //TODO: do not generate cover images for not-changed posts. Must be done in a different way.
-        $posts->each(function ($post) use ($jigsaw) {
-            PostCoverGenerator::generate($post, $jigsaw->getDestinationPath());
+        $generator = new ModernCoverGenerator();
+
+        $posts->each(function ($post) use ($jigsaw, $generator) {
+            $generator->generate($post, $jigsaw->getDestinationPath());
         });
     }
 }

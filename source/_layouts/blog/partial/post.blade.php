@@ -1,39 +1,75 @@
+{{-- Hero Section with Cover Image --}}
+<div class="relative w-full bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 overflow-hidden mb-12">
+    {{-- Cover Image --}}
+    <div class="relative max-w-7xl mx-auto px-4">
+        <div class="relative aspect-[21/9] rounded-3xl overflow-hidden shadow-2xl my-8">
+            <img src="{{ $page->getCoverImage() }}"
+                 alt="{{ $page->title }}"
+                 class="w-full h-full object-cover"
+                 loading="eager">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+
+            {{-- Floating Meta Badge --}}
+            <div class="absolute top-6 left-6">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-lg border border-white/20 dark:border-gray-700/50">
+                    <svg class="w-4 h-4 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                    </svg>
+                    <time datetime="{{ $page->getDate()->toIso8601String() }}" class="text-sm font-semibold text-gray-900 dark:text-white">
+                        {{ $page->getDate()->format('F j, Y') }}
+                    </time>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="p-8 md:p-12">
     {{-- Header --}}
-    <header class="mb-8">
-        <h1 id="article-title" class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight mb-6">
+    <header class="mb-10">
+        <h1 id="article-title" class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight mb-6 text-balance">
             {{ $page->title }}
         </h1>
 
-        <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-6">
-            {{-- Date --}}
-            <div class="flex items-center gap-2">
-                <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
-                </svg>
-                <time datetime="{{ $page->getDate()->toIso8601String() }}">
-                    {{ $page->getDate()->format('F j, Y') }}
-                </time>
-                @if (!empty($page->updated_at) && $page->getUpdatedAt() > $page->getDate())
-                    <span class="text-gray-400">•</span>
-                    <span>Updated: {{ $page->getUpdatedAt()->format('F j, Y') }}</span>
-                @endif
+        {{-- Enhanced Meta Information --}}
+        <div class="flex flex-wrap items-center gap-4 text-sm mb-6 pb-6 border-b border-gray-200 dark:border-gray-800">
+            {{-- Author --}}
+            <div class="flex items-center gap-2.5">
+                <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 text-white font-bold text-sm shadow-lg">
+                    {{ strtoupper(substr($page->author ?? 'A', 0, 1)) }}
+                </div>
+                <div>
+                    @if ($page->author_link !== null)
+                    <a href="{{ $page->author_link }}" class="font-semibold text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors block"
+                       target="_blank" rel="nofollow noopener noreferrer" title="external page of {{ $page->author }}">
+                        {{ $page->author }}
+                    </a>
+                    @else
+                    <span class="font-semibold text-gray-900 dark:text-white block">{{ $page->author }}</span>
+                    @endif
+                    <span class="text-xs text-gray-500 dark:text-gray-400">Author</span>
+                </div>
             </div>
 
-            {{-- Author --}}
-            <div class="flex items-center gap-2">
-                <svg class="w-5 h-5 text-accent-600 dark:text-accent-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+            <span class="text-gray-300 dark:text-gray-700">|</span>
+
+            {{-- Date Info --}}
+            <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
                 </svg>
-                @if ($page->author_link !== null)
-                <a href="{{ $page->author_link }}" class="font-medium text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-                   target="_blank" rel="nofollow noopener noreferrer" title="external page of {{ $page->author }}">
-                    {{ $page->author }}
-                </a>
-                @else
-                <span class="font-medium text-gray-900 dark:text-white">{{ $page->author }}</span>
-                @endif
+                <span>Published {{ $page->getDate()->diffForHumans() }}</span>
             </div>
+
+            @if (!empty($page->updated_at) && $page->getUpdatedAt() > $page->getDate())
+            <span class="text-gray-300 dark:text-gray-700">|</span>
+            <div class="flex items-center gap-2 text-accent-600 dark:text-accent-400">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"></path>
+                </svg>
+                <span>Updated {{ $page->getUpdatedAt()->diffForHumans() }}</span>
+            </div>
+            @endif
         </div>
 
         {{-- Tags --}}
@@ -41,11 +77,11 @@
         <div class="flex flex-wrap gap-2">
             @foreach ($page->tags as $tag)
             <a href="{{ $page->getTagUrl($tag) }}"
-               class="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary-100 dark:hover:bg-primary-900 hover:text-primary-700 dark:hover:text-primary-300 transition-all hover:scale-105">
+               class="group inline-flex items-center px-4 py-2 rounded-xl text-sm font-semibold bg-gradient-to-br from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900 text-gray-700 dark:text-gray-300 hover:from-primary-100 hover:to-primary-50 dark:hover:from-primary-900 dark:hover:to-primary-800 hover:text-primary-700 dark:hover:text-primary-300 border border-gray-200 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-700 transition-all hover:scale-105 shadow-sm hover:shadow-md">
                 @if (in_array($tag, ['tweet', 'link', 'video', 'original']))
-                <svg class="w-4 h-4 fill-current mr-1.5" viewBox="0 0 24 24">
+                <svg class="w-4 h-4 fill-current mr-2 opacity-60 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24">
                     @if ($tag == 'tweet')
-                    <path d="M23.643 4.937c-.835.37-1.732.62-2.675.733a4.67 4.67 0 0 0 2.048-2.578 9.3 9.3 0 0 1-2.958 1.13 4.66 4.66 0 0 0-7.938 4.25 13.229 13.229 0 0 1-9.602-4.868c-.4.69-.63 1.49-.63 2.342A4.66 4.66 0 0 0 3.96 9.824a4.647 4.647 0 0 1-2.11-.583v.06a4.66 4.66 0 0 0 3.737 4.568 4.692 4.692 0 0 1-2.104.08 4.661 4.661 0 0 0 4.352 3.234 9.348 9.348 0 0 1-5.786 1.995 9.5 9.5 0 0 1-1.112-.065 13.175 13.175 0 0 0 7.14 2.093c8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602a9.47 9.47 0 0 0 2.323-2.41z"></path>
+                    <path d="M23.643 4.937c-.835.37-1.732.62-2.675.733a4.67 4.67 0 0 0 2.048-2.578 9.3 9.3 0 0 1-2.958 1.13 4.66 4.66 0 0 0-7.938 4.25 13.229 13.229 0 0 1-9.602-4.868c-.4.69-.63 1.49-.63 2.342A4.66 4.66 0 0 0 3.96 9.824a4.647 4.647 0 0 1-2.11-.583v.06a4.66 4.66 0 0 0 3.737 4.568 4.692 4.692 0 0 1-2.104.08 4.661 4.661 0 0 0 4.352 3.234 9.348 9.348 0 0 1-5.786 1.995 9.5 9.5 0 0 1-1.112-.065a13.175 13.175 0 0 0 7.14 2.093c8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602a9.47 9.47 0 0 0 2.323-2.41z"></path>
                     @elseif($tag == 'link')
                     <path d="M0 0h24v24H0z" fill="none" />
                     <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z" />
