@@ -9,8 +9,8 @@
 {{-- Vue.js --}}
 <div class="flex items-center gap-3">
     <svg class="w-10 h-10" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
-        <path fill="currentColor" opacity="0.85" d="M78.8,10L64,35.4L49.2,10H0l64,110l64-110C128,10,78.8,10,78.8,10z"/>
-        <path fill="currentColor" opacity="0.5" d="M78.8,10L64,35.4L49.2,10H25.6L64,76l38.4-66H78.8z"/>
+        <path fill="currentColor" opacity="0.5" d="M78.8,10L64,35.4L49.2,10H0l64,110l64-110C128,10,78.8,10,78.8,10z"/>
+        <path fill="currentColor" opacity="0.9" d="M78.8,10L64,35.4L49.2,10H25.6L64,76l38.4-66H78.8z"/>
     </svg>
     <span class="font-bold text-lg">Vue.js</span>
 </div>
