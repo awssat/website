@@ -53,6 +53,36 @@ Alpine.data('tiltCard', () => ({
 window.Alpine = Alpine;
 Alpine.start();
 
+// Fix mobile menu state persistence on navigation (especially on mobile browsers with bfcache)
+window.addEventListener('pageshow', (event) => {
+  // Reset mobile menu state when page is restored from bfcache or loaded
+  if (Alpine && Alpine.store) {
+    // Force close mobile menu on page show
+    const header = document.querySelector('header[x-data]');
+    if (header && Alpine.$data && Alpine.$data(header)) {
+      Alpine.$data(header).mobileMenuOpen = false;
+    }
+  }
+
+  // Force close menu on any page navigation
+  document.querySelectorAll('[x-data]').forEach(el => {
+    if (el._x_dataStack && el._x_dataStack[0] && el._x_dataStack[0].mobileMenuOpen !== undefined) {
+      el._x_dataStack[0].mobileMenuOpen = false;
+    }
+  });
+});
+
+// Reset mobile menu state on page hide (before navigation)
+window.addEventListener('pagehide', () => {
+  // Force close menu before page unloads
+  const menuButtons = document.querySelectorAll('[x-data]');
+  menuButtons.forEach(el => {
+    if (el.__x && el.__x.$data.mobileMenuOpen !== undefined) {
+      el.__x.$data.mobileMenuOpen = false;
+    }
+  });
+});
+
 hljs.registerLanguage("php", php);
 hljs.registerLanguage("javascript", javascript);
 hljs.registerLanguage("bash", bash);
@@ -132,16 +162,19 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.animate-on-scroll').forEach(el => {
     observer.observe(el);
 
-    // Check if element is already in viewport on page load
+    // Check if element is already visible enough on page load
     const rect = el.getBoundingClientRect();
     const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    const isInViewport = (
-      rect.top >= 0 &&
-      rect.top <= viewportHeight - 100 // Match the rootMargin offset
-    );
+    const elementHeight = rect.height;
 
-    if (isInViewport) {
-      // Element is already visible, show it immediately
+    // Calculate how much of the element is visible
+    const visibleTop = Math.max(0, rect.top);
+    const visibleBottom = Math.min(rect.bottom, viewportHeight - 100); // Match rootMargin
+    const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+    const visibleRatio = elementHeight > 0 ? visibleHeight / elementHeight : 0;
+
+    // Show if at least 15% of element is visible (matching threshold)
+    if (visibleRatio >= 0.15) {
       el.classList.add('is-visible');
       observer.unobserve(el);
     }

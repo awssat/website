@@ -31,7 +31,7 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 @viteRefresh()
 <link rel="stylesheet" href="{{ vite('source/_assets/css/app.css') }}">
-<script defer type="module" src="{{ vite('source/_assets/js/app.js') }}"></script>
+<script type="module" src="{{ vite('source/_assets/js/app.js') }}"></script>
 <link rel="home" href="{{ $page->baseUrl }}">
 <link rel="icon" href="{{ url('/favicon.ico') }}">
 <link href="{{ url('/blog/feed.atom') }}" type="application/atom+xml" rel="alternate" title="{{ $page->siteName }} Atom Feed">
@@ -121,14 +121,17 @@
                     <div class="flex flex-col space-y-1">
                         {{-- Navigation Links --}}
                         <a href="{{ $page->baseUrl }}/{{ ($page->locale ?? 'en') === 'ar' ? 'ar/' : '' }}portfolio"
+                           @click="mobileMenuOpen = false"
                            class="px-4 py-3 rounded-xl text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors @if($page->isPath('*portfolio*')) bg-gray-100 dark:bg-gray-800 text-primary-600 dark:text-primary-400 @endif">
                             {{ $page->trans('nav.portfolio') ?? 'Portfolio' }}
                         </a>
                         <a href="{{ $page->baseUrl }}/blog"
+                           @click="mobileMenuOpen = false"
                            class="px-4 py-3 rounded-xl text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors @if($page->isPath('blog*')) bg-gray-100 dark:bg-gray-800 text-primary-600 dark:text-primary-400 @endif">
                             {{ $page->trans('nav.blog') ?? 'Blog' }}
                         </a>
                         <a href="https://github.com/awssat" target="_blank" rel="noopener noreferrer"
+                           @click="mobileMenuOpen = false"
                            class="px-4 py-3 rounded-xl text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors inline-flex items-center">
                             GitHub
                             <svg class="w-5 h-5 ml-1.5" fill="currentColor" viewBox="0 0 24 24">
