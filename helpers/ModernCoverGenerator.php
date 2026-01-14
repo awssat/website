@@ -57,16 +57,29 @@ class ModernCoverGenerator
         $this->addTechLogo($img, $post->tags ?? [], $seed);
 
         // Save
-        if (!is_dir($destination . '/assets/images/covers')) {
-            @mkdir($destination . '/assets/images/covers/', 0777, true);
+        $coverDir = $destination . '/assets/images/covers';
+        if (!is_dir($coverDir)) {
+            if (!mkdir($coverDir, 0777, true) && !is_dir($coverDir)) {
+                throw new \RuntimeException(sprintf('Directory "%s" could not be created', $coverDir));
+            }
         }
 
-        $result = file_put_contents(
-            $destination . '/assets/images/covers/' . $post->getFilename() . '.png',
-            $img->toPng()
-        );
+        $filePath = $coverDir . '/' . $post->getFilename() . '.png';
 
-        return $result !== false;
+        try {
+            $pngData = $img->toPng();
+            $result = file_put_contents($filePath, $pngData);
+
+            if ($result === false) {
+                throw new \RuntimeException(sprintf('Failed to write file to "%s"', $filePath));
+            }
+
+            return true;
+        } catch (\Exception $e) {
+            // Log error but don't fail the build
+            error_log(sprintf('Cover generation failed for %s: %s', $post->getFilename(), $e->getMessage()));
+            return false;
+        }
     }
 
     private function createSmoothGradient(array $palette, int $seed): mixed
@@ -247,70 +260,87 @@ class ModernCoverGenerator
 
     private function addTechLogo($img, array $tags, int $seed): void
     {
-        // Find first matching tag that has a logo
-        $logoTag = null;
-        foreach ($tags as $tag) {
-            $tagLower = strtolower($tag);
-            if (isset(self::SVG_LOGOS[$tagLower])) {
-                $logoTag = $tagLower;
-                break;
+        try {
+            // Find first matching tag that has a logo
+            $logoTag = null;
+            foreach ($tags as $tag) {
+                $tagLower = strtolower($tag);
+                if (isset(self::SVG_LOGOS[$tagLower])) {
+                    $logoTag = $tagLower;
+                    break;
+                }
             }
-        }
 
-        if (!$logoTag) {
-            return; // No logo found
-        }
+            if (!$logoTag) {
+                return; // No logo found
+            }
 
-        // Create temp directory if needed
-        $tempDir = sys_get_temp_dir() . '/cover-logos';
-        if (!is_dir($tempDir)) {
-            @mkdir($tempDir, 0777, true);
-        }
+            // Create temp directory if needed
+            $tempDir = sys_get_temp_dir() . '/cover-logos';
+            if (!is_dir($tempDir)) {
+                if (!mkdir($tempDir, 0777, true) && !is_dir($tempDir)) {
+                    return; // Can't create temp directory
+                }
+            }
 
-        // Save SVG to temp file
-        $svgPath = $tempDir . '/' . $logoTag . '.svg';
-        $pngPath = $tempDir . '/' . $logoTag . '-hires.png';
+            // Save SVG to temp file
+            $svgPath = $tempDir . '/' . $logoTag . '.svg';
+            $pngPath = $tempDir . '/' . $logoTag . '-hires.png';
 
-        file_put_contents($svgPath, self::SVG_LOGOS[$logoTag]);
+            if (file_put_contents($svgPath, self::SVG_LOGOS[$logoTag]) === false) {
+                return; // Can't write SVG file
+            }
 
-        // Convert SVG to high-res PNG (800x800) using rsvg-convert for smoothness
-        $cmd = sprintf(
-            'rsvg-convert -w 800 -h 800 %s -o %s 2>&1',
-            escapeshellarg($svgPath),
-            escapeshellarg($pngPath)
-        );
+            // Convert SVG to high-res PNG - only specify width to preserve aspect ratio
+            $cmd = sprintf(
+                'rsvg-convert -w 1000 %s -o %s 2>&1',
+                escapeshellarg($svgPath),
+                escapeshellarg($pngPath)
+            );
 
-        exec($cmd, $output, $returnCode);
+            exec($cmd, $output, $returnCode);
 
-        if ($returnCode !== 0 || !file_exists($pngPath)) {
-            return; // Conversion failed
+            if ($returnCode !== 0 || !file_exists($pngPath)) {
+                @unlink($svgPath);
+                return; // Conversion failed
+            }
+        } catch (\Exception $e) {
+            return; // Fail silently
         }
 
         // Load the high-res PNG
         try {
             $logo = $this->imageManager->read($pngPath);
 
-            // Scale logo to desired size on cover (200-300px for better balance)
-            $logoSizes = [200, 220, 250, 280, 300];
-            $logoSize = $logoSizes[$seed % count($logoSizes)];
-            $logo->scale($logoSize, $logoSize);
+            // Scale logo maintaining aspect ratio - set width only
+            $logoWidths = [300, 340, 380, 420, 460];
+            $logoWidth = $logoWidths[$seed % count($logoWidths)];
+            $logo->scaleDown(width: $logoWidth);
 
-            // Better centered positions with proper balance
-            $positions = [
-                ['center', 0, 0],        // Perfect center
-                ['center', 0, -50],      // Center slightly up
-                ['center', 0, 50],       // Center slightly down
-                ['center', -100, 0],     // Center left
-                ['center', 100, 0],      // Center right
+            // Calculate exact center position
+            $centerX = $this->width / 2;
+            $centerY = $this->height / 2;
+
+            // Small variations from center
+            $offsetVariations = [
+                [0, 0],          // Perfect center
+                [0, -30],        // Slightly up
+                [0, 30],         // Slightly down
+                [-60, 0],        // Slightly left
+                [60, 0],         // Slightly right
             ];
 
-            $position = $positions[$seed % count($positions)];
+            $offset = $offsetVariations[$seed % count($offsetVariations)];
 
-            // Apply subtle opacity by converting to grayscale and light transparency
+            // Calculate exact placement position (center of logo at center of image)
+            $x = $centerX - ($logo->width() / 2) + $offset[0];
+            $y = $centerY - ($logo->height() / 2) + $offset[1];
+
+            // Apply subtle opacity by converting to grayscale
             $logo->greyscale();
 
-            // Place the logo centered
-            $img->place($logo, $position[0], $position[1], $position[2]);
+            // Place the logo at exact center
+            $img->place($logo, 'top-left', (int)round($x), (int)round($y));
 
             // Cleanup temp files
             @unlink($pngPath);
