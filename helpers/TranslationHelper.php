@@ -25,6 +25,9 @@ class TranslationHelper
             // Portfolio
             'portfolio.title' => 'Our Work',
             'portfolio.description' => 'A showcase of our contributions and projects',
+            'portfolio.selected_works' => 'Selected Works',
+            'portfolio.core_contributions' => 'Core Contributions',
+            'portfolio.community_love' => 'Built with ❤️ for Laravel and the amazing community',
             'portfolio.filter.all' => 'All',
             'portfolio.filter.prs' => 'Laravel PRs',
             'portfolio.filter.projects' => 'Projects',
@@ -93,6 +96,9 @@ class TranslationHelper
             // Portfolio
             'portfolio.title' => 'أعمالنا',
             'portfolio.description' => 'عرض لمساهماتنا ومشاريعنا',
+            'portfolio.selected_works' => 'أعمال مختارة',
+            'portfolio.core_contributions' => 'مساهمات أساسية',
+            'portfolio.community_love' => 'بُني بـ ❤️ من أجل Laravel والمجتمع الرائع',
             'portfolio.filter.all' => 'الكل',
             'portfolio.filter.prs' => 'طلبات Laravel',
             'portfolio.filter.projects' => 'المشاريع',

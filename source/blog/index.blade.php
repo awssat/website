@@ -12,14 +12,14 @@ pagination:
 @section('blog_main')
 
 {{-- Blog Hero Header --}}
-<div class="mb-16 animate-on-scroll">
-    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-100/50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-sm font-semibold mb-6">
+<div class="mb-12 md:mb-16 animate-on-scroll px-4 sm:px-0">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-100/50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs sm:text-sm font-semibold mb-4 sm:mb-6">
         <span>The Blog</span>
     </div>
-    <h1 class="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight text-balance">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 tracking-tight text-balance">
         Insights on <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-500">Modern Web Development</span>
     </h1>
-    <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed">
+    <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed">
         Deep dives into Laravel, Vue.js, and open source engineering. We share what we learn building at scale.
     </p>
 </div>
@@ -27,17 +27,17 @@ pagination:
 {{-- Featured Post (First Item) --}}
 @if($pagination->currentPage == 1 && $pagination->items->count() > 0)
     @php $featured = $pagination->items->shift(); @endphp
-    <div class="mb-16 animate-on-scroll">
-        <h3 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-6 flex items-center">
+    <div class="mb-12 md:mb-16 animate-on-scroll px-4 sm:px-0">
+        <h3 class="text-xs sm:text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4 sm:mb-6 flex items-center">
             <span class="w-2 h-2 rounded-full bg-accent-500 mr-2 animate-pulse"></span>
             Featured Article
         </h3>
-        <article class="group relative grid md:grid-cols-2 gap-8 bg-white dark:bg-gray-900 rounded-3xl p-8 shadow-xl hover:shadow-2xl border border-gray-200 dark:border-gray-800 transition-all duration-300 overflow-hidden">
+        <article class="group relative grid md:grid-cols-2 gap-6 md:gap-8 bg-white dark:bg-gray-900 rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-xl hover:shadow-2xl border border-gray-200 dark:border-gray-800 transition-all duration-300 overflow-hidden">
             {{-- Gradient Border Effect --}}
-            <div class="absolute inset-0 rounded-3xl border-2 border-transparent bg-gradient-to-r from-primary-500 to-accent-500 opacity-0 group-hover:opacity-20 mask-border transition-opacity duration-500"></div>
+            <div class="absolute inset-0 rounded-2xl md:rounded-3xl border-2 border-transparent bg-gradient-to-r from-primary-500 to-accent-500 opacity-0 group-hover:opacity-20 mask-border transition-opacity duration-500"></div>
 
             {{-- Cover Image --}}
-            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 aspect-video md:aspect-auto shadow-inner">
+            <div class="relative overflow-hidden rounded-xl md:rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 aspect-video md:aspect-auto shadow-inner">
                 <img src="{{ $featured->getCoverImage() }}"
                      alt="{{ $featured->title }}"
                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -69,7 +69,7 @@ pagination:
                 </div>
 
                 {{-- Title --}}
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors leading-tight">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 md:mb-4 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors leading-tight">
                     <a href="{{ $featured->getUrl() }}">
                         <span class="absolute inset-0"></span>
                         {{ $featured->title }}
@@ -77,7 +77,7 @@ pagination:
                 </h2>
 
                 {{-- Excerpt --}}
-                <div class="text-lg text-gray-600 dark:text-gray-400 mb-6 line-clamp-3 leading-relaxed">
+                <div class="text-base md:text-lg text-gray-600 dark:text-gray-400 mb-4 md:mb-6 line-clamp-3 leading-relaxed">
                     {!! $featured->getExcerpt(180) !!}
                 </div>
 

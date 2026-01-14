@@ -13,12 +13,12 @@
         </div>
 
         {{-- Floating Date Badge - Bottom Right --}}
-        <div class="absolute bottom-6 right-6">
-            <div class="inline-flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-2xl border border-gray-200/50 dark:border-gray-700/50">
-                <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20">
+        <div class="absolute bottom-3 sm:bottom-4 md:bottom-6 right-3 sm:right-4 md:right-6">
+            <div class="inline-flex items-center gap-1.5 sm:gap-2 md:gap-2.5 px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 md:py-3 rounded-xl sm:rounded-2xl bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-2xl border border-gray-200/50 dark:border-gray-700/50">
+                <svg class="w-4 h-4 sm:w-5 sm:h-5 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
                 </svg>
-                <time datetime="{{ $page->getDate()->toIso8601String() }}" class="text-sm font-bold text-gray-900 dark:text-white">
+                <time datetime="{{ $page->getDate()->toIso8601String() }}" class="text-xs sm:text-sm font-bold text-gray-900 dark:text-white">
                     {{ $page->getDate()->format('F j, Y') }}
                 </time>
             </div>
@@ -26,15 +26,15 @@
     </div>
 </div>
 
-<div class="p-8 md:p-12">
+<div class="p-4 sm:p-6 md:p-8 lg:p-12">
     {{-- Header --}}
-    <header class="mb-10">
-        <h1 id="article-title" class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight mb-6 text-balance">
+    <header class="mb-8 md:mb-10">
+        <h1 id="article-title" class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight mb-4 sm:mb-6 text-balance">
             {{ $page->title }}
         </h1>
 
         {{-- Enhanced Meta Information --}}
-        <div class="flex flex-wrap items-center gap-4 text-sm mb-6 pb-6 border-b border-gray-200 dark:border-gray-800">
+        <div class="flex flex-wrap items-center gap-3 md:gap-4 text-xs sm:text-sm mb-4 md:mb-6 pb-4 md:pb-6 border-b border-gray-200 dark:border-gray-800">
             {{-- Author --}}
             <div class="flex items-center gap-2.5">
                 <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 text-white font-bold text-sm shadow-lg">

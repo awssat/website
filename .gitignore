@@ -8,3 +8,4 @@
 .vscode/settings.json
 config.local.php
 source/hot
+/source/assets/images/portfolio/.screenshot-cache.json
