@@ -1,8 +1,12 @@
-window.axios = require("axios");
-const hljs = require("highlight.js/lib/core");
+import axios from "axios";
+import hljs from "highlight.js/lib/core";
+import php from "highlight.js/lib/languages/php";
+import javascript from "highlight.js/lib/languages/javascript";
+import bash from "highlight.js/lib/languages/bash";
 import Alpine from "alpinejs";
 import intersect from '@alpinejs/intersect';
 
+window.axios = axios;
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
 // Alpine v3 initialization with plugins
@@ -44,13 +48,38 @@ Alpine.data('tiltCard', () => ({
   }
 }));
 
+// Dark mode functions - must be defined before Alpine.start()
+window.darkMode = (toggle) => {
+    if (typeof toggle === "undefined") {
+        if (localStorage.getItem("dark-theme") !== null) {
+            return true;
+        }
+        return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+    if (toggle) {
+        localStorage.setItem("dark-theme", true);
+    } else {
+        localStorage.removeItem("dark-theme");
+    }
+    darkModeToggle(toggle);
+    return toggle;
+};
+
+var darkModeToggle = (toggle) => {
+    if (toggle) {
+        document.documentElement.classList.add("dark");
+    } else {
+        document.documentElement.classList.remove("dark");
+    }
+};
+
 window.Alpine = Alpine;
 Alpine.start();
 
-hljs.registerLanguage("php", require("highlight.js/lib/languages/php"));
-hljs.registerLanguage("javascript", require("highlight.js/lib/languages/javascript"));
-hljs.registerLanguage("bash", require("highlight.js/lib/languages/bash"));
-hljs.registerLanguage("diff", require("highlight.js/lib/languages/bash"));
+hljs.registerLanguage("php", php);
+hljs.registerLanguage("javascript", javascript);
+hljs.registerLanguage("bash", bash);
+hljs.registerLanguage("diff", bash);
 
 document.addEventListener("DOMContentLoaded", (event) => {
     darkMode(darkMode());
@@ -94,30 +123,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         block.classList.add("hljs");
     });
 });
-
-window.darkMode = (toggle) => {
-    if (typeof toggle === "undefined") {
-        if (localStorage.getItem("dark-theme") !== null) {
-            return true;
-        }
-        return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-    }
-    if (toggle) {
-        localStorage.setItem("dark-theme", true);
-    } else {
-        localStorage.removeItem("dark-theme");
-    }
-    darkModeToggle(toggle);
-    return toggle;
-};
-
-var darkModeToggle = (toggle) => {
-    if (toggle) {
-        document.documentElement.classList.add("dark");
-    } else {
-        document.documentElement.classList.remove("dark");
-    }
-};
 
 // Parallax scroll effect
 let ticking = false;
