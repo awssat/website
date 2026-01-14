@@ -1,70 +1,38 @@
 ---
 title: Contact
-description: Get in touch with us
+description: Get in touch with Awssat. Connect with us on Twitter, GitHub, Discord, or via email for inquiries about Laravel development and open source projects.
 ---
 @extends('_layouts.layout')
 
+@php
+    $page->locale = 'en';
+@endphp
+
+@section('title', 'Contact - ' . $page->siteName)
+
+@section('seo-meta')
+    <meta name="description" content="Get in touch with Awssat. Connect with us on Twitter, GitHub, Discord, or via email for inquiries about Laravel development and open source projects.">
+    <link rel="canonical" href="{{ $page->getUrl() }}">
+
+    {{-- Open Graph --}}
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ $page->siteName }}">
+    <meta property="og:url" content="{{ $page->getUrl() }}">
+    <meta property="og:title" content="Contact - {{ $page->siteName }}">
+    <meta property="og:description" content="Get in touch with Awssat. Connect with us on Twitter, GitHub, Discord, or via email.">
+    <meta property="og:image" content="{{ url('/assets/images/og-default.jpg') }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+
+    {{-- Twitter Card --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@awssat">
+    <meta name="twitter:title" content="Contact - {{ $page->siteName }}">
+    <meta name="twitter:description" content="Get in touch with Awssat. Connect with us on Twitter, GitHub, Discord, or via email.">
+    <meta name="twitter:image" content="{{ url('/assets/images/og-default.jpg') }}">
+@endsection
+
 @section('main')
-<h1>Contact</h1>
-
-<p class="mb-8">
-???
-</p>
-
-<form action="/contact" class="mb-12">
-    <div class="flex flex-wrap mb-6 -mx-3">
-        <div class="w-full md:w-1/2 mb-6 md:mb-0 px-3">
-            <label class="block mb-2 text-gray-800 text-sm font-semibold" for="contact-name">
-                Name
-            </label>
-
-            <input
-                type="text"
-                id="contact-name"
-                placeholder="Jane Doe"
-                name="name"
-                class="block w-full border shadow rounded-lg outline-none mb-2 px-4 py-3"
-                required
-            >
-        </div>
-
-        <div class="w-full px-3 md:w-1/2">
-            <label class="block text-gray-800 text-sm font-semibold mb-2" for="contact-email">
-                Email Address
-            </label>
-
-            <input
-                type="email"
-                id="contact-email"
-                placeholder="email@domain.com"
-                name="email"
-                class="block w-full border shadow rounded-lg outline-none mb-2 px-4 py-3"
-                required
-            >
-        </div>
-    </div>
-
-    <div class="w-full mb-12">
-        <label class="block text-gray-800 text-sm font-semibold mb-2" for="contact-message">
-            Message
-        </label>
-
-        <textarea
-            id="contact-message"
-            rows="4"
-            name="message"
-            class="block w-full border shadow rounded-lg outline-none appearance-none mb-2 px-4 py-3"
-            placeholder="A lovely message here."
-            required
-        ></textarea>
-    </div>
-
-    <div class="flex justify-end w-full">
-        <input
-            type="submit"
-            value="Submit"
-            class="block bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold leading-snug tracking-wide uppercase shadow rounded-lg cursor-pointer px-6 py-3"
-        >
-    </div>
-</form>
-@stop
+@include('_layouts.partial.contact_content')
+@endsection
