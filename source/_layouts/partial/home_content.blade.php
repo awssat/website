@@ -2,71 +2,75 @@
     $locale = $page->locale ?? 'en';
 @endphp
 
-<div class="w-full overflow-hidden">
+<div class="w-full overflow-hidden bg-gray-50 dark:bg-gray-950 transition-colors duration-500">
     {{-- Epic Hero Section --}}
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden gradient-mesh perspective-1000"
-             x-data="{ x: 0, y: 0 }"
-             @mousemove="x = $event.clientX; y = $event.clientY">
+             x-data="{ 
+                x: 0, 
+                y: 0,
+                handleMove(e) {
+                    this.x = (e.clientX - window.innerWidth / 2) / 20;
+                    this.y = (e.clientY - window.innerHeight / 2) / 20;
+                }
+             }"
+             @mousemove="handleMove">
         
-        {{-- Spotlight Effect --}}
-        <div class="absolute inset-0 pointer-events-none z-0" 
-             :style="`background: radial-gradient(circle 800px at ${x}px ${y}px, rgba(124, 58, 237, 0.05), transparent 50%);`">
+        {{-- Interactive Spotlight Background --}}
+        <div class="absolute inset-0 pointer-events-none z-0 transition-opacity duration-1000" 
+             :style="`background: radial-gradient(circle 1000px at ${x * 20 + window.innerWidth / 2}px ${y * 20 + window.innerHeight / 2}px, rgba(124, 58, 237, 0.08), transparent 60%);`">
         </div>
 
-        {{-- High-Fidelity SVG Background --}}
-        <div class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none z-0">
-            <svg class="w-[800px] h-[800px] md:w-[1000px] md:h-[1000px] opacity-10 dark:opacity-5 animate-[float-gentle_10s_ease-in-out_infinite]" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" class="stop-color-primary-500" style="stop-color: #8b5cf6; stop-opacity: 0.8" />
-                        <stop offset="100%" class="stop-color-accent-500" style="stop-color: #06b6d4; stop-opacity: 0.8" />
-                    </linearGradient>
-                </defs>
+        {{-- 3D Gyroscope System (Synchronized) --}}
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0 opacity-60 dark:opacity-80"
+             :style="`transform: rotateX(${y * -0.3}deg) rotateY(${x * 0.3}deg)`">
+            <div class="relative w-[600px] h-[600px] md:w-[800px] md:h-[800px] preserve-3d animate-[gyro-sync_30s_linear_infinite]">
+                {{-- Core --}}
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-primary-500/20 rounded-full blur-3xl animate-pulse"></div>
+                
                 {{-- Outer Ring --}}
-                <path class="origin-center animate-[spin-slow_60s_linear_infinite]" 
-                      d="M 29.855469,0.00126721 A 29.999999,29.999999 0 0 0 1.5914255e-7,30.001266 30,30 0 0 0 60,30.001266 29.999999,29.999999 0 0 0 29.855469,0.00126721 Z m 0.240234,7.41992139 a 22.579908,22.579908 0 0 1 22.484375,22.5800774 22.579908,22.579908 0 0 1 -45.1582024,0 A 22.579908,22.579908 0 0 1 30.095703,7.4211886 Z" 
-                      fill="url(#grad1)" />
+                <div class="absolute inset-0 border-[2px] border-primary-500/40 rounded-full shadow-soul-primary"></div>
                 
                 {{-- Inner Ring --}}
-                <path class="origin-center animate-[spin-reverse-slow_45s_linear_infinite]" 
-                      d="m 29.834961,11.906314 a 18.096309,18.096309 0 0 0 -17.93164,18.095703 18.09668,18.09668 0 0 0 36.193359,0 18.096309,18.096309 0 0 0 -18.261719,-18.095703 z m -0.01367,7.552735 a 10.544895,10.544895 0 0 1 10.724609,10.542968 10.544922,10.544922 0 0 1 -21.089844,0 10.544895,10.544895 0 0 1 10.365235,-10.542968 z" 
-                      fill="url(#grad1)" />
-            </svg>
-            
-            {{-- Ambient Glow --}}
-            <div class="absolute inset-0 bg-gradient-to-tr from-primary-500/5 via-transparent to-accent-500/5 mix-blend-overlay pointer-events-none"></div>
+                <div class="absolute inset-24 border-[2px] border-accent-500/40 rounded-full shadow-soul-accent"></div>
+                
+                {{-- Connecting Spokes (adds to the 'soul') --}}
+                <div class="absolute inset-0 preserve-3d opacity-20">
+                    <div class="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary-500 to-transparent"></div>
+                    <div class="absolute top-0 left-1/2 w-[1px] h-full bg-gradient-to-b from-transparent via-primary-500 to-transparent"></div>
+                </div>
+            </div>
         </div>
 
         {{-- Hero Content --}}
         <div class="relative z-10 text-center max-w-7xl mx-auto px-4 py-24 sm:py-32">
             {{-- Badge --}}
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-gray-800/50 backdrop-blur-md border border-gray-200 dark:border-gray-700 shadow-sm mb-8 animate-on-scroll">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border border-primary-100 dark:border-primary-900/50 shadow-lg shadow-primary-500/10 mb-8 animate-on-scroll hover:scale-105 transition-transform duration-300 ring-1 ring-white/20">
                 <span class="flex h-2 w-2 relative">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                 </span>
-                <span class="text-sm font-medium text-gray-600 dark:text-gray-300">Available for new projects</span>
+                <span class="text-sm font-semibold text-gray-600 dark:text-gray-300 tracking-wide">Available for new projects</span>
             </div>
 
             {{-- Main Headline --}}
-            <h1 class="text-6xl sm:text-7xl lg:text-8xl font-bold mb-8 leading-tight animate-on-scroll delay-100 tracking-tight text-balance">
+            <h1 class="text-6xl sm:text-7xl lg:text-8xl font-bold mb-8 leading-tight animate-on-scroll delay-100 tracking-tight text-balance drop-shadow-2xl">
                 <span class="block text-gray-900 dark:text-white">{{ $locale === 'ar' ? 'نبني' : 'We Build' }}</span>
-                <span class="block text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-purple-600 to-accent-600 animate-gradient-x pb-2">
+                <span class="block text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-indigo-500 to-accent-500 animate-gradient-x pb-2 filter brightness-110">
                     {{ $locale === 'ar' ? 'تجارب ويب استثنائية' : 'Exceptional Web' }}
                 </span>
                 <span class="block text-gray-900 dark:text-white">{{ $locale === 'ar' ? '' : 'Experiences' }}</span>
             </h1>
 
             {{-- Subheadline --}}
-            <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12 animate-on-scroll delay-200 leading-relaxed text-balance">
-                Elite Laravel engineering. We craft robust, scalable applications with <span class="font-semibold text-primary-600 dark:text-primary-400">6 merged PRs</span> to the framework core and <span class="font-semibold text-accent-600 dark:text-accent-400">2,200+ stars</span> on GitHub.
+            <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12 animate-on-scroll delay-200 leading-relaxed text-balance font-medium">
+                Elite Laravel engineering. We craft robust, scalable applications with <span class="font-bold text-primary-600 dark:text-primary-400 border-b-2 border-primary-500/20">6 merged PRs</span> to the framework core and <span class="font-bold text-accent-600 dark:text-accent-400 border-b-2 border-accent-500/20">2,200+ stars</span> on GitHub.
             </p>
 
             {{-- CTA Buttons --}}
             <div class="flex flex-col sm:flex-row gap-6 justify-center items-center animate-on-scroll delay-300">
                 <a href="{{ $page->baseUrl }}/{{ $locale === 'ar' ? 'ar/' : '' }}portfolio"
-                   class="group relative px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-primary-500/20 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
-                    <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer"></div>
+                   class="group relative px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full font-bold text-lg shadow-2xl hover:shadow-primary-500/30 transition-all duration-300 hover:-translate-y-1 overflow-hidden ring-4 ring-gray-900/5 dark:ring-white/5">
+                    <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer"></div>
                     <span class="relative flex items-center">
                         View Our Work
                         <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -75,35 +79,37 @@
                     </span>
                 </a>
                 <a href="#contact"
-                   class="px-8 py-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 rounded-2xl font-bold text-lg shadow-sm hover:shadow-md transition-all duration-300 inline-flex items-center hover:-translate-y-1">
+                   class="px-8 py-4 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 hover:border-primary-500 dark:hover:border-primary-500 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center hover:-translate-y-1">
                     Let's Talk
                 </a>
             </div>
 
             {{-- Tech Stack Marquee --}}
-            <div class="mt-24 w-full overflow-hidden animate-on-scroll delay-500 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+            <div class="mt-24 w-full overflow-hidden animate-on-scroll delay-500 opacity-60 hover:opacity-100 transition-all duration-500 mask-border-fade">
                 <div class="relative flex overflow-x-hidden group">
-                    <div class="animate-marquee whitespace-nowrap flex gap-16 py-4">
-                        <span class="text-2xl font-bold text-gray-400">Laravel</span>
-                        <span class="text-2xl font-bold text-gray-400">Vue.js</span>
-                        <span class="text-2xl font-bold text-gray-400">Tailwind CSS</span>
-                        <span class="text-2xl font-bold text-gray-400">Alpine.js</span>
-                        <span class="text-2xl font-bold text-gray-400">Livewire</span>
-                        <span class="text-2xl font-bold text-gray-400">Inertia</span>
-                        <span class="text-2xl font-bold text-gray-400">PHP</span>
-                        <span class="text-2xl font-bold text-gray-400">MySQL</span>
-                        <span class="text-2xl font-bold text-gray-400">Redis</span>
+                    <div class="animate-marquee whitespace-nowrap flex gap-16 py-4 font-bold text-lg text-gray-400 dark:text-gray-500 tracking-wide">
+                        <span>Laravel</span>
+                        <span>Vue.js</span>
+                        <span>Tailwind CSS</span>
+                        <span>Alpine.js</span>
+                        <span>Livewire</span>
+                        <span>Inertia</span>
+                        <span>PHP</span>
+                        <span>MySQL</span>
+                        <span>Redis</span>
+                        <span>Docker</span>
                     </div>
-                    <div class="absolute top-0 animate-marquee2 whitespace-nowrap flex gap-16 py-4">
-                        <span class="text-2xl font-bold text-gray-400">Laravel</span>
-                        <span class="text-2xl font-bold text-gray-400">Vue.js</span>
-                        <span class="text-2xl font-bold text-gray-400">Tailwind CSS</span>
-                        <span class="text-2xl font-bold text-gray-400">Alpine.js</span>
-                        <span class="text-2xl font-bold text-gray-400">Livewire</span>
-                        <span class="text-2xl font-bold text-gray-400">Inertia</span>
-                        <span class="text-2xl font-bold text-gray-400">PHP</span>
-                        <span class="text-2xl font-bold text-gray-400">MySQL</span>
-                        <span class="text-2xl font-bold text-gray-400">Redis</span>
+                    <div class="absolute top-0 animate-marquee2 whitespace-nowrap flex gap-16 py-4 font-bold text-lg text-gray-400 dark:text-gray-500 tracking-wide">
+                        <span>Laravel</span>
+                        <span>Vue.js</span>
+                        <span>Tailwind CSS</span>
+                        <span>Alpine.js</span>
+                        <span>Livewire</span>
+                        <span>Inertia</span>
+                        <span>PHP</span>
+                        <span>MySQL</span>
+                        <span>Redis</span>
+                        <span>Docker</span>
                     </div>
                 </div>
             </div>
@@ -111,7 +117,7 @@
     </section>
 
     {{-- Bento Grid Section --}}
-    <section class="py-24 px-4 bg-gray-50/50 dark:bg-gray-900/50">
+    <section class="py-24 px-4 bg-white/50 dark:bg-gray-900/50 backdrop-blur-xl border-t border-gray-200/50 dark:border-gray-800/50">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
@@ -122,14 +128,17 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]" x-data>
                 {{-- Card 1: Large Span --}}
-                <div class="md:col-span-2 group relative bg-white dark:bg-gray-800 rounded-3xl p-8 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 dark:border-gray-700 animate-on-scroll">
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl -mr-16 -mt-16 transition-opacity group-hover:opacity-100"></div>
+                <div class="md:col-span-2 group relative bg-white dark:bg-gray-900 rounded-3xl p-8 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-800 animate-on-scroll"
+                     @mousemove="$el.style.setProperty('--x', $event.clientX - $el.getBoundingClientRect().left); $el.style.setProperty('--y', $event.clientY - $el.getBoundingClientRect().top)">
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-500"
+                         style="background: radial-gradient(600px circle at var(--x)px var(--y)px, rgba(139, 92, 246, 0.1), transparent 40%);"></div>
                     
                     <div class="relative z-10 h-full flex flex-col justify-between">
                         <div>
-                            <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/50 rounded-2xl flex items-center justify-center mb-6">
+                            <div class="w-12 h-12 bg-primary-50 dark:bg-primary-900/20 rounded-2xl flex items-center justify-center mb-6 ring-1 ring-primary-100 dark:ring-primary-800">
                                 <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                 </svg>
@@ -140,30 +149,33 @@
                             </p>
                         </div>
                         <div class="flex items-center gap-4 mt-8">
-                            <div class="flex -space-x-2">
-                                <img class="w-8 h-8 rounded-full border-2 border-white dark:border-gray-800" src="https://github.com/taylorotwell.png" alt="Taylor Otwell">
-                                <img class="w-8 h-8 rounded-full border-2 border-white dark:border-gray-800" src="https://github.com/driesvints.png" alt="Dries Vints">
-                                <img class="w-8 h-8 rounded-full border-2 border-white dark:border-gray-800" src="https://github.com/awssat.png" alt="Awssat">
+                            <div class="flex -space-x-3">
+                                <img class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-900 shadow-md transform hover:scale-110 transition-transform" src="https://github.com/taylorotwell.png" alt="Taylor Otwell">
+                                <img class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-900 shadow-md transform hover:scale-110 transition-transform" src="https://github.com/driesvints.png" alt="Dries Vints">
+                                <img class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-900 shadow-md transform hover:scale-110 transition-transform" src="https://github.com/awssat.png" alt="Awssat">
                             </div>
-                            <span class="text-sm font-medium text-gray-500">Working with the best</span>
+                            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">Collaborating with the best</span>
                         </div>
                     </div>
                 </div>
 
                 {{-- Card 2: Tall --}}
-                <div class="md:row-span-2 group relative bg-gray-900 text-white rounded-3xl p-8 overflow-hidden shadow-xl animate-on-scroll delay-100">
+                <div class="md:row-span-2 group relative bg-gray-900 text-white rounded-3xl p-8 overflow-hidden shadow-xl animate-on-scroll delay-100"
+                     @mousemove="$el.style.setProperty('--x', $event.clientX - $el.getBoundingClientRect().left); $el.style.setProperty('--y', $event.clientY - $el.getBoundingClientRect().top)">
                     <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-black"></div>
                     <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#4f46e5 1px, transparent 1px); background-size: 24px 24px;"></div>
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-500"
+                         style="background: radial-gradient(500px circle at var(--x)px var(--y)px, rgba(255, 255, 255, 0.1), transparent 40%);"></div>
                     
                     <div class="relative z-10 h-full flex flex-col">
-                        <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-sm">
+                        <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-sm border border-white/10">
                             <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
                             </svg>
                         </div>
                         <h3 class="text-3xl font-bold mb-4">Open Source</h3>
                         <div class="flex items-baseline gap-2 mb-2">
-                            <span class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">2.2k+</span>
+                            <span class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">2.2k</span>
                             <span class="text-xl text-gray-400">Stars</span>
                         </div>
                         <p class="text-gray-400 mb-8 leading-relaxed">
@@ -173,14 +185,14 @@
                         <div class="mt-auto space-y-4">
                             <div class="p-4 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-colors cursor-pointer">
                                 <div class="flex justify-between items-center mb-2">
-                                    <span class="font-bold">Tailwindo</span>
+                                    <span class="font-bold text-yellow-200">Tailwindo</span>
                                     <span class="text-xs bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded">1.1k ★</span>
                                 </div>
                                 <p class="text-sm text-gray-400">Convert Bootstrap to Tailwind CSS instantly.</p>
                             </div>
                             <div class="p-4 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-colors cursor-pointer">
                                 <div class="flex justify-between items-center mb-2">
-                                    <span class="font-bold">Laravel Visits</span>
+                                    <span class="font-bold text-yellow-200">Laravel Visits</span>
                                     <span class="text-xs bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded">975 ★</span>
                                 </div>
                                 <p class="text-sm text-gray-400">Redis-backed visits counter for Eloquent models.</p>
@@ -190,9 +202,14 @@
                 </div>
 
                 {{-- Card 3: Standard --}}
-                <div class="group relative bg-white dark:bg-gray-800 rounded-3xl p-8 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 dark:border-gray-700 animate-on-scroll delay-200">
+                <div class="group relative bg-white dark:bg-gray-900 rounded-3xl p-8 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 dark:border-gray-800 animate-on-scroll delay-200"
+                     @mousemove="$el.style.setProperty('--x', $event.clientX - $el.getBoundingClientRect().left); $el.style.setProperty('--y', $event.clientY - $el.getBoundingClientRect().top)">
+                    <div class="absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-500"
+                         style="background: radial-gradient(500px circle at var(--x)px var(--y)px, rgba(34, 197, 94, 0.1), transparent 40%);"></div>
+                    
                     <div class="relative z-10">
-                        <div class="w-12 h-12 bg-green-100 dark:bg-green-900/50 rounded-2xl flex items-center justify-center mb-6">
+                        <div class="w-12 h-12 bg-green-50 dark:bg-green-900/20 rounded-2xl flex items-center justify-center mb-6 ring-1 ring-green-100 dark:ring-green-800">
                             <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path>
                             </svg>
@@ -205,9 +222,14 @@
                 </div>
 
                 {{-- Card 4: Standard --}}
-                <div class="group relative bg-white dark:bg-gray-800 rounded-3xl p-8 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 dark:border-gray-700 animate-on-scroll delay-300">
+                <div class="group relative bg-white dark:bg-gray-900 rounded-3xl p-8 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 dark:border-gray-800 animate-on-scroll delay-300"
+                     @mousemove="$el.style.setProperty('--x', $event.clientX - $el.getBoundingClientRect().left); $el.style.setProperty('--y', $event.clientY - $el.getBoundingClientRect().top)">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-500"
+                         style="background: radial-gradient(500px circle at var(--x)px var(--y)px, rgba(168, 85, 247, 0.1), transparent 40%);"></div>
+                    
                     <div class="relative z-10">
-                        <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/50 rounded-2xl flex items-center justify-center mb-6">
+                        <div class="w-12 h-12 bg-purple-50 dark:bg-purple-900/20 rounded-2xl flex items-center justify-center mb-6 ring-1 ring-purple-100 dark:ring-purple-800">
                             <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
                             </svg>
@@ -224,7 +246,7 @@
 
     {{-- Featured Projects Showcase --}}
     @if(isset($page->portfolio_en) && $page->portfolio_en->count() > 0)
-    <section class="py-24 px-4 bg-white dark:bg-gray-800">
+    <section class="py-24 px-4 bg-gray-50 dark:bg-gray-950">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16 animate-on-scroll">
                 <div class="max-w-2xl">
@@ -267,26 +289,25 @@
     @endif
 
     {{-- CTA Section --}}
-    <section id="contact" class="relative py-32 px-4 overflow-hidden">
-        <div class="absolute inset-0 bg-gray-900 dark:bg-black"></div>
-        <div class="absolute inset-0 bg-gradient-to-br from-primary-900/50 to-purple-900/50"></div>
-        <div class="absolute inset-0 opacity-30" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%239C92AC\' fill-opacity=\'0.1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    <section id="contact" class="relative py-32 px-4 overflow-hidden border-t border-gray-200 dark:border-gray-800">
+        <div class="absolute inset-0 bg-white dark:bg-gray-950"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-900/5 to-purple-900/5"></div>
         
         <div class="relative max-w-4xl mx-auto text-center z-10">
-            <h2 class="text-4xl md:text-6xl font-bold text-white mb-8 animate-on-scroll tracking-tight">
+            <h2 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-8 animate-on-scroll tracking-tight">
                 Ready to scale your vision?
             </h2>
-            <p class="text-xl text-gray-300 mb-12 animate-on-scroll delay-100 max-w-2xl mx-auto">
+            <p class="text-xl text-gray-600 dark:text-gray-400 mb-12 animate-on-scroll delay-100 max-w-2xl mx-auto text-balance">
                 Join the companies that trust us with their most critical infrastructure and applications.
             </p>
             <div class="flex flex-col sm:flex-row gap-6 justify-center animate-on-scroll delay-200">
-                <a href="https://github.com/awssat" target="_blank" class="px-8 py-4 bg-white text-gray-900 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center justify-center">
+                <a href="https://github.com/awssat" target="_blank" class="px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-950 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center justify-center">
                     <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
                     View GitHub Profile
                 </a>
-                <a href="/contact" class="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/20 text-white rounded-2xl font-bold text-lg hover:bg-white/20 transition-all inline-flex items-center justify-center">
+                <a href="/contact" class="px-8 py-4 bg-transparent border-2 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white rounded-full font-bold text-lg hover:border-gray-300 dark:hover:border-gray-600 transition-all inline-flex items-center justify-center">
                     Get In Touch
                 </a>
             </div>
