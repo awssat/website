@@ -1,5 +1,17 @@
 /* Modern Color System with Tailwind Dark Mode */
 
+/* Gradient Mesh Light Mode */
+.gradient-mesh {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.08) 0%,
+    rgba(59, 130, 246, 0.08) 33%,
+    rgba(236, 72, 153, 0.08) 66%,
+    rgba(139, 92, 246, 0.08) 100%
+  );
+  background-size: 400% 400%;
+}
+
 /* Gradient Mesh Dark Mode */
 .dark .gradient-mesh {
   background: linear-gradient(

@@ -221,16 +221,8 @@
   transition: transform 0.1s linear;
 }
 
-/* Gradient Mesh Background */
+/* Gradient Mesh Animation (background defined in colors.css) */
 .gradient-mesh {
-  background: linear-gradient(
-    135deg,
-    rgba(139, 92, 246, 0.08) 0%,
-    rgba(59, 130, 246, 0.08) 33%,
-    rgba(236, 72, 153, 0.08) 66%,
-    rgba(139, 92, 246, 0.08) 100%
-  );
-  background-size: 400% 400%;
   animation: gradientShift 20s ease infinite;
 }
 
@@ -335,7 +327,7 @@ html {
   background-color: rgba(255, 255, 255, 0.75);
 }
 
-.dark-mode .backdrop-blur-glass {
+.dark .backdrop-blur-glass {
   background-color: rgba(10, 10, 10, 0.75);
 }
 

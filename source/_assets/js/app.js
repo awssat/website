@@ -5,12 +5,14 @@ import javascript from "highlight.js/lib/languages/javascript";
 import bash from "highlight.js/lib/languages/bash";
 import Alpine from "alpinejs";
 import intersect from '@alpinejs/intersect';
+import persist from '@alpinejs/persist';
 
 window.axios = axios;
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
 // Alpine v3 initialization with plugins
 Alpine.plugin(intersect);
+Alpine.plugin(persist);
 
 // Alpine data components for animations
 Alpine.data('magneticButton', () => ({
@@ -48,31 +50,6 @@ Alpine.data('tiltCard', () => ({
   }
 }));
 
-// Dark mode functions - must be defined before Alpine.start()
-window.darkMode = (toggle) => {
-    if (typeof toggle === "undefined") {
-        if (localStorage.getItem("dark-theme") !== null) {
-            return true;
-        }
-        return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-    }
-    if (toggle) {
-        localStorage.setItem("dark-theme", true);
-    } else {
-        localStorage.removeItem("dark-theme");
-    }
-    darkModeToggle(toggle);
-    return toggle;
-};
-
-var darkModeToggle = (toggle) => {
-    if (toggle) {
-        document.documentElement.classList.add("dark");
-    } else {
-        document.documentElement.classList.remove("dark");
-    }
-};
-
 window.Alpine = Alpine;
 Alpine.start();
 
@@ -82,8 +59,6 @@ hljs.registerLanguage("bash", bash);
 hljs.registerLanguage("diff", bash);
 
 document.addEventListener("DOMContentLoaded", (event) => {
-    darkMode(darkMode());
-
     document.querySelectorAll("pre code").forEach((block) => {
         hljs.highlightElement(block);
 

@@ -4,6 +4,9 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* Tailwind v4 Dark Mode Configuration */
+@variant dark (&:where(.dark, .dark *));
+
 /* Tailwind v4 Theme Configuration */
 @theme {
   /* Primary Colors - Modern Purple-Blue */

@@ -1,21 +1,24 @@
-<div class="relative inline-block w-12 select-none" x-cloak x-data="{ toggle: darkMode() }"
-    @click.prevent="toggle = darkMode(! toggle)">
-    <div :class="{'translate-x-full': toggle}"
-        class="absolute z-10 border-gray-700 block w-6 h-6 rounded-full bg-white border-2 cursor-pointer transition duration-100 transform"></div>
-
-    <div
-        class="overflow-hidden bg-gray-800 h-6 w-full base-theme-toggle-pill rounded-full cursor-pointer flex justify-between items-center p-px">
-        {{-- feathericons --}}
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5  text-blue-300 fill-current" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="0" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-        {{-- material icons --}}
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5  text-yellow-400 fill-current" viewBox="0 0 24 24">
-            <path d="M0 0h24v24H0z" fill="none" />
-            <path
-                d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z" />
+<button @click="darkMode = !darkMode" type="button" class="relative inline-flex flex-shrink-0 h-7 transition-all duration-300 ease-in-out border-2 border-primary-500/30 rounded-full cursor-pointer bg-gray-200 dark:bg-gray-700 w-14 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 hover:border-primary-500/50" role="switch" :aria-checked="darkMode">
+    <span class="sr-only">Dark Mode Toggle</span>
+    <span class="relative inline-block w-5 h-5 m-0.5 transition-all duration-500 ease-in-out transform rounded-full shadow-md"
+          :class="darkMode ? 'translate-x-7' : 'translate-x-0'"
+          style="background: linear-gradient(to right, #e2df4e, #b0951e);">
+        <!-- Sun Icon -->
+        <span class="absolute inset-0 flex items-center justify-center w-full h-full transition-all duration-500"
+              :class="darkMode ? 'opacity-0' : 'opacity-100'" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path>
             </svg>
-    </div>
-    <input type="checkbox" class="hidden" aria-label="dark mode toggle">
-</div>
+        </span>
+        <!-- Moon Icon -->
+        <span class="absolute inset-0 flex items-center justify-center w-full h-full transition-all duration-500"
+              :class="darkMode ? 'opacity-100' : 'opacity-0'" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path>
+            </svg>
+        </span>
+    </span>
+</button>
