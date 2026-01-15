@@ -19,9 +19,9 @@
         {{-- Base Gradient --}}
         <div class="absolute inset-0 bg-gray-50 dark:bg-[#030712]"></div>
 
-        {{--  Orbs --}}
-        <div class="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-purple-500/20 blur-[60px] mix-blend-multiply dark:mix-blend-screen animate-none motion-reduce:opacity-30"></div>
-        <div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-cyan-500/20 blur-[60px] mix-blend-multiply dark:mix-blend-screen animate-none motion-reduce:opacity-30"></div>
+        {{-- Orbs - Optimized: reduced blur 60px→30px, removed mix-blend-mode, increased opacity --}}
+        <div class="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-purple-500/30 blur-[30px] animate-none motion-reduce:opacity-30"></div>
+        <div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-cyan-500/30 blur-[30px] animate-none motion-reduce:opacity-30"></div>
 
 
         <div class="absolute inset-0" style="background-image: radial-gradient(rgba(120, 119, 198, 0.3) 1px, transparent 1px); background-size: 40px 40px; opacity: 0.1;"></div>
@@ -60,10 +60,9 @@
     <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center">
 
 
-            {{-- Animated Badge --}}
-            <div class="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-white/80 dark:bg-gray-900/80 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md transition-all duration-300 animate-fade-in-up">
+            {{-- Animated Badge - Optimized: removed animate-ping, static dot --}}
+            <div class="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-white/80 dark:bg-gray-900/80 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md transition-shadow duration-300 animate-fade-in-up">
                 <span class="relative flex w-2.5 h-2.5">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
                 </span>
                 <span class="text-sm font-medium bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400">
@@ -1172,10 +1171,10 @@
 
     {{-- Call to Action Section --}}
     <section id="contact" class="py-32 px-4 bg-gradient-to-br from-primary-900 to-gray-900 relative overflow-hidden text-center text-white">
-        {{-- Animated Background Shapes --}}
+        {{-- Animated Background Shapes - Optimized: static (removed animation), reduced blur 100px→40px --}}
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-            <div class="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-primary-600/20 blur-[100px] animate-float-gentle"></div>
-            <div class="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-accent-600/20 blur-[100px] animate-float-gentle" style="animation-delay: 2s;"></div>
+            <div class="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-primary-600/25 blur-[40px]"></div>
+            <div class="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-accent-600/25 blur-[40px]"></div>
         </div>
 
         <div class="container mx-auto max-w-4xl relative z-10 scroll-reveal">
