@@ -288,18 +288,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
 });
 
-// Parallax scroll effect
-let ticking = false;
-window.addEventListener('scroll', () => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      document.documentElement.style.setProperty('--scroll', window.pageYOffset);
-      ticking = false;
-    });
-    ticking = true;
-  }
-});
-
 // Add IDs to headings for TOC functionality and active section highlighting
 document.addEventListener('DOMContentLoaded', () => {
   // Find all h2, h3, h4 headings in blog posts
