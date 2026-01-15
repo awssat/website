@@ -23,10 +23,10 @@ function initScrollHandler() {
   progressBarContainer = document.getElementById('scroll-progress-container');
 
   // Set initial states
-  updateScrollState();
+  // updateScrollState();
 
-  // Single passive scroll listener
-  window.addEventListener('scroll', onScroll, { passive: true });
+  // // Single passive scroll listener
+  // window.addEventListener('scroll', onScroll, { passive: true });
 }
 
 function onScroll() {
