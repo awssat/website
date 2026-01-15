@@ -12,7 +12,7 @@ pagination:
 @section('blog_main')
 
 {{-- Blog Hero Header --}}
-<div class="mb-12 md:mb-16 animate-on-scroll px-4 sm:px-0">
+<div class="mb-12 md:mb-16 scroll-reveal px-4 sm:px-0">
     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-100/50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs sm:text-sm font-semibold mb-4 sm:mb-6">
         <span>The Blog</span>
     </div>
@@ -27,7 +27,7 @@ pagination:
 {{-- Featured Post (First Item) --}}
 @if($pagination->currentPage == 1 && $pagination->items->count() > 0)
     @php $featured = $pagination->items->shift(); @endphp
-    <div class="mb-12 md:mb-16 animate-on-scroll px-4 sm:px-0">
+    <div class="mb-12 md:mb-16 scroll-reveal px-4 sm:px-0">
         <h3 class="text-xs sm:text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4 sm:mb-6 flex items-center">
             <span class="w-2 h-2 rounded-full bg-accent-500 mr-2 animate-pulse"></span>
             Featured Article
@@ -114,7 +114,7 @@ pagination:
 
 {{-- Modern Pagination --}}
 @if ($pagination->pages->count() > 1)
-<nav class="flex justify-center my-16 animate-on-scroll">
+<nav class="flex justify-center my-16 scroll-reveal">
     <div class="inline-flex items-center p-1 rounded-full bg-white dark:bg-gray-900 shadow-xl border border-gray-200 dark:border-gray-800">
         {{-- Previous Link --}}
         @if ($previous = $pagination->previous)

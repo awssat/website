@@ -4,7 +4,7 @@
 
 @section('blog_main')
     {{-- Enhanced Tag Hero Header --}}
-    <div class="relative mb-12 md:mb-16 animate-on-scroll px-4 sm:px-0">
+    <div class="relative mb-12 md:mb-16 scroll-reveal px-4 sm:px-0">
         {{-- Background Decoration --}}
         <div class="absolute -top-8 -left-8 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 bg-primary-500/5 blur-3xl rounded-full pointer-events-none"></div>
         <div class="absolute -bottom-8 -right-8 w-24 sm:w-36 md:w-48 h-24 sm:h-36 md:h-48 bg-accent-500/5 blur-2xl rounded-full pointer-events-none"></div>

@@ -7,7 +7,7 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {{-- Header --}}
-        <header class="text-center mb-16 md:mb-32 animate-on-scroll">
+        <header class="text-center mb-16 md:mb-32 scroll-reveal">
             <div class="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 rounded-full bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 text-xs md:text-sm font-semibold mb-6 md:mb-8 border border-primary-100 dark:border-primary-800">
                 <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                 <span>Active Contributions</span>
@@ -28,7 +28,7 @@
 
         {{-- Section 1: Major Projects (Mac Window Style) --}}
         <section id="projects" class="mb-20 md:mb-40">
-            <div class="flex items-center gap-3 md:gap-4 mb-10 md:mb-16 animate-on-scroll">
+            <div class="flex items-center gap-3 md:gap-4 mb-10 md:mb-16 scroll-reveal">
                 <span class="text-4xl md:text-5xl lg:text-6xl font-black text-gray-200 dark:text-gray-800 select-none">01.</span>
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{{ $page->trans('portfolio.selected_works') }}</h2>
                 <div class="h-px flex-grow bg-gray-200 dark:bg-gray-800 ml-2 md:ml-4 hidden sm:block"></div>
@@ -36,7 +36,7 @@
 
             <div class="space-y-16 md:space-y-24 lg:space-y-32">
                 @foreach($projects as $index => $item)
-                <div class="group relative flex flex-col lg:flex-row items-center gap-8 md:gap-12 lg:gap-20 animate-on-scroll {{ $loop->even ? 'lg:flex-row-reverse' : '' }}">
+                <div class="group relative flex flex-col lg:flex-row items-center gap-8 md:gap-12 lg:gap-20 scroll-reveal {{ $loop->even ? 'lg:flex-row-reverse' : '' }}">
                     
                     {{-- Visual Side (Mac Window) --}}
                     <div class="w-full lg:w-3/5 perspective-1000 relative">
@@ -139,13 +139,13 @@
 
         {{-- Section 2: Laravel PRs (Terminal/GitHub Style) --}}
         <section id="prs" class="mb-16 md:mb-32">
-            <div class="flex items-center gap-3 md:gap-4 mb-10 md:mb-16 animate-on-scroll">
+            <div class="flex items-center gap-3 md:gap-4 mb-10 md:mb-16 scroll-reveal">
                 <span class="text-4xl md:text-5xl lg:text-6xl font-black text-gray-200 dark:text-gray-800 select-none">02.</span>
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{{ $page->trans('portfolio.core_contributions') }}</h2>
                 <div class="h-px flex-grow bg-gray-200 dark:bg-gray-800 ml-2 md:ml-4 hidden sm:block"></div>
             </div>
 
-            <div class="bg-gray-900 rounded-xl md:rounded-2xl shadow-2xl overflow-hidden border border-gray-800 animate-on-scroll">
+            <div class="bg-gray-900 rounded-xl md:rounded-2xl shadow-2xl overflow-hidden border border-gray-800 scroll-reveal">
                 {{-- Terminal Header --}}
                 <div class="bg-gray-800/50 px-4 md:px-6 py-3 md:py-4 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-0 sm:justify-between border-b border-gray-700">
                     <div class="flex items-center gap-2">

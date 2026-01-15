@@ -11,7 +11,7 @@
     scroll-behavior: auto !important;
   }
 
-  .animate-on-scroll,
+  .scroll-reveal,
   .fadeIn,
   .fadeInUp,
   .fadeInDown,
@@ -450,7 +450,7 @@ html {
 }
 
 /* Hardware Acceleration for Animated Elements */
-.animate-on-scroll,
+.scroll-reveal,
 .card-3d,
 .hover-lift,
 .hover-scale,
@@ -465,8 +465,8 @@ html {
   -webkit-backface-visibility: hidden;
 }
 
-/* Remove will-change after animation completes to free up resources */
-.animate-on-scroll.is-visible {
+/* Remove will-change after transition completes to free up resources */
+.scroll-reveal.visible {
   will-change: auto;
 }
 
@@ -486,99 +486,99 @@ html {
 .delay-800 { animation-delay: 0.8s; }
 .delay-1000 { animation-delay: 1s; }
 
-/* Enhanced Scroll Animations - Multiple Variants */
+/* Scroll Reveal - Transition-based visibility on scroll */
 
-/* Base: Fade Up (default) - Slowed down for smoother effect */
-.animate-on-scroll {
+/* Base: Fade Up (default) */
+.scroll-reveal {
   opacity: 0;
   transform: translateY(30px) scale(0.95);
   transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.animate-on-scroll.is-visible {
+.scroll-reveal.visible {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
 
 /* Variant: Fade In (no movement) */
-.animate-on-scroll[data-animation="fade"] {
+.scroll-reveal[data-animation="fade"] {
   transform: scale(0.95);
 }
 
-.animate-on-scroll[data-animation="fade"].is-visible {
+.scroll-reveal[data-animation="fade"].visible {
   transform: scale(1);
 }
 
 /* Variant: Slide from Left */
-.animate-on-scroll[data-animation="slide-left"] {
+.scroll-reveal[data-animation="slide-left"] {
   transform: translateX(-40px) scale(0.95);
 }
 
-.animate-on-scroll[data-animation="slide-left"].is-visible {
+.scroll-reveal[data-animation="slide-left"].visible {
   transform: translateX(0) scale(1);
 }
 
 /* Variant: Slide from Right */
-.animate-on-scroll[data-animation="slide-right"] {
+.scroll-reveal[data-animation="slide-right"] {
   transform: translateX(40px) scale(0.95);
 }
 
-.animate-on-scroll[data-animation="slide-right"].is-visible {
+.scroll-reveal[data-animation="slide-right"].visible {
   transform: translateX(0) scale(1);
 }
 
 /* Variant: Scale In */
-.animate-on-scroll[data-animation="scale"] {
+.scroll-reveal[data-animation="scale"] {
   transform: scale(0.8);
 }
 
-.animate-on-scroll[data-animation="scale"].is-visible {
+.scroll-reveal[data-animation="scale"].visible {
   transform: scale(1);
 }
 
 /* Variant: Rotate In */
-.animate-on-scroll[data-animation="rotate"] {
+.scroll-reveal[data-animation="rotate"] {
   transform: translateY(30px) scale(0.9) rotate(-2deg);
 }
 
-.animate-on-scroll[data-animation="rotate"].is-visible {
+.scroll-reveal[data-animation="rotate"].visible {
   transform: translateY(0) scale(1) rotate(0deg);
 }
 
 /* Mobile optimizations - Fade only, no transforms for better performance */
 @media (max-width: 767px) {
-  .animate-on-scroll {
+  .scroll-reveal {
     transform: none;
     transition: opacity 0.5s ease-out;
   }
 
-  .animate-on-scroll.is-visible {
+  .scroll-reveal.visible {
     opacity: 1;
     transform: none;
   }
 
   /* All variants use fade-only on mobile */
-  .animate-on-scroll[data-animation="fade"],
-  .animate-on-scroll[data-animation="slide-left"],
-  .animate-on-scroll[data-animation="slide-right"],
-  .animate-on-scroll[data-animation="scale"],
-  .animate-on-scroll[data-animation="rotate"] {
+  .scroll-reveal[data-animation="fade"],
+  .scroll-reveal[data-animation="slide-left"],
+  .scroll-reveal[data-animation="slide-right"],
+  .scroll-reveal[data-animation="scale"],
+  .scroll-reveal[data-animation="rotate"] {
     transform: none;
   }
 
-  .animate-on-scroll[data-animation="fade"].is-visible,
-  .animate-on-scroll[data-animation="slide-left"].is-visible,
-  .animate-on-scroll[data-animation="slide-right"].is-visible,
-  .animate-on-scroll[data-animation="scale"].is-visible,
-  .animate-on-scroll[data-animation="rotate"].is-visible {
+  .scroll-reveal[data-animation="fade"].visible,
+  .scroll-reveal[data-animation="slide-left"].visible,
+  .scroll-reveal[data-animation="slide-right"].visible,
+  .scroll-reveal[data-animation="scale"].visible,
+  .scroll-reveal[data-animation="rotate"].visible {
     opacity: 1;
     transform: none;
   }
 }
 
 /* Fallback for when JavaScript is disabled */
-.no-js .animate-on-scroll {
+.no-js .scroll-reveal {
   opacity: 1;
   transform: translateY(0) scale(1) rotate(0deg);
 }

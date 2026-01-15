@@ -123,7 +123,7 @@
     {{-- The Authority Grid (Story-driven Bento) --}}
     <section class="py-32 px-4 relative z-10 bg-white/60 dark:bg-gray-900/60 border-t border-gray-200/50 dark:border-gray-800/50">
         <div class="container mx-auto max-w-7xl">
-            <div class="text-center mb-24 animate-on-scroll">
+            <div class="text-center mb-24 scroll-reveal">
                 <h2 class="text-4xl md:text-6xl font-black mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-gray-900 to-gray-600 dark:from-white dark:to-gray-400">
                     {{ $locale === 'ar' ? 'نحن لا نستخدم الأدوات فقط.' : 'We don\'t just use the tools.' }}<br>
                     <span class="text-primary-600 dark:text-primary-400">{{ $locale === 'ar' ? 'نحن نبنيها.' : 'We build them.' }}</span>
@@ -136,7 +136,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
 
                 {{-- Card 1: Laravel Core (Impact) --}}
-                <div class="md:col-span-2 group relative bg-gray-50 dark:bg-gray-800 rounded-[2rem] p-8 md:p-12 overflow-hidden border border-gray-200 dark:border-gray-700 transition-all duration-500 hover:shadow-2xl hover:border-primary-500/30 animate-on-scroll" data-animation="slide-right">
+                <div class="md:col-span-2 group relative bg-gray-50 dark:bg-gray-800 rounded-[2rem] p-8 md:p-12 overflow-hidden border border-gray-200 dark:border-gray-700 transition-all duration-500 hover:shadow-2xl hover:border-primary-500/30 scroll-reveal" data-animation="slide-right">
                     <div class="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 rounded-full blur-[80px] -mr-16 -mt-16 transition-all group-hover:bg-primary-500/20"></div>
 
                     <div class="relative z-10 h-full flex flex-col justify-between">
@@ -173,7 +173,7 @@
                 </div>
 
                 {{-- Card 2: Open Source (Stats) --}}
-                <div class="group relative bg-gray-900 text-white rounded-[2rem] p-8 md:p-12 overflow-hidden shadow-2xl flex flex-col justify-between animate-on-scroll delay-100" data-animation="scale">
+                <div class="group relative bg-gray-900 text-white rounded-[2rem] p-8 md:p-12 overflow-hidden shadow-2xl flex flex-col justify-between scroll-reveal delay-100" data-animation="scale">
                     <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-black"></div>
                     <div class="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4zKSIvPjwvc3ZnPg==')]"></div>
 
@@ -201,7 +201,7 @@
                 </div>
 
                 {{-- Card 3: AI Code Cleanup (Full Width Feature) --}}
-                <div class="md:col-span-3 group relative bg-black rounded-[2rem] p-8 md:p-12 overflow-hidden border border-gray-800 animate-on-scroll delay-200" data-animation="fade">
+                <div class="md:col-span-3 group relative bg-black rounded-[2rem] p-8 md:p-12 overflow-hidden border border-gray-800 scroll-reveal delay-200" data-animation="fade">
                     {{-- Background: Chaos to Order Gradient --}}
                     <div class="absolute inset-0 bg-gradient-to-r from-red-900/10 via-gray-900 to-emerald-900/10"></div>
 
@@ -324,7 +324,7 @@
 
                 {{-- Service 1: Mobile --}}
 
-                <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 group animate-on-scroll">
+                <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 group scroll-reveal">
 
                     <div class="w-full md:w-1/2 order-2 md:order-1">
 
@@ -803,7 +803,7 @@
 
                 {{-- Service 2: Backend (Reversed) --}}
 
-                <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 group animate-on-scroll">
+                <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 group scroll-reveal">
 
                     <div class="w-full md:w-1/2 order-1">
 
@@ -936,7 +936,7 @@
 
                 {{-- Service 3: Compliance --}}
 
-                 <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 group animate-on-scroll">
+                 <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 group scroll-reveal">
 
                     <div class="w-full md:w-1/2 order-2 md:order-1">
 
@@ -1046,17 +1046,17 @@
             <h2 class="text-xs font-bold tracking-[0.3em] uppercase text-gray-500 mb-12">{{ $locale === 'ar' ? 'مبادئنا' : 'Our Manifesto' }}</h2>
 
             <div class="space-y-16 md:space-y-24">
-                <p class="text-4xl md:text-6xl lg:text-7xl font-black leading-tight animate-on-scroll">
+                <p class="text-4xl md:text-6xl lg:text-7xl font-black leading-tight scroll-reveal">
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-700">01.</span><br>
                     {{ $locale === 'ar' ? 'نحن نرفض الكود العشوائي.' : 'We reject spaghetti code.' }}
                 </p>
 
-                <p class="text-4xl md:text-6xl lg:text-7xl font-black leading-tight animate-on-scroll delay-100">
+                <p class="text-4xl md:text-6xl lg:text-7xl font-black leading-tight scroll-reveal delay-100">
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-700">02.</span><br>
                     {{ $locale === 'ar' ? 'نحن لا نخمن. نحن نختبر.' : 'We don\'t guess. We test.' }}
                 </p>
 
-                <p class="text-4xl md:text-6xl lg:text-7xl font-black leading-tight animate-on-scroll delay-200">
+                <p class="text-4xl md:text-6xl lg:text-7xl font-black leading-tight scroll-reveal delay-200">
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-700">03.</span><br>
                     {{ $locale === 'ar' ? 'الأمان هو الأساس، وليس إضافة.' : 'Security is the foundation.' }}
                 </p>
@@ -1178,7 +1178,7 @@
             <div class="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-accent-600/20 blur-[100px] animate-float-gentle" style="animation-delay: 2s;"></div>
         </div>
 
-        <div class="container mx-auto max-w-4xl relative z-10 animate-on-scroll">
+        <div class="container mx-auto max-w-4xl relative z-10 scroll-reveal">
             <h2 class="text-5xl md:text-6xl font-black mb-8 tracking-tight">
                 {{ $locale === 'ar' ? 'جاهز لتوسيع رؤيتك؟' : 'Ready to scale your vision?' }}
             </h2>

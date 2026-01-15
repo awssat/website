@@ -1,4 +1,4 @@
-<article class="group relative bg-white dark:bg-gray-900 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl border border-gray-200 dark:border-gray-800 transition-all duration-300 hover:-translate-y-1 mb-8 animate-on-scroll">
+<article class="group relative bg-white dark:bg-gray-900 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl border border-gray-200 dark:border-gray-800 transition-all duration-300 hover:-translate-y-1 mb-8 scroll-reveal">
     {{-- Gradient Border on Hover --}}
     <div class="absolute inset-0 rounded-3xl border-2 border-transparent bg-gradient-to-r from-primary-500 to-accent-500 opacity-0 group-hover:opacity-10 mask-border transition-opacity duration-300 pointer-events-none"></div>
 

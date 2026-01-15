@@ -16,7 +16,7 @@
         </div>
 
         {{-- Header --}}
-        <header class="mb-8 animate-on-scroll">
+        <header class="mb-8 scroll-reveal">
             {{-- Type Badge --}}
             <div class="mb-4">
                 @if($page->type === 'laravel-pr')
@@ -89,7 +89,7 @@
 
         {{-- Tech Stack --}}
         @if($page->tech_stack)
-        <div class="mb-8 animate-on-scroll">
+        <div class="mb-8 scroll-reveal">
             <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">{{ $page->trans('portfolio.tech_stack') }}</h2>
             <div class="flex flex-wrap gap-3">
                 @foreach($page->tech_stack as $tech)
@@ -102,7 +102,7 @@
         @endif
 
         {{-- Links --}}
-        <div class="flex flex-wrap gap-4 mb-12 animate-on-scroll">
+        <div class="flex flex-wrap gap-4 mb-12 scroll-reveal">
             @if($page->github_url)
             <a href="{{ $page->github_url }}" target="_blank" rel="noopener" class="inline-flex items-center px-6 py-3 rounded-xl font-semibold text-white bg-gray-900 dark:bg-gray-700 hover:bg-gray-800 dark:hover:bg-gray-600 transition-all shadow-lg hover:shadow-xl">
                 <svg class="w-5 h-5 {{ $page->locale === 'ar' ? 'ml-2' : 'mr-2' }}" fill="currentColor" viewBox="0 0 24 24">
@@ -123,7 +123,7 @@
         </div>
 
         {{-- Content --}}
-        <div class="prose prose-lg dark:prose-invert max-w-none animate-on-scroll">
+        <div class="prose prose-lg dark:prose-invert max-w-none scroll-reveal">
             @yield('portfolio_content')
         </div>
     </article>

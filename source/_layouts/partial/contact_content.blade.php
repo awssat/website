@@ -10,7 +10,7 @@
 
     <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
         {{-- Header --}}
-        <div class="text-center mb-12 md:mb-16 animate-on-scroll">
+        <div class="text-center mb-12 md:mb-16 scroll-reveal">
             <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100/50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-sm font-semibold mb-6">
                 <span class="flex h-2 w-2 relative">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
@@ -128,7 +128,7 @@
         </div>
 
         {{-- Contact Form --}}
-        <div class="mb-12 animate-on-scroll">
+        <div class="mb-12 scroll-reveal">
             <div class="text-center mb-8">
                 <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-3">
                     {{ $isArabic ? 'أرسل لنا رسالة' : 'Send Us a Message' }}
@@ -233,7 +233,7 @@
         </div>
 
         {{-- FAQ Section --}}
-        <div class="mb-12 animate-on-scroll">
+        <div class="mb-12 scroll-reveal">
             <div class="text-center mb-8">
                 <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-3">
                     {{ $isArabic ? 'الأسئلة الشائعة' : 'Frequently Asked Questions' }}
@@ -451,7 +451,7 @@
         </div>
 
         {{-- Additional Info --}}
-        <div class="bg-gradient-to-br from-primary-50 to-accent-50 dark:from-primary-900/20 dark:to-accent-900/20 rounded-2xl p-6 sm:p-8 border border-primary-200 dark:border-primary-800 text-center animate-on-scroll">
+        <div class="bg-gradient-to-br from-primary-50 to-accent-50 dark:from-primary-900/20 dark:to-accent-900/20 rounded-2xl p-6 sm:p-8 border border-primary-200 dark:border-primary-800 text-center scroll-reveal">
             <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
                 <span class="font-semibold text-gray-900 dark:text-white">{{ $isArabic ? 'تبحث عن خبرة في Laravel؟' : 'Looking for Laravel expertise?' }}</span><br>
                 @if($isArabic)
