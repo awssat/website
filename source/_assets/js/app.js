@@ -6,6 +6,7 @@ import bash from "highlight.js/lib/languages/bash";
 import Alpine from "alpinejs";
 import intersect from '@alpinejs/intersect';
 import persist from '@alpinejs/persist';
+import './scroll-handler.js';
 
 window.axios = axios;
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";

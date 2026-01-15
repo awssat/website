@@ -168,6 +168,49 @@ body {
   }
 }
 
+/* Header scroll state - Vanilla JS controlled */
+header.scrolled #header-container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  header.scrolled #header-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+header.scrolled #header-inner {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1) !important;
+  max-width: 64rem !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+  border-color: rgba(229, 231, 235, 0.7) !important;
+}
+
+.dark header.scrolled #header-inner {
+  background-color: rgba(17, 24, 39, 0.95) !important;
+  border-color: rgba(55, 65, 81, 0.7) !important;
+}
+
+/* Logo size change on scroll */
+header.scrolled #logo-text {
+  font-size: 1rem; /* text-base */
+}
+
+@media (min-width: 640px) {
+  header.scrolled #logo-text {
+    font-size: 1.125rem; /* sm:text-lg */
+  }
+}
+
+/* Show divider when scrolled */
+header.scrolled #header-divider {
+  opacity: 1;
+}
+
 /* Custom Scrollbar - Sleek & Minimal */
 ::-webkit-scrollbar {
   width: 8px;

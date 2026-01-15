@@ -58,23 +58,18 @@
     </a>
 
     {{-- Modern Floating Header --}}
-    <header x-data="{ mobileMenuOpen: false, scrolled: false }"
-            @scroll.window="scrolled = (window.pageYOffset > 20)"
+    <header x-data="{ mobileMenuOpen: false }"
             @click.away="mobileMenuOpen = false"
+            data-scroll-header
             class="fixed top-0 w-full z-50 py-3 md:py-4">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-6 lg:px-8 transition-[padding] duration-300"
-             :class="{ 'md:px-4 lg:px-6': scrolled }">
-            <div class="relative mx-auto transition-[background-color,box-shadow,max-width,padding,border-color] duration-300 ease-out bg-white/95 dark:bg-gray-900/95 shadow-md rounded-2xl max-w-6xl px-4 sm:px-6 py-2 border border-gray-200/50 dark:border-gray-800/50 md:bg-transparent md:shadow-none md:border-transparent"
-                 :class="{
-                    '!bg-white/95 dark:!bg-gray-900/95 !shadow-lg !max-w-5xl !px-6 !border-gray-200/70 dark:!border-gray-700/70': scrolled
-                 }">
+        <div id="header-container" class="max-w-7xl mx-auto px-4 sm:px-6 md:px-6 lg:px-8 transition-[padding] duration-300">
+            <div id="header-inner" class="relative mx-auto transition-[background-color,box-shadow,max-width,padding,border-color] duration-300 ease-out bg-white/95 dark:bg-gray-900/95 shadow-md rounded-2xl max-w-6xl px-4 sm:px-6 py-2 border border-gray-200/50 dark:border-gray-800/50 md:bg-transparent md:shadow-none md:border-transparent">
                 <div class="flex justify-between items-center h-10 sm:h-12">
                     {{-- Logo --}}
                     <div class="flex items-center">
                         <a href="{{ $page->localUrl('/') }}" class="flex items-center space-x-2 group">
                             <img src="{{ $page->baseUrl }}/assets/images/logo.png" class="w-7 h-7 sm:w-8 sm:h-8 transition-transform duration-500 group-hover:rotate-12" alt="Awssat" aria-roledescription="Logo of Awssat">
-                            <span class="text-lg sm:text-xl font-bold tracking-tight text-gray-900 dark:text-white"
-                                  :class="{ 'text-base sm:text-lg': scrolled }">Awssat</span>
+                            <span id="logo-text" class="text-lg sm:text-xl font-bold tracking-tight text-gray-900 dark:text-white">Awssat</span>
                         </a>
                     </div>
 
@@ -99,7 +94,7 @@
                             <span class="absolute inset-x-0 bottom-0 h-0.5 bg-primary-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
                         </a>
 
-                        <div class="h-6 w-px bg-gray-200 dark:bg-gray-700 mx-4" :class="{ 'opacity-0': !scrolled }"></div>
+                        <div id="header-divider" class="h-6 w-px bg-gray-200 dark:bg-gray-700 mx-4 opacity-0"></div>
 
                         {{-- Dark Mode Toggle --}}
                         <div class="flex items-center">

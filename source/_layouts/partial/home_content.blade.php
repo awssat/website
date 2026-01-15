@@ -19,9 +19,9 @@
         {{-- Base Gradient --}}
         <div class="absolute inset-0 bg-gray-50 dark:bg-[#030712]"></div>
 
-        {{-- Animated Orbs --}}
-        <div class="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-purple-500/20 blur-[60px] mix-blend-multiply dark:mix-blend-screen animate-blob motion-reduce:animate-none motion-reduce:opacity-30"></div>
-        <div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-cyan-500/20 blur-[60px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-2000 motion-reduce:animate-none motion-reduce:opacity-30"></div>
+        {{--  Orbs --}}
+        <div class="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-purple-500/20 blur-[60px] mix-blend-multiply dark:mix-blend-screen animate-none motion-reduce:opacity-30"></div>
+        <div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-cyan-500/20 blur-[60px] mix-blend-multiply dark:mix-blend-screen animate-none motion-reduce:opacity-30"></div>
 
 
         <div class="absolute inset-0" style="background-image: radial-gradient(rgba(120, 119, 198, 0.3) 1px, transparent 1px); background-size: 40px 40px; opacity: 0.1;"></div>
@@ -29,7 +29,7 @@
 
     {{-- Main Hero Logo (Central, Large, Nice Gradient) --}}
     <div class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none z-0">
-        <svg class="w-[280px] h-[280px] sm:w-[500px] sm:h-[500px] md:w-[700px] md:h-[700px] lg:w-[900px] lg:h-[900px] opacity-10 dark:opacity-5 animate-float-gentle" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="w-[280px] h-[280px] sm:w-[500px] sm:h-[500px] md:w-[700px] md:h-[700px] lg:w-[900px] lg:h-[900px] opacity-10 dark:opacity-5 animate-none" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" style="stop-color: #8b5cf6" />   {{-- Purple --}}
@@ -61,7 +61,7 @@
 
 
             {{-- Animated Badge --}}
-            <div class="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md transition-all duration-300 animate-fade-in-up">
+            <div class="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-white/80 dark:bg-gray-900/80 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md transition-all duration-300 animate-fade-in-up">
                 <span class="relative flex w-2.5 h-2.5">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
@@ -121,7 +121,7 @@
     </section>
 
     {{-- The Authority Grid (Story-driven Bento) --}}
-    <section class="py-32 px-4 relative z-10 bg-white/60 dark:bg-gray-900/60 backdrop-blur-xl border-t border-gray-200/50 dark:border-gray-800/50">
+    <section class="py-32 px-4 relative z-10 bg-white/60 dark:bg-gray-900/60 border-t border-gray-200/50 dark:border-gray-800/50">
         <div class="container mx-auto max-w-7xl">
             <div class="text-center mb-24 animate-on-scroll">
                 <h2 class="text-4xl md:text-6xl font-black mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-gray-900 to-gray-600 dark:from-white dark:to-gray-400">
@@ -692,7 +692,7 @@
                                                             {{-- Bottom Nav --}}
 
 
-                                                            <div class="flex-none absolute bottom-0 left-0 right-0 rounded-b-[2rem] overflow-hidden h-8 bg-gray-900/90 backdrop-blur-md border-t border-gray-800 flex justify-around items-center px-6">
+                                                            <div class="flex-none absolute bottom-0 left-0 right-0 rounded-b-[2rem] overflow-hidden h-8 bg-gray-900/90 border-t border-gray-800 flex justify-around items-center px-6">
 
 
 
@@ -960,7 +960,7 @@
 
                                 <div class="absolute inset-0 flex items-center justify-center">
 
-                                    <div class="w-20 h-20 bg-amber-500/10 rounded-full flex items-center justify-center backdrop-blur-sm border border-amber-500/20">
+                                    <div class="w-20 h-20 bg-amber-500/10 rounded-full flex items-center justify-center border border-amber-500/20">
 
                                         <svg class="w-10 h-10 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
 
@@ -1156,7 +1156,7 @@
                             @if($item->tech_stack)
                             <div class="flex flex-wrap gap-2">
                                 @foreach(array_slice($item->tech_stack, 0, 3) as $tech)
-                                <span class="px-2 py-1 rounded-md bg-white/20 text-white text-xs backdrop-blur-sm">
+                                <span class="px-2 py-1 rounded-md bg-white/20 text-white text-xs">
                                     {{ $tech }}
                                 </span>
                                 @endforeach
