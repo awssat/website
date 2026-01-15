@@ -385,15 +385,21 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mobile-friendly observer settings
   const isMobile = window.innerWidth < 768;
   const observerOptions = {
-    threshold: isMobile ? 0.05 : 0.15, // Lower threshold for mobile
-    rootMargin: isMobile ? '0px 0px -50px 0px' : '0px 0px -100px 0px' // Less margin on mobile
+    threshold: isMobile ? 0.01 : 0.1, // Very low threshold for mobile to trigger ASAP
+    rootMargin: isMobile ? '0px 0px -10% 0px' : '0px 0px -15% 0px' // Trigger before element is fully in view
   };
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        // Unobserve after animation triggers (performance optimization)
+        // Add a small random delay for grid items to create natural stagger if not explicitly staggered
+        if (entry.target.classList.contains('grid-item')) {
+           setTimeout(() => {
+               entry.target.classList.add('is-visible');
+           }, Math.random() * 200);
+        } else {
+            entry.target.classList.add('is-visible');
+        }
         observer.unobserve(entry.target);
       }
     });
@@ -402,26 +408,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // Observe all elements with .animate-on-scroll class
   document.querySelectorAll('.animate-on-scroll').forEach(el => {
     observer.observe(el);
-
-    // Check if element is already visible enough on page load
+    
+    // Immediate check for elements above the fold or close to it
     const rect = el.getBoundingClientRect();
-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    const elementHeight = rect.height;
-
-    // Mobile-friendly bottom margin
-    const bottomMargin = isMobile ? 50 : 100;
-
-    // Calculate how much of the element is visible
-    const visibleTop = Math.max(0, rect.top);
-    const visibleBottom = Math.min(rect.bottom, viewportHeight - bottomMargin);
-    const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-    const visibleRatio = elementHeight > 0 ? visibleHeight / elementHeight : 0;
-
-    // Show if enough of element is visible (lower threshold for mobile)
-    const requiredRatio = isMobile ? 0.05 : 0.15;
-    if (visibleRatio >= requiredRatio) {
-      el.classList.add('is-visible');
-      observer.unobserve(el);
+    if (rect.top < window.innerHeight) {
+        el.classList.add('is-visible');
+        observer.unobserve(el);
     }
   });
 });

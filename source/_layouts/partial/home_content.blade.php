@@ -2,8 +2,9 @@
     $locale = $page->locale ?? 'en';
 @endphp
 
-<div class="w-full overflow-hidden bg-gray-50 dark:bg-gray-950 transition-colors duration-500">
-    {{-- Epic Hero Section --}}
+<div class="w-full overflow-hidden bg-gray-50 dark:bg-gray-950 text-gray-800 dark:text-gray-200 transition-theme" x-data="{ scrollY: 0 }" @scroll.window="scrollY = window.scrollY">
+    
+    {{-- Decorative Background Elements --}}
     <section class="relative min-h-[calc(100vh-5rem)] sm:min-h-screen flex items-center justify-center overflow-x-hidden gradient-mesh -mt-20 pt-20"
              x-data="{ x: 0, y: 0 }"
              @mousemove="x = $event.clientX; y = $event.clientY">
