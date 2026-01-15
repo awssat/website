@@ -298,9 +298,10 @@
   }
 }
 
-/* Gradient Mesh Animation (background defined in colors.css) */
+/* Gradient Mesh Animation - DISABLED for Safari performance */
+/* background-position animation causes constant style recalculation */
 .gradient-mesh {
-  animation: gradientShift 20s ease infinite;
+  /* animation: gradientShift 20s ease infinite; */
 }
 
 /* Glowing Border */
