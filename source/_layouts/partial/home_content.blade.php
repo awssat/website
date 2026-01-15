@@ -915,10 +915,16 @@
 
                                 </div>
 
-                                <div class="absolute top-1/3 right-1/4 w-10 h-10 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center animate-pulse" style="animation-delay: 1s">
+                                <div class="absolute top-1/3 right-1/4 w-16 h-12 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 flex items-center justify-center shadow-sm animate-float-gentle" style="animation-delay: 0.8s">
+                                    <span class="text-xs font-mono font-bold text-gray-500">Backend</span>
+                                </div>
 
-                                    <div class="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                                <div class="absolute bottom-1/4 left-1/4 w-14 h-12 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 flex items-center justify-center shadow-sm animate-float-gentle" style="animation-delay: 1.2s">
+                                    <span class="text-xs font-mono font-bold text-gray-500">Client</span>
+                                </div>
 
+                                <div class="absolute bottom-1/5 left-1/2 w-14 h-12 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 flex items-center justify-center shadow-sm animate-float-gentle" style="animation-delay: 2s">
+                                    <span class="text-xs font-mono font-bold text-gray-500">Mobile</span>
                                 </div>
 
                             </div>
