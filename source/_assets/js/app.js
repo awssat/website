@@ -368,55 +368,61 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Bidirectional scroll animations - play forward on scroll down, rewind on scroll up
+// Bidirectional scroll animations - Optimized for Safari + Chrome
 document.addEventListener('DOMContentLoaded', () => {
   const observerOptions = {
-    threshold: [0, 0.1, 0.2], // Multiple thresholds for better detection
+    threshold: 0.1, // Single threshold reduces callbacks by 66%
     rootMargin: '0px 0px -100px 0px'
   };
 
-  let lastScrollY = window.scrollY;
+  // Batch classList changes with RAF for better Safari performance
+  let pendingUpdates = new Set();
+  let rafScheduled = false;
+
+  function scheduleUpdate(element, action) {
+    pendingUpdates.add({ element, action });
+
+    if (!rafScheduled) {
+      rafScheduled = true;
+      requestAnimationFrame(() => {
+        pendingUpdates.forEach(({ element, action }) => {
+          if (action === 'add') {
+            element.classList.add('is-visible');
+          } else {
+            element.classList.remove('is-visible');
+          }
+        });
+        pendingUpdates.clear();
+        rafScheduled = false;
+      });
+    }
+  }
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const element = entry.target;
-      const animateOnce = element.getAttribute('data-animate-once') === 'true';
 
-      // Detect scroll direction
-      const currentScrollY = window.scrollY;
-      const isScrollingDown = currentScrollY > lastScrollY;
+      // Cache data attribute on element for faster access
+      if (element._animateOnce === undefined) {
+        element._animateOnce = element.hasAttribute('data-animate-once');
+      }
 
       if (entry.isIntersecting) {
         // Element is entering viewport - play animation forward
-        if (element.classList.contains('grid-item')) {
-          setTimeout(() => {
-            element.classList.add('is-visible');
-          }, Math.random() * 150);
-        } else {
-          element.classList.add('is-visible');
-        }
+        scheduleUpdate(element, 'add');
 
         // Stop observing if animate-once is set
-        if (animateOnce) {
+        if (element._animateOnce) {
           observer.unobserve(element);
         }
       } else {
         // Element is leaving viewport - rewind animation (play backwards)
-        if (!animateOnce) {
-          element.classList.remove('is-visible');
+        if (!element._animateOnce) {
+          scheduleUpdate(element, 'remove');
         }
       }
     });
   }, observerOptions);
-
-  // Track scroll position
-  let scrollTimer;
-  window.addEventListener('scroll', () => {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(() => {
-      lastScrollY = window.scrollY;
-    }, 50);
-  }, { passive: true });
 
   // Observe all elements with .animate-on-scroll class
   document.querySelectorAll('.animate-on-scroll').forEach(el => {
