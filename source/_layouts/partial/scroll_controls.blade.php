@@ -1,6 +1,6 @@
 {{-- Scroll Controls: Smart Direction-Based Navigation --}}
 <div x-data="scrollControls()"
-     @scroll.window.throttle.150ms="updateScrollPosition()"
+     @scroll.window="updateScrollPosition()"
      x-init="updateScrollPosition()"
      class="scroll-controls">
 
@@ -50,44 +50,58 @@ function scrollControls() {
         scrollDirection: 'down', // 'up' or 'down'
         scrollProgress: 0,
         lastScrollTop: 0,
+        _skipCounter: 0,
 
         updateScrollPosition() {
+            // Manual throttle: Skip 2 out of 3 calls (66% reduction)
+            this._skipCounter++;
+            if (this._skipCounter % 3 !== 0) return;
+
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Skip if scroll change is tiny (< 5px)
+            if (Math.abs(scrollTop - this.lastScrollTop) < 5) return;
+
             const scrollHeight = document.documentElement.scrollHeight;
             const clientHeight = document.documentElement.clientHeight;
             const maxScroll = scrollHeight - clientHeight;
 
-            // Calculate scroll progress percentage
-            this.scrollProgress = maxScroll > 0 ? (scrollTop / maxScroll) * 100 : 0;
+            // Calculate scroll progress percentage (round to reduce updates)
+            const newProgress = maxScroll > 0 ? Math.round((scrollTop / maxScroll) * 100) : 0;
+
+            // Only update if changed significantly
+            if (Math.abs(newProgress - this.scrollProgress) >= 1) {
+                this.scrollProgress = newProgress;
+            }
 
             // Determine scroll direction
             const isScrollingDown = scrollTop > this.lastScrollTop;
             const isScrollingUp = scrollTop < this.lastScrollTop;
 
-            // Smart button logic:
-            // - At top (< 100px): show down arrow
-            // - At bottom (> 95%): show up arrow
-            // - Middle + scrolling down: show down arrow
-            // - Middle + scrolling up: show up arrow
-
             const isAtTop = scrollTop < 100;
             const isAtBottom = this.scrollProgress > 95;
             const isInMiddle = !isAtTop && !isAtBottom;
 
+            // Only update direction if it actually changed
+            let newDirection = this.scrollDirection;
             if (isAtTop) {
-                this.scrollDirection = 'down';
+                newDirection = 'down';
                 this.showButton = true;
             } else if (isAtBottom) {
-                this.scrollDirection = 'up';
+                newDirection = 'up';
                 this.showButton = true;
             } else if (isInMiddle) {
                 this.showButton = true;
-                // Update direction based on scroll movement
                 if (isScrollingDown) {
-                    this.scrollDirection = 'down';
+                    newDirection = 'down';
                 } else if (isScrollingUp) {
-                    this.scrollDirection = 'up';
+                    newDirection = 'up';
                 }
+            }
+
+            // Only trigger reactivity if direction actually changed
+            if (newDirection !== this.scrollDirection) {
+                this.scrollDirection = newDirection;
             }
 
             this.lastScrollTop = scrollTop;
