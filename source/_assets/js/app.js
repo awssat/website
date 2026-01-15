@@ -89,39 +89,26 @@ Alpine.data('tiltCard', () => ({
 
 window.Alpine = Alpine;
 
-// Sync theme-color meta tag with dark mode state
+// Sync theme-color meta tag with dark mode state - Optimized
+// Cache meta element once instead of querying DOM repeatedly
+let cachedMetaThemeColor = null;
+
 Alpine.effect(() => {
   const darkMode = Alpine.store('darkMode') || document.documentElement.classList.contains('dark');
   const themeColor = darkMode ? '#1f2937' : '#8b5cf6';
-  const metaThemeColor = document.querySelector('meta[name="theme-color"]:not([media])');
-  if (metaThemeColor) {
-    metaThemeColor.setAttribute('content', themeColor);
-  } else {
-    // Create meta tag if it doesn't exist
-    const meta = document.createElement('meta');
-    meta.name = 'theme-color';
-    meta.content = themeColor;
-    document.head.appendChild(meta);
-  }
-});
 
-// Listen for dark mode changes via MutationObserver
-const observer = new MutationObserver((mutations) => {
-  mutations.forEach((mutation) => {
-    if (mutation.attributeName === 'class') {
-      const isDark = document.documentElement.classList.contains('dark');
-      const themeColor = isDark ? '#1f2937' : '#8b5cf6';
-      const metaThemeColor = document.querySelector('meta[name="theme-color"]:not([media])');
-      if (metaThemeColor) {
-        metaThemeColor.setAttribute('content', themeColor);
-      }
+  // Get or create meta tag once, then cache it
+  if (!cachedMetaThemeColor) {
+    cachedMetaThemeColor = document.querySelector('meta[name="theme-color"]:not([media])');
+    if (!cachedMetaThemeColor) {
+      cachedMetaThemeColor = document.createElement('meta');
+      cachedMetaThemeColor.name = 'theme-color';
+      document.head.appendChild(cachedMetaThemeColor);
     }
-  });
-});
+  }
 
-observer.observe(document.documentElement, {
-  attributes: true,
-  attributeFilter: ['class']
+  // Update cached element directly (no DOM query)
+  cachedMetaThemeColor.content = themeColor;
 });
 
 Alpine.start();
@@ -368,38 +355,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Bidirectional scroll animations - Optimized for Safari + Chrome
+// Bidirectional scroll animations - Minimal overhead approach
 document.addEventListener('DOMContentLoaded', () => {
   const observerOptions = {
-    threshold: 0.1, // Single threshold reduces callbacks by 66%
+    threshold: 0.1,
     rootMargin: '0px 0px -100px 0px'
   };
 
-  // Batch classList changes with RAF for better Safari performance
-  let pendingUpdates = new Set();
-  let rafScheduled = false;
-
-  function scheduleUpdate(element, action) {
-    pendingUpdates.add({ element, action });
-
-    if (!rafScheduled) {
-      rafScheduled = true;
-      requestAnimationFrame(() => {
-        pendingUpdates.forEach(({ element, action }) => {
-          if (action === 'add') {
-            element.classList.add('is-visible');
-          } else {
-            element.classList.remove('is-visible');
-          }
-        });
-        pendingUpdates.clear();
-        rafScheduled = false;
-      });
-    }
-  }
-
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    // IntersectionObserver already batches entries - no need for RAF
+    // Use traditional for loop instead of forEach (faster in all browsers)
+    const len = entries.length;
+    for (let i = 0; i < len; i++) {
+      const entry = entries[i];
       const element = entry.target;
 
       // Cache data attribute on element for faster access
@@ -408,24 +376,28 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (entry.isIntersecting) {
-        // Element is entering viewport - play animation forward
-        scheduleUpdate(element, 'add');
+        // Element entering viewport - play animation forward
+        element.classList.add('is-visible');
 
         // Stop observing if animate-once is set
         if (element._animateOnce) {
           observer.unobserve(element);
         }
       } else {
-        // Element is leaving viewport - rewind animation (play backwards)
+        // Element leaving viewport - rewind animation (play backwards)
         if (!element._animateOnce) {
-          scheduleUpdate(element, 'remove');
+          element.classList.remove('is-visible');
         }
       }
-    });
+    }
   }, observerOptions);
 
   // Observe all elements with .animate-on-scroll class
-  document.querySelectorAll('.animate-on-scroll').forEach(el => {
+  const elements = document.querySelectorAll('.animate-on-scroll');
+  const elementsLen = elements.length;
+
+  for (let i = 0; i < elementsLen; i++) {
+    const el = elements[i];
     observer.observe(el);
 
     // Immediate check for elements currently in viewport
@@ -435,5 +407,5 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isInView) {
       el.classList.add('is-visible');
     }
-  });
+  }
 });
