@@ -149,16 +149,23 @@ body {
   font-feature-settings: 'cv11', 'ss01';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-  /* Smooth transitions for dark mode toggle */
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Smooth dark mode transitions for common elements - Scoped for performance */
-body, .transition-theme {
-  transition-property: background-color, border-color, color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+/* Smooth dark mode transitions - Optimized for performance */
+body {
+  transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+              color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-theme {
+  transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+              color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body, .transition-theme {
+    transition: none;
+  }
 }
 
 /* Custom Scrollbar - Sleek & Minimal */
@@ -325,20 +332,26 @@ body, .transition-theme {
   transform-style: preserve-3d;
 }
 
-/* Gradient X Animation */
+/* Gradient X Animation - Optimized */
 @keyframes gradient-x {
   0%, 100% {
-    background-size: 200% 200%;
-    background-position: left center;
+    background-position: 0% 50%;
   }
   50% {
-    background-size: 200% 200%;
-    background-position: right center;
+    background-position: 100% 50%;
   }
 }
 
 .animate-gradient-x {
+  background-size: 200% 200%;
   animation: gradient-x 3s ease infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-gradient-x {
+    animation: none;
+    background-position: 0% 50%;
+  }
 }
 
 /* Elegant 2D Animations */
@@ -402,6 +415,17 @@ h3 {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* Content Visibility Optimization */
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+.section-optimize {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
 }
 
 /* Reduced Motion Support */

@@ -2,11 +2,9 @@
     $locale = $page->locale ?? 'en';
 @endphp
 
-<div class="w-full overflow-hidden bg-gray-50 dark:bg-gray-950 text-gray-800 dark:text-gray-200 transition-theme" x-data="{ scrollY: 0 }" @scroll.window="scrollY = window.scrollY">
+<div class="w-full overflow-hidden bg-gray-50 dark:bg-gray-950 text-gray-800 dark:text-gray-200 transition-theme">
 {{-- Epic Hero Section --}}
-<section class="relative min-h-[calc(100vh-5rem)] sm:min-h-screen flex items-center justify-center overflow-x-hidden gradient-mesh overflow-hidden pt-20"
-         x-data="{ x: 0, y: 0 }"
-         @mousemove="x = $event.clientX; y = $event.clientY">
+<section class="relative min-h-[calc(100vh-5rem)] sm:min-h-screen flex items-center justify-center overflow-x-hidden gradient-mesh overflow-hidden pt-20">
 
 
 
@@ -22,9 +20,8 @@
         <div class="absolute inset-0 bg-gray-50 dark:bg-[#030712]"></div>
 
         {{-- Animated Orbs --}}
-        <div class="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-purple-500/20 blur-[120px] mix-blend-multiply dark:mix-blend-screen animate-blob"></div>
-        <div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-cyan-500/20 blur-[120px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-2000"></div>
-        <div class="absolute bottom-[-20%] left-[20%] w-[600px] h-[600px] rounded-full bg-blue-500/20 blur-[120px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-4000"></div>
+        <div class="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-purple-500/20 blur-[60px] mix-blend-multiply dark:mix-blend-screen animate-blob motion-reduce:animate-none motion-reduce:opacity-30"></div>
+        <div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-cyan-500/20 blur-[60px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-2000 motion-reduce:animate-none motion-reduce:opacity-30"></div>
 
 
         <div class="absolute inset-0" style="background-image: radial-gradient(rgba(120, 119, 198, 0.3) 1px, transparent 1px); background-size: 40px 40px; opacity: 0.1;"></div>
@@ -39,15 +36,15 @@
                     <stop offset="50%" style="stop-color: #3b82f6" />   {{-- Blue --}}
                     <stop offset="100%" style="stop-color: #06b6d4" />  {{-- Cyan --}}
                 </linearGradient>
-                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <filter id="glow" x="-10%" y="-10%" width="120%" height="120%">
+                    <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
                     <feMerge>
                         <feMergeNode in="coloredBlur"/>
                         <feMergeNode in="SourceGraphic"/>
                     </feMerge>
                 </filter>
             </defs>
-            <g filter="url(#glow)">
+            <g filter="url(#glow)" style="will-change: auto;">
                 <path d="M29.855 0.001A30 30 0 0 0 0 30.001a30 30 0 0 0 29.855 30 30 30 0 0 0 30.145-30A30 30 0 0 0 29.855 0.001zm0.24 7.42a22.58 22.58 0 0 1 22.485 22.58 22.58 22.58 0 0 1-45.158 0 22.58 22.58 0 0 1 22.673-22.58z" fill="url(#heroGradient)"/>
                 <path d="M29.835 11.906a18.1 18.1 0 0 0-17.932 18.096 18.1 18.1 0 0 0 36.194 0 18.1 18.1 0 0 0-18.262-18.096zm-0.014 7.553a10.54 10.54 0 0 1 10.725 10.543 10.54 10.54 0 0 1-21.09 0 10.54 10.54 0 0 1 10.365-10.543z" fill="url(#heroGradient)"/>
             </g>
@@ -126,7 +123,7 @@
     {{-- The Authority Grid (Story-driven Bento) --}}
     <section class="py-32 px-4 relative z-10 bg-white/60 dark:bg-gray-900/60 backdrop-blur-xl border-t border-gray-200/50 dark:border-gray-800/50">
         <div class="container mx-auto max-w-7xl">
-            <div class="text-center mb-24">
+            <div class="text-center mb-24 animate-on-scroll">
                 <h2 class="text-4xl md:text-6xl font-black mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-gray-900 to-gray-600 dark:from-white dark:to-gray-400">
                     {{ $locale === 'ar' ? 'نحن لا نستخدم الأدوات فقط.' : 'We don\'t just use the tools.' }}<br>
                     <span class="text-primary-600 dark:text-primary-400">{{ $locale === 'ar' ? 'نحن نبنيها.' : 'We build them.' }}</span>
@@ -139,7 +136,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
 
                 {{-- Card 1: Laravel Core (Impact) --}}
-                <div class="md:col-span-2 group relative bg-gray-50 dark:bg-gray-800 rounded-[2rem] p-8 md:p-12 overflow-hidden border border-gray-200 dark:border-gray-700 transition-all duration-500 hover:shadow-2xl hover:border-primary-500/30">
+                <div class="md:col-span-2 group relative bg-gray-50 dark:bg-gray-800 rounded-[2rem] p-8 md:p-12 overflow-hidden border border-gray-200 dark:border-gray-700 transition-all duration-500 hover:shadow-2xl hover:border-primary-500/30 animate-on-scroll">
                     <div class="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 rounded-full blur-[80px] -mr-16 -mt-16 transition-all group-hover:bg-primary-500/20"></div>
 
                     <div class="relative z-10 h-full flex flex-col justify-between">
@@ -176,7 +173,7 @@
                 </div>
 
                 {{-- Card 2: Open Source (Stats) --}}
-                <div class="group relative bg-gray-900 text-white rounded-[2rem] p-8 md:p-12 overflow-hidden shadow-2xl flex flex-col justify-between">
+                <div class="group relative bg-gray-900 text-white rounded-[2rem] p-8 md:p-12 overflow-hidden shadow-2xl flex flex-col justify-between animate-on-scroll delay-100">
                     <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-black"></div>
                     <div class="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4zKSIvPjwvc3ZnPg==')]"></div>
 
@@ -204,7 +201,7 @@
                 </div>
 
                 {{-- Card 3: AI Code Cleanup (Full Width Feature) --}}
-                <div class="md:col-span-3 group relative bg-black rounded-[2rem] p-8 md:p-12 overflow-hidden border border-gray-800">
+                <div class="md:col-span-3 group relative bg-black rounded-[2rem] p-8 md:p-12 overflow-hidden border border-gray-800 animate-on-scroll delay-200">
                     {{-- Background: Chaos to Order Gradient --}}
                     <div class="absolute inset-0 bg-gradient-to-r from-red-900/10 via-gray-900 to-emerald-900/10"></div>
 
@@ -327,7 +324,7 @@
 
                 {{-- Service 1: Mobile --}}
 
-                <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 group">
+                <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 group animate-on-scroll">
 
                     <div class="w-full md:w-1/2 order-2 md:order-1">
 
@@ -806,7 +803,7 @@
 
                 {{-- Service 2: Backend (Reversed) --}}
 
-                <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 group">
+                <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 group animate-on-scroll">
 
                     <div class="w-full md:w-1/2 order-1">
 
@@ -939,7 +936,7 @@
 
                 {{-- Service 3: Compliance --}}
 
-                 <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 group">
+                 <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 group animate-on-scroll">
 
                     <div class="w-full md:w-1/2 order-2 md:order-1">
 
@@ -1181,7 +1178,7 @@
             <div class="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-accent-600/20 blur-[100px] animate-float-gentle" style="animation-delay: 2s;"></div>
         </div>
 
-        <div class="container mx-auto max-w-4xl relative z-10">
+        <div class="container mx-auto max-w-4xl relative z-10 animate-on-scroll">
             <h2 class="text-5xl md:text-6xl font-black mb-8 tracking-tight">
                 {{ $locale === 'ar' ? 'جاهز لتوسيع رؤيتك؟' : 'Ready to scale your vision?' }}
             </h2>

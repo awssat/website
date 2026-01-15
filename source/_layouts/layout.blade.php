@@ -59,7 +59,7 @@
 
     {{-- Modern Floating Header --}}
     <header x-data="{ mobileMenuOpen: false, scrolled: false }"
-            @scroll.window="scrolled = (window.pageYOffset > 20)"
+            @scroll.window.throttle.150ms="scrolled = (window.pageYOffset > 20)"
             @click.away="mobileMenuOpen = false"
             class="fixed top-0 w-full z-50 py-3 md:py-4">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-6 lg:px-8 transition-[padding] duration-300"
