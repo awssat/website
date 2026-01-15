@@ -380,40 +380,66 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Intersection Observer for scroll animations
+// Bidirectional scroll animations - play forward on scroll down, rewind on scroll up
 document.addEventListener('DOMContentLoaded', () => {
-  // Mobile-friendly observer settings
-  const isMobile = window.innerWidth < 768;
   const observerOptions = {
-    threshold: isMobile ? 0.01 : 0.1, // Very low threshold for mobile to trigger ASAP
-    rootMargin: isMobile ? '0px 0px -10% 0px' : '0px 0px -15% 0px' // Trigger before element is fully in view
+    threshold: [0, 0.1, 0.2], // Multiple thresholds for better detection
+    rootMargin: '0px 0px -100px 0px'
   };
+
+  let lastScrollY = window.scrollY;
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+      const element = entry.target;
+      const animateOnce = element.getAttribute('data-animate-once') === 'true';
+
+      // Detect scroll direction
+      const currentScrollY = window.scrollY;
+      const isScrollingDown = currentScrollY > lastScrollY;
+
       if (entry.isIntersecting) {
-        // Add a small random delay for grid items to create natural stagger if not explicitly staggered
-        if (entry.target.classList.contains('grid-item')) {
-           setTimeout(() => {
-               entry.target.classList.add('is-visible');
-           }, Math.random() * 200);
+        // Element is entering viewport - play animation forward
+        if (element.classList.contains('grid-item')) {
+          setTimeout(() => {
+            element.classList.add('is-visible');
+          }, Math.random() * 150);
         } else {
-            entry.target.classList.add('is-visible');
+          element.classList.add('is-visible');
         }
-        observer.unobserve(entry.target);
+
+        // Stop observing if animate-once is set
+        if (animateOnce) {
+          observer.unobserve(element);
+        }
+      } else {
+        // Element is leaving viewport - rewind animation (play backwards)
+        if (!animateOnce) {
+          element.classList.remove('is-visible');
+        }
       }
     });
   }, observerOptions);
 
+  // Track scroll position
+  let scrollTimer;
+  window.addEventListener('scroll', () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      lastScrollY = window.scrollY;
+    }, 50);
+  }, { passive: true });
+
   // Observe all elements with .animate-on-scroll class
   document.querySelectorAll('.animate-on-scroll').forEach(el => {
     observer.observe(el);
-    
-    // Immediate check for elements above the fold or close to it
+
+    // Immediate check for elements currently in viewport
     const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight) {
-        el.classList.add('is-visible');
-        observer.unobserve(el);
+    const isInView = rect.top < (window.innerHeight - 100) && rect.bottom > 0;
+
+    if (isInView) {
+      el.classList.add('is-visible');
     }
   });
 });

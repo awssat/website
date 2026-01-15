@@ -136,7 +136,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
 
                 {{-- Card 1: Laravel Core (Impact) --}}
-                <div class="md:col-span-2 group relative bg-gray-50 dark:bg-gray-800 rounded-[2rem] p-8 md:p-12 overflow-hidden border border-gray-200 dark:border-gray-700 transition-all duration-500 hover:shadow-2xl hover:border-primary-500/30 animate-on-scroll">
+                <div class="md:col-span-2 group relative bg-gray-50 dark:bg-gray-800 rounded-[2rem] p-8 md:p-12 overflow-hidden border border-gray-200 dark:border-gray-700 transition-all duration-500 hover:shadow-2xl hover:border-primary-500/30 animate-on-scroll" data-animation="slide-right">
                     <div class="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 rounded-full blur-[80px] -mr-16 -mt-16 transition-all group-hover:bg-primary-500/20"></div>
 
                     <div class="relative z-10 h-full flex flex-col justify-between">
@@ -173,7 +173,7 @@
                 </div>
 
                 {{-- Card 2: Open Source (Stats) --}}
-                <div class="group relative bg-gray-900 text-white rounded-[2rem] p-8 md:p-12 overflow-hidden shadow-2xl flex flex-col justify-between animate-on-scroll delay-100">
+                <div class="group relative bg-gray-900 text-white rounded-[2rem] p-8 md:p-12 overflow-hidden shadow-2xl flex flex-col justify-between animate-on-scroll delay-100" data-animation="scale">
                     <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-black"></div>
                     <div class="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4zKSIvPjwvc3ZnPg==')]"></div>
 
@@ -201,7 +201,7 @@
                 </div>
 
                 {{-- Card 3: AI Code Cleanup (Full Width Feature) --}}
-                <div class="md:col-span-3 group relative bg-black rounded-[2rem] p-8 md:p-12 overflow-hidden border border-gray-800 animate-on-scroll delay-200">
+                <div class="md:col-span-3 group relative bg-black rounded-[2rem] p-8 md:p-12 overflow-hidden border border-gray-800 animate-on-scroll delay-200" data-animation="fade">
                     {{-- Background: Chaos to Order Gradient --}}
                     <div class="absolute inset-0 bg-gradient-to-r from-red-900/10 via-gray-900 to-emerald-900/10"></div>
 

@@ -188,5 +188,8 @@
 
     {{-- Footer --}}
     @include('_layouts.partial.footer')
+
+    {{-- Scroll Controls: Indicators & Navigation --}}
+    @include('_layouts.partial.scroll_controls')
 </body>
 </html>
