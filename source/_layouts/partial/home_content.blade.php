@@ -337,59 +337,418 @@
 
 
 
-                            {{-- CSS Phone Mockup --}}
+                                                    {{-- CSS Phone Mockup --}}
 
-                            <div class="relative w-48 h-80 bg-gray-900 rounded-[2.5rem] border-[6px] border-gray-800 shadow-2xl transform rotate-[-6deg] group-hover:rotate-0 transition-all duration-700 ease-out z-10">
 
-                                {{-- Notch --}}
 
-                                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-6 bg-black rounded-b-xl z-20"></div>
+                                                    <div class="relative w-52 h-[90%] bg-gray-900 rounded-[2.5rem] border-[4px] border-gray-800 shadow-2xl transform rotate-[-6deg] group-hover:rotate-0 transition-all duration-700 ease-out z-10 ring-1 ring-white/10">
 
-                                {{-- Screen --}}
 
-                                <div class="absolute inset-0 bg-gray-800 rounded-[2rem] overflow-hidden">
 
-                                    {{-- App Header --}}
+                                                        {{-- Buttons --}}
 
-                                    <div class="h-16 bg-blue-600/20 w-full mb-4"></div>
 
-                                    {{-- Skeleton UI --}}
 
-                                    <div class="px-4 space-y-4">
+                                                        <div class="absolute top-24 -left-[6px] w-1 h-8 bg-gray-700 rounded-l-md shadow-inner"></div>
 
-                                        <div class="flex gap-3 overflow-hidden">
 
-                                            <div class="w-12 h-12 rounded-full bg-white/10 flex-shrink-0 animate-pulse"></div>
 
-                                            <div class="w-12 h-12 rounded-full bg-white/5 flex-shrink-0"></div>
+                                                        <div class="absolute top-36 -left-[6px] w-1 h-8 bg-gray-700 rounded-l-md shadow-inner"></div>
 
-                                            <div class="w-12 h-12 rounded-full bg-white/5 flex-shrink-0"></div>
 
-                                        </div>
 
-                                        <div class="h-24 rounded-2xl bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-blue-500/10"></div>
+                                                        <div class="absolute top-28 -right-[6px] w-1 h-12 bg-gray-700 rounded-r-md shadow-inner"></div>
 
-                                        <div class="space-y-2">
 
-                                            <div class="h-3 w-3/4 bg-white/10 rounded-full"></div>
 
-                                            <div class="h-3 w-1/2 bg-white/10 rounded-full"></div>
 
-                                        </div>
 
-                                    </div>
 
-                                    {{-- Floating Action Button --}}
 
-                                    <div class="absolute bottom-6 right-6 w-12 h-12 bg-blue-500 rounded-full shadow-lg shadow-blue-500/30 flex items-center justify-center text-white">
+                                                        {{-- Notch --}}
 
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
 
-                                    </div>
 
-                                </div>
+                                                        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-6 bg-black rounded-b-2xl z-20 flex justify-center items-center">
 
-                            </div>
+
+
+                                                            <div class="w-12 h-1 bg-gray-800 rounded-full"></div>
+
+
+
+                                                        </div>
+
+
+
+
+
+
+
+                                                        {{-- Screen --}}
+
+                                                        {{-- Screen --}}
+
+
+
+                                                        <div class="absolute inset-1 bg-gray-900 rounded-[2rem] overflow-hidden border border-gray-800 flex flex-col overflow-hidden">
+
+
+
+                                                            {{-- Status Bar --}}
+
+
+
+                                                            <div class="flex-none flex justify-between items-center px-5 pt-2 text-[8px] font-mono text-gray-400">
+
+
+                                                            {{-- Status Bar --}}
+
+
+                                                                <span>9:41</span>
+
+
+
+                                                                <div class="flex gap-1">
+
+
+
+                                                                    <div class="w-2.5 h-1.5 bg-gray-600 rounded-sm"></div>
+
+
+
+                                                                    <div class="w-2.5 h-1.5 bg-gray-600 rounded-sm"></div>
+
+
+
+                                                                    <div class="w-3 h-1.5 bg-white rounded-sm"></div>
+
+
+
+                                                                </div>
+
+
+
+                                                            </div>
+
+
+
+
+
+
+
+                                                            {{-- App Content: Analytics Dashboard --}}
+
+
+                                                            <div class="flex-1 overflow-hidden p-4 pt-6 space-y-4">
+
+
+
+                                                                {{-- Header --}}
+
+
+
+                                                                <div class="flex justify-between items-center">
+
+
+
+                                                                    <div class="flex items-center gap-2">
+
+
+
+                                                                        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-400 p-0.5">
+
+
+
+                                                                            <div class="w-full h-full bg-gray-900 rounded-full flex items-center justify-center text-[10px] font-bold text-white">AW</div>
+
+
+
+                                                                        </div>
+
+
+
+                                                                        <div class="space-y-0.5">
+
+
+
+                                                                            <div class="w-16 h-2 bg-gray-700 rounded-full"></div>
+
+
+
+                                                                            <div class="w-10 h-1.5 bg-gray-800 rounded-full"></div>
+
+
+
+                                                                        </div>
+
+
+
+                                                                    </div>
+
+
+
+                                                                    <div class="w-8 h-8 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center hover:bg-gray-700 transition-colors">
+
+
+
+                                                                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+
+
+
+                                                                    </div>
+
+
+
+                                                                </div>
+
+
+
+
+
+
+
+                                                                {{-- Main Card --}}
+
+
+
+                                                                <div class="p-4 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-lg shadow-blue-500/20 relative overflow-hidden group/card">
+
+
+
+                                                                    <div class="absolute inset-0 bg-white/5 opacity-0 group-hover/card:opacity-100 transition-opacity"></div>
+
+
+
+                                                                    <div class="flex justify-between items-start mb-4 relative z-10">
+
+
+
+                                                                        <div class="space-y-1">
+
+
+
+                                                                            <div class="text-[10px] text-blue-200">Total Visits</div>
+
+
+
+                                                                            <div class="text-xl font-bold">2.4M</div>
+
+
+
+                                                                        </div>
+
+
+
+                                                                        <div class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full flex items-center gap-1">
+
+
+
+                                                                            <svg class="w-2 h-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+
+
+
+                                                                            +12%
+
+
+
+                                                                        </div>
+
+
+
+                                                                    </div>
+
+
+
+                                                                    {{-- Graph Line --}}
+
+
+
+                                                                    <div class="h-8 w-full flex items-end justify-between gap-1">
+
+
+
+                                                                        <div class="w-full bg-white/20 rounded-t-sm h-[40%]"></div>
+
+
+
+                                                                        <div class="w-full bg-white/20 rounded-t-sm h-[60%]"></div>
+
+
+
+                                                                        <div class="w-full bg-white/20 rounded-t-sm h-[50%]"></div>
+
+
+
+                                                                        <div class="w-full bg-white/20 rounded-t-sm h-[80%]"></div>
+
+
+
+                                                                        <div class="w-full bg-white/40 rounded-t-sm h-[65%]"></div>
+
+
+
+                                                                        <div class="w-full bg-white rounded-t-sm h-[90%]"></div>
+
+
+
+                                                                    </div>
+
+
+
+                                                                </div>
+
+
+
+
+
+
+
+                                                                {{-- Recent List --}}
+
+
+
+                                                                <div class="space-y-2.5">
+
+
+
+                                                                    <div class="flex justify-between items-end">
+
+
+
+                                                                        <div class="text-[10px] font-bold text-gray-500 tracking-wider uppercase">Live Activity</div>
+
+
+
+                                                                        <div class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+
+
+
+                                                                    </div>
+
+
+
+
+
+
+
+                                                                    @foreach(range(1, 3) as $i)
+
+
+
+                                                                    <div class="flex items-center gap-3 p-2 rounded-xl bg-gray-800/50 border border-gray-800/50 hover:bg-gray-800 transition-colors cursor-pointer">
+
+
+
+                                                                        <div class="w-8 h-8 rounded-full bg-gray-700/50 flex items-center justify-center">
+
+
+
+                                                                            <div class="w-4 h-4 rounded-full bg-indigo-500/20 border border-indigo-500/50"></div>
+
+
+
+                                                                        </div>
+
+
+
+                                                                        <div class="flex-1 space-y-1.5">
+
+
+
+                                                                            <div class="w-16 h-1.5 bg-gray-700 rounded-full"></div>
+
+
+
+                                                                            <div class="w-10 h-1 bg-gray-800 rounded-full"></div>
+
+
+
+                                                                        </div>
+
+
+
+                                                                        <div class="text-[9px] text-gray-500 font-mono">2m</div>
+
+
+
+                                                                    </div>
+
+
+
+                                                                    @endforeach
+
+
+
+                                                                </div>
+
+
+
+                                                            </div>
+
+
+
+
+
+
+
+                                                            {{-- Bottom Nav --}}
+
+
+                                                            <div class="flex-none absolute bottom-0 left-0 right-0 rounded-b-[2rem] overflow-hidden h-8 bg-gray-900/90 backdrop-blur-md border-t border-gray-800 flex justify-around items-center px-6">
+
+
+
+                                                                <div class="w-10 h-10 flex items-center justify-center text-blue-500 relative">
+
+
+
+                                                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+
+
+
+                                                                    <div class="absolute -top-1 w-full h-0.5 bg-blue-500 shadow-[0_0_10px_#3b82f6]"></div>
+
+
+
+                                                                </div>
+
+
+
+                                                                <div class="w-10 h-10 flex items-center justify-center text-gray-600 hover:text-gray-400 transition-colors">
+
+
+
+                                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+
+
+
+                                                                </div>
+
+
+
+                                                                <div class="w-10 h-10 flex items-center justify-center text-gray-600 hover:text-gray-400 transition-colors">
+
+
+
+                                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+
+
+
+                                                                </div>
+
+
+
+                                                            </div>
+
+
+
+
+                                                        </div>
+
+
+
+                                                    </div>
 
 
 
