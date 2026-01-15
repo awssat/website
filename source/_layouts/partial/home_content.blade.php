@@ -864,7 +864,28 @@
 
                                     <div class="absolute inset-0 bg-emerald-500/10 animate-pulse rounded-2xl"></div>
 
-                                    <svg class="w-10 h-10 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 01-2 2v4a2 2 0 012 2h14a2 2 0 012 2v-4a2 2 0 01-2-2m-2-4h.01M17 16h.01"></path></svg>
+                                    <svg class="w-12 h-12 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                        <!-- Top Server Unit -->
+                                        <rect x="6" y="8" width="36" height="10" rx="2" stroke-width="2" fill="currentColor" opacity="0.15"/>
+                                        <rect x="6" y="8" width="36" height="10" rx="2" stroke-width="2"/>
+                                        <line x1="10" y1="13" x2="24" y2="13" stroke-width="1.5" stroke-linecap="round"/>
+                                        <circle cx="38" cy="13" r="1.5" fill="currentColor" opacity="0.8"/>
+                                        <circle cx="34" cy="13" r="1.5" fill="currentColor" opacity="0.5"/>
+
+                                        <!-- Middle Server Unit -->
+                                        <rect x="6" y="20" width="36" height="10" rx="2" stroke-width="2" fill="currentColor" opacity="0.2"/>
+                                        <rect x="6" y="20" width="36" height="10" rx="2" stroke-width="2"/>
+                                        <line x1="10" y1="25" x2="28" y2="25" stroke-width="1.5" stroke-linecap="round"/>
+                                        <circle cx="38" cy="25" r="1.5" fill="#10b981" class="animate-pulse"/>
+                                        <circle cx="34" cy="25" r="1.5" fill="currentColor" opacity="0.5"/>
+
+                                        <!-- Bottom Server Unit -->
+                                        <rect x="6" y="32" width="36" height="10" rx="2" stroke-width="2" fill="currentColor" opacity="0.15"/>
+                                        <rect x="6" y="32" width="36" height="10" rx="2" stroke-width="2"/>
+                                        <line x1="10" y1="37" x2="26" y2="37" stroke-width="1.5" stroke-linecap="round"/>
+                                        <circle cx="38" cy="37" r="1.5" fill="currentColor" opacity="0.8"/>
+                                        <circle cx="34" cy="37" r="1.5" fill="currentColor" opacity="0.5"/>
+                                    </svg>
 
 
 
