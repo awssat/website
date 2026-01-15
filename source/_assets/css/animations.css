@@ -488,12 +488,12 @@ html {
 
 /* Enhanced Scroll Animations - Multiple Variants */
 
-/* Base: Fade Up (default) */
+/* Base: Fade Up (default) - Slowed down for smoother effect */
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(30px) scale(0.95);
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .animate-on-scroll.is-visible {
@@ -546,22 +546,34 @@ html {
   transform: translateY(0) scale(1) rotate(0deg);
 }
 
-/* Mobile optimizations - faster, simpler animations */
+/* Mobile optimizations - Fade only, no transforms for better performance */
 @media (max-width: 767px) {
   .animate-on-scroll {
-    transform: translateY(15px) scale(0.98);
-    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: none;
+    transition: opacity 0.5s ease-out;
   }
 
+  .animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* All variants use fade-only on mobile */
+  .animate-on-scroll[data-animation="fade"],
   .animate-on-scroll[data-animation="slide-left"],
-  .animate-on-scroll[data-animation="slide-right"] {
-    transform: translateX(0) translateY(15px) scale(0.98);
+  .animate-on-scroll[data-animation="slide-right"],
+  .animate-on-scroll[data-animation="scale"],
+  .animate-on-scroll[data-animation="rotate"] {
+    transform: none;
   }
 
+  .animate-on-scroll[data-animation="fade"].is-visible,
   .animate-on-scroll[data-animation="slide-left"].is-visible,
-  .animate-on-scroll[data-animation="slide-right"].is-visible {
-    transform: translateX(0) translateY(0) scale(1);
+  .animate-on-scroll[data-animation="slide-right"].is-visible,
+  .animate-on-scroll[data-animation="scale"].is-visible,
+  .animate-on-scroll[data-animation="rotate"].is-visible {
+    opacity: 1;
+    transform: none;
   }
 }
 
