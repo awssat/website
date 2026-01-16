@@ -66,7 +66,7 @@
                     <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
                 </span>
                 <span class="text-sm font-medium bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400">
-                    {{ $locale === 'ar' ? 'متاح لمشاريع جديدة' : 'Available for new projects' }}
+                    {{ $locale === 'ar' ? 'حالياً لدينا شاغر لإستقبال مشاريع جديدة' : 'Currently available for new projects' }}
                 </span>
             </div>
 
@@ -217,7 +217,7 @@
                                 {{ $locale === 'ar' ? 'نصحح ونضبط لك أكواد الذكاء الاصطناعي' : 'AI Code Cleanup & Verification' }}
                             </h3>
                             <p class="text-lg text-gray-400 leading-relaxed max-w-2xl text-balance">
-                                {{ $locale === 'ar' ? 'الحين يمدي أي أحد يصير مبرمج "Vibe Coding" سريع، لكن الكود غالبا مليان ثغرات وأخطاء غبية شوية. كلمنا وبنساعدك بتنظيف الفوضى: وبنصلح الكود السيء (Garbage Code)، نسد الثغرات الأمنية، ونحول مخرجات الـ AI الهشة إلى شيء مضمون ويعتمد عليه.' : 'Vibe coding is fast, but often produces "garbage code" with hidden security holes and bad logic. We step in to clean the mess: auditing your AI-generated codebase, fixing code smells, and turning fragile prototypes into production-grade systems.' }}
+                                {{ $locale === 'ar' ? 'الحين يمدي أي أحد يصير مبرمج "Vibe Coding"، لكن الكود غالبا مليان ثغرات وأخطاء غبية شوية. كلمنا وبنساعدك بتنظيف الفوضى: وبنصلح الكود السيء (Garbage Code)، نسد الثغرات الأمنية، ونحول مخرجات الـ AI الهشة إلى شيء مضمون ويعتمد عليه.' : 'Vibe coding is fast, but often produces "garbage code" with hidden security holes and bad logic. We step in to clean the mess: auditing your AI-generated codebase, fixing code smells, and turning fragile prototypes into production-grade systems.' }}
                             </p>
                         </div>
 
@@ -780,7 +780,7 @@
 
                                 <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
 
-                                <span>Cross-platform efficiency (Flutter)</span>
+                                <span>{{ $locale === 'ar' ? 'كود واحد لكل الأنظمة بجودة عالية (Flutter)' : 'Cross-platform efficiency (Flutter)' }}</span>
 
                             </li>
 
@@ -788,7 +788,8 @@
 
                                 <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
 
-                                <span>Native power (Swift/Kotlin)</span>
+                                <span>{{ $locale === 'ar' ? 'كود مكتوب لكل نظام على حدة بجودة النظام الأصلية (Swift/Kotlin)' : 'Native power (Swift/Kotlin)' }}</span>
+                                
 
                             </li>
 
@@ -826,7 +827,8 @@
 
                                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
 
-                                <span>High-load optimization (Redis/SQL)</span>
+                                <span>{{ $locale === 'ar' ? 'تحسينات للأداء العالي (Redis/SQL)' : 'High-load optimization (Redis/SQL)' }}</span>
+                                
 
                             </li>
 
@@ -834,7 +836,8 @@
 
                                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
 
-                                <span>Secure API Design</span>
+                                <span>{{ $locale === 'ar' ? 'تصميم وتنفيذ API آمن' : 'Secure API Design' }}</span>
+                                
 
                             </li>
 
@@ -999,7 +1002,7 @@
 
                         <h3 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
 
-                            {{ $locale === 'ar' ? 'مبني للمملكة.' : 'Built for the Kingdom.' }}
+                            {{ $locale === 'ar' ? 'نمتثل للحوكمة المحلية.' : 'We comply with local governance.' }}
 
                         </h3>
 
@@ -1015,7 +1018,8 @@
 
                                 <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
 
-                                <span>Cybersecurity Essential Compliance</span>
+                                <span>{{ $locale === 'ar' ? 'الامتثال لأنظمة وقوانين الأمن السيبراني' : 'Cybersecurity Essential Compliance' }}</span>
+                                
 
                             </li>
 
@@ -1023,7 +1027,8 @@
 
                                 <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
 
-                                <span>Local Data Hosting Ready</span>
+                                <span>{{ $locale === 'ar' ? 'استضافة البيانات داخل الدولة بشكل آمن' : 'Local Data Hosting Ready' }}</span>
+                                
 
                             </li>
 

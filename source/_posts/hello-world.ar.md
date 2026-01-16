@@ -2,7 +2,7 @@
 title: مرحبا بالعالم
 date: 2021-12-14
 description: مقال تجريبي
-tags: [general]
+tags: [عام]
 ---
 
 مرحبا بالعالم!
