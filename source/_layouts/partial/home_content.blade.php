@@ -72,7 +72,7 @@
 
             {{-- Hero Title --}}
             <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-6 animate-fade-in-up delay-100 drop-shadow-sm">
-                <span class="block text-gray-900 dark:text-white mb-2">{{ $locale === 'ar' ? 'نبني' : 'We Build' }}</span>
+                <span class="block text-gray-900 dark:text-white mb-2">{{ $locale === 'ar' ? 'نبني معكم' : 'We Build' }}</span>
                 <span class="block text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 animate-gradient-x pb-4">
                     {{ $locale === 'ar' ? 'تجارب ويب استثنائية' : 'Exceptional Web' }}
                 </span>
@@ -82,7 +82,7 @@
             {{-- Hero Description --}}
             <p class="max-w-2xl mx-auto text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed mb-10 animate-fade-in-up delay-200 text-balance">
                 @if($locale === 'ar')
-                    تطوير Laravel بمستوى عالمي. نصنع تطبيقات قوية وقابلة للتطوير مع <span class="font-bold text-primary-600 dark:text-primary-400 border-b-2 border-primary-500/20 hover:border-primary-500 transition-colors">6 تحديثات جوهرية</span> في قلب الإطار و <span class="font-bold text-accent-600 dark:text-accent-400 border-b-2 border-accent-500/20 hover:border-accent-500 transition-colors">2,200+ نجمة</span> على GitHub.
+                    سنوات من الخبرة في تطوير الويب وخبرة عميقة بإطار Laravel. <span class="font-bold text-primary-600 dark:text-primary-400 border-b-2 border-primary-500/20 hover:border-primary-500 transition-colors">ساهمنا بـ 6 تحديثات جوهرية</span> في قلب الإطار و <span class="font-bold text-accent-600 dark:text-accent-400 border-b-2 border-accent-500/20 hover:border-accent-500 transition-colors">2,200+ نجمة</span> على GitHub.
                 @else
                     Elite Laravel engineering. We craft robust, scalable applications with <span class="font-bold text-primary-600 dark:text-primary-400 border-b-2 border-primary-500/20 hover:border-primary-500 transition-colors">6 merged PRs</span> to the framework core and <span class="font-bold text-accent-600 dark:text-accent-400 border-b-2 border-accent-500/20 hover:border-accent-500 transition-colors">2,200+ stars</span> on GitHub.
                 @endif
@@ -99,7 +99,7 @@
                 </a>
                 <a href="#contact" class="group px-8 py-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 rounded-full font-bold text-lg shadow-lg hover:shadow-xl hover:border-primary-500 dark:hover:border-primary-500 hover:-translate-y-1 transition-all duration-300">
                     <span class="flex items-center gap-2">
-                        {{ $locale === 'ar' ? 'لنتحدث' : 'Let\'s Talk' }}
+                        {{ $locale === 'ar' ? 'تواصل معنا' : 'Let\'s Talk' }}
                         <span class="text-xl group-hover:rotate-12 transition-transform">👋</span>
                     </span>
                 </a>
@@ -124,11 +124,11 @@
         <div class="container mx-auto max-w-7xl">
             <div class="text-center mb-24 scroll-reveal">
                 <h2 class="text-4xl md:text-6xl font-black mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-gray-900 to-gray-600 dark:from-white dark:to-gray-400">
-                    {{ $locale === 'ar' ? 'نحن لا نستخدم الأدوات فقط.' : 'We don\'t just use the tools.' }}<br>
-                    <span class="text-primary-600 dark:text-primary-400">{{ $locale === 'ar' ? 'نحن نبنيها.' : 'We build them.' }}</span>
+                    {{ $locale === 'ar' ? 'إذا ما لقينا مكتبة أو أداة تساعدنا' : 'We don\'t just use the tools.' }}<br>
+                    <span class="text-primary-600 dark:text-primary-400">{{ $locale === 'ar' ? 'نبنيها من الصفر .' : 'We build them.' }}</span>
                 </h2>
                 <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto text-balance">
-                    {{ $locale === 'ar' ? 'خبرة تقنية عميقة في قلب المصدر المفتوح.' : 'Deep technical expertise right at the open-source core.' }}
+                    {{ $locale === 'ar' ? 'ترا ما نبالغ! شيّك على صفحتنا بغيت هب' : 'Deep technical expertise right at the open-source core.' }}
                 </p>
             </div>
 
@@ -150,10 +150,10 @@
                             </div>
 
                             <h3 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
-                                {{ $locale === 'ar' ? 'تأثير مباشر في نواة Laravel' : 'Direct Impact on Laravel Core' }}
+                                {{ $locale === 'ar' ? 'تأثير شغلنا وصل لنواة Laravel' : 'Direct Impact on Laravel Core' }}
                             </h3>
                             <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-lg">
-                                {{ $locale === 'ar' ? 'عندما واجهنا حدود الإطار، لم نلتف حولها. قمنا بحلها، وأرسلنا الحل للجميع. 6 تحديثات في قلب الإطار يستخدمها الملايين.' : 'When we hit the framework\'s limits, we didn\'t work around them. We fixed them, and shipped the code to everyone. 6 core PRs used by millions.' }}
+                                {{ $locale === 'ar' ? 'لما قابلتنا مشاكل في الإطار، ما قلنا خل ندور حل ثاني. حليناها! وشاركنا تعديلاتنا مع الكل. 6 تحديثات في قلب الإطار يستخدمها الملايين.' : 'When we hit the framework\'s limits, we didn\'t work around them. We fixed them, and shipped the code to everyone. 6 core PRs used by millions.' }}
                             </p>
                         </div>
 
@@ -214,10 +214,10 @@
                                 {{ $locale === 'ar' ? 'نظافة برمجية' : 'Code Hygiene' }}
                             </div>
                             <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">
-                                {{ $locale === 'ar' ? 'تصحيح وتنظيف كود الذكاء الاصطناعي' : 'AI Code Cleanup & Verification' }}
+                                {{ $locale === 'ar' ? 'نصحح ونضبط لك أكواد الذكاء الاصطناعي' : 'AI Code Cleanup & Verification' }}
                             </h3>
                             <p class="text-lg text-gray-400 leading-relaxed max-w-2xl text-balance">
-                                {{ $locale === 'ar' ? 'الاعتماد على "Vibe Coding" سريع، لكنه ينتج كوداً مليئاً بالثغرات والأخطاء المنطقية. نحن نتدخل لتنظيف الفوضى: نصلح الكود السيء (Garbage Code)، نسد الثغرات الأمنية، ونحول مخرجات الـ AI الهشة إلى نظام هندسي متين.' : 'Vibe coding is fast, but often produces "garbage code" with hidden security holes and bad logic. We step in to clean the mess: auditing your AI-generated codebase, fixing code smells, and turning fragile prototypes into production-grade systems.' }}
+                                {{ $locale === 'ar' ? 'الحين يمدي أي أحد يصير مبرمج "Vibe Coding" سريع، لكن الكود غالبا مليان ثغرات وأخطاء غبية شوية. كلمنا وبنساعدك بتنظيف الفوضى: وبنصلح الكود السيء (Garbage Code)، نسد الثغرات الأمنية، ونحول مخرجات الـ AI الهشة إلى شيء مضمون ويعتمد عليه.' : 'Vibe coding is fast, but often produces "garbage code" with hidden security holes and bad logic. We step in to clean the mess: auditing your AI-generated codebase, fixing code smells, and turning fragile prototypes into production-grade systems.' }}
                             </p>
                         </div>
 
@@ -770,7 +770,7 @@
 
                         <p class="text-xl text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
 
-                            {{ $locale === 'ar' ? 'نستخدم Flutter و Swift لبناء تطبيقات تشعرك بالخفة والسرعة. 60 إطار في الثانية، تجربة مستخدم سلسة، وكود نظيف قابل للصيانة.' : 'We use Flutter and Swift to build apps that feel fluid and fast. 60fps animations, seamless UX, and maintainable clean code.' }}
+                            {{ $locale === 'ar' ? 'نستخدم Flutter و Swift لتطبيقات الجوال على حسب اختيارك بس الأكيد شغلنا بيعطيك تطبيق سريع مع تجربة استخدام مدروسة صح مع كود نظيف قابل للصيانة.' : 'We use Flutter and Swift to build apps that feel fluid and fast. 60fps animations, seamless UX, and maintainable clean code.' }}
 
                         </p>
 
@@ -816,7 +816,7 @@
 
                         <p class="text-xl text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
 
-                            {{ $locale === 'ar' ? 'من الـ Microservices المعقدة إلى الـ Monoliths القوية. نصمم قواعد بيانات و APIs تتحمل ضغط الملايين دون أن تنهار.' : 'From complex Microservices to robust Monoliths. We design databases and APIs that handle millions of requests without breaking.' }}
+                            {{ $locale === 'ar' ? 'من الـ Microservices المعقدة إلى الـ Monoliths القوية. نصمم قواعد بيانات و APIs تتحمل ضغط الملايين وما تعلق ولا تصير بطيئة.' : 'From complex Microservices to robust Monoliths. We design databases and APIs that handle millions of requests without breaking.' }}
 
                         </p>
 
@@ -1047,17 +1047,17 @@
             <div class="space-y-16 md:space-y-24">
                 <p class="text-4xl md:text-6xl lg:text-7xl font-black leading-tight scroll-reveal">
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-700">01.</span><br>
-                    {{ $locale === 'ar' ? 'نحن نرفض الكود العشوائي.' : 'We reject spaghetti code.' }}
+                    {{ $locale === 'ar' ? 'ما نحب الكود العشوائي.' : 'We reject spaghetti code.' }}
                 </p>
 
                 <p class="text-4xl md:text-6xl lg:text-7xl font-black leading-tight scroll-reveal delay-100">
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-700">02.</span><br>
-                    {{ $locale === 'ar' ? 'نحن لا نخمن. نحن نختبر.' : 'We don\'t guess. We test.' }}
+                    {{ $locale === 'ar' ? 'ما نخمن وندرعم. نجرب ونختبر.' : 'We don\'t guess. We test.' }}
                 </p>
 
                 <p class="text-4xl md:text-6xl lg:text-7xl font-black leading-tight scroll-reveal delay-200">
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-700">03.</span><br>
-                    {{ $locale === 'ar' ? 'الأمان هو الأساس، وليس إضافة.' : 'Security is the foundation.' }}
+                    {{ $locale === 'ar' ? 'الأمان شيء أساسي مو شيء ثانوي.' : 'Security is the foundation.' }}
                 </p>
             </div>
         </div>
@@ -1071,7 +1071,7 @@
                     {{ $locale === 'ar' ? 'شفافية كاملة.' : 'No Black Boxes.' }}
                 </h2>
                 <p class="text-xl text-gray-600 dark:text-gray-400">
-                    {{ $locale === 'ar' ? 'تحديثات أسبوعية. التزامات يومية. أنت ترى ما نراه.' : 'Weekly sprints. Daily commits. You see what we see.' }}
+                    {{ $locale === 'ar' ? 'تحديثات أسبوعية. التزامات يومية. بنخليك معنا أول بأول.' : 'Weekly sprints. Daily commits. You see what we see.' }}
                 </p>
             </div>
 
@@ -1081,9 +1081,9 @@
 
                 @php
                     $steps = [
-                        ['title' => $locale === 'ar' ? 'الاستكشاف' : 'Discovery', 'desc' => $locale === 'ar' ? 'لا نبدأ أي سطر كود قبل أن نفهم عملك.' : 'We write zero code until we understand your business.', 'icon' => '🔍'],
-                        ['title' => $locale === 'ar' ? 'البناء' : 'Build', 'desc' => $locale === 'ar' ? 'تطوير بنظام Agile. ديمو كل أسبوع.' : 'Agile development. You get a demo every week.', 'icon' => '⚙️'],
-                        ['title' => $locale === 'ar' ? 'الإطلاق' : 'Launch', 'desc' => $locale === 'ar' ? 'نشر آمن وبدون توقف للخدمة.' : 'Zero-downtime deployment. Production ready.', 'icon' => '🚀'],
+                        ['title' => $locale === 'ar' ? 'نفهم' : 'Discovery', 'desc' => $locale === 'ar' ? 'ما نبدأ أي سطر كود قبل ما نفهم اللي تبيه بالضبط.' : 'We write zero code until we understand your business.', 'icon' => '🔍'],
+                        ['title' => $locale === 'ar' ? 'نبني' : 'Build', 'desc' => $locale === 'ar' ? 'نتبع منهجية Agile بالتطوير. راح تشوف كل أسبوع وش سوينا.' : 'Agile development. You get a demo every week.', 'icon' => '⚙️'],
+                        ['title' => $locale === 'ar' ? 'ننشر' : 'Launch', 'desc' => $locale === 'ar' ? 'راح نطلق منتجك التقني أو نحدث الموجود بدون ما تتعطل خدماتك أو تضيع بياناتك.' : 'Zero-downtime deployment. Production ready.', 'icon' => '🚀'],
                     ];
                 @endphp
 
@@ -1179,10 +1179,10 @@
 
         <div class="container mx-auto max-w-4xl relative z-10 scroll-reveal">
             <h2 class="text-5xl md:text-6xl font-black mb-8 tracking-tight">
-                {{ $locale === 'ar' ? 'جاهز لتوسيع رؤيتك؟' : 'Ready to scale your vision?' }}
+                {{ $locale === 'ar' ? 'جاهز تنطلق معنا وتنفذ رؤيتك؟' : 'Ready to scale your vision?' }}
             </h2>
             <p class="text-xl md:text-2xl text-primary-100 mb-12 max-w-2xl mx-auto leading-relaxed">
-                {{ $locale === 'ar' ? 'انضم إلى الشركات التي تثق بنا في بنيتها التحتية وتطبيقاتها الأكثر أهمية.' : 'Join the companies that trust us with their most critical infrastructure and applications.' }}
+                {{ $locale === 'ar' ? 'انضم إلى الشركات التي تثق بنا في بنيتها التحتية وتطبيقاتها المهمة.' : 'Join the companies that trust us with their most critical infrastructure and applications.' }}
             </p>
             <div class="flex flex-col sm:flex-row gap-6 justify-center">
                 <a href="https://github.com/awssat" target="_blank" class="px-8 py-4 bg-white text-gray-900 rounded-full font-bold text-lg shadow-2xl hover:scale-105 transition-transform flex items-center justify-center gap-2">
