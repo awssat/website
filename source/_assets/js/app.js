@@ -150,211 +150,211 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// // Fix mobile menu state persistence on navigation (especially on mobile browsers with bfcache)
-// window.addEventListener('pageshow', (event) => {
-//   // Reset mobile menu state when page is restored from bfcache or loaded
-//   if (Alpine && Alpine.store) {
-//     // Force close mobile menu on page show
-//     const header = document.querySelector('header[x-data]');
-//     if (header && Alpine.$data && Alpine.$data(header)) {
-//       Alpine.$data(header).mobileMenuOpen = false;
-//     }
-//   }
+// Fix mobile menu state persistence on navigation (especially on mobile browsers with bfcache)
+window.addEventListener('pageshow', (event) => {
+  // Reset mobile menu state when page is restored from bfcache or loaded
+  if (Alpine && Alpine.store) {
+    // Force close mobile menu on page show
+    const header = document.querySelector('header[x-data]');
+    if (header && Alpine.$data && Alpine.$data(header)) {
+      Alpine.$data(header).mobileMenuOpen = false;
+    }
+  }
 
-//   // Force close menu on any page navigation
-//   document.querySelectorAll('[x-data]').forEach(el => {
-//     if (el._x_dataStack && el._x_dataStack[0] && el._x_dataStack[0].mobileMenuOpen !== undefined) {
-//       el._x_dataStack[0].mobileMenuOpen = false;
-//     }
-//   });
-// });
+  // Force close menu on any page navigation
+  document.querySelectorAll('[x-data]').forEach(el => {
+    if (el._x_dataStack && el._x_dataStack[0] && el._x_dataStack[0].mobileMenuOpen !== undefined) {
+      el._x_dataStack[0].mobileMenuOpen = false;
+    }
+  });
+});
 
-// // Reset mobile menu state on page hide (before navigation)
-// window.addEventListener('pagehide', () => {
-//   // Force close menu before page unloads
-//   const menuButtons = document.querySelectorAll('[x-data]');
-//   menuButtons.forEach(el => {
-//     if (el.__x && el.__x.$data.mobileMenuOpen !== undefined) {
-//       el.__x.$data.mobileMenuOpen = false;
-//     }
-//   });
-// });
+// Reset mobile menu state on page hide (before navigation)
+window.addEventListener('pagehide', () => {
+  // Force close menu before page unloads
+  const menuButtons = document.querySelectorAll('[x-data]');
+  menuButtons.forEach(el => {
+    if (el.__x && el.__x.$data.mobileMenuOpen !== undefined) {
+      el.__x.$data.mobileMenuOpen = false;
+    }
+  });
+});
 
 hljs.registerLanguage("php", php);
 hljs.registerLanguage("javascript", javascript);
 hljs.registerLanguage("bash", bash);
 hljs.registerLanguage("diff", bash);
 
-// document.addEventListener("DOMContentLoaded", (event) => {
-//     document.querySelectorAll("pre code").forEach((block) => {
-//         hljs.highlightElement(block);
+document.addEventListener("DOMContentLoaded", (event) => {
+    document.querySelectorAll("pre code").forEach((block) => {
+        hljs.highlightElement(block);
 
-//         if (block.classList.contains("language-diff")) {
-//             block.innerHTML = block.innerHTML
-//                 .split("\n")
-//                 .map((line) => {
-//                     if (line[0] === "+") {
-//                         return '<span class="diff-addition"> ' + line.substring(1) + "</span>";
-//                     } else if (line[0] === "-") {
-//                         return '<span class="diff-subtraction"> ' + line.substring(1) + "</span>";
-//                     }
-//                     return line;
-//                 })
-//                 .join("\n");
-//         }
+        if (block.classList.contains("language-diff")) {
+            block.innerHTML = block.innerHTML
+                .split("\n")
+                .map((line) => {
+                    if (line[0] === "+") {
+                        return '<span class="diff-addition"> ' + line.substring(1) + "</span>";
+                    } else if (line[0] === "-") {
+                        return '<span class="diff-subtraction"> ' + line.substring(1) + "</span>";
+                    }
+                    return line;
+                })
+                .join("\n");
+        }
 
-//         // Add copy-to-clipboard button
-//         const pre = block.parentElement;
-//         if (pre && pre.tagName === 'PRE') {
-//             const copyButton = document.createElement('button');
-//             copyButton.className = 'absolute top-2 right-2 px-3 py-1.5 text-xs font-medium text-gray-300 bg-gray-700 hover:bg-gray-600 rounded-md transition-all duration-200 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 focus:opacity-100 z-20';
-//             copyButton.innerHTML = `
-//                 <svg class="w-4 h-4 copy-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-//                 </svg>
-//                 <span class="copy-text">Copy</span>
-//                 <svg class="w-4 h-4 check-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-//                 </svg>
-//             `;
+        // Add copy-to-clipboard button
+        const pre = block.parentElement;
+        if (pre && pre.tagName === 'PRE') {
+            const copyButton = document.createElement('button');
+            copyButton.className = 'absolute top-2 right-2 px-3 py-1.5 text-xs font-medium text-gray-300 bg-gray-700 hover:bg-gray-600 rounded-md transition-all duration-200 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 focus:opacity-100 z-20';
+            copyButton.innerHTML = `
+                <svg class="w-4 h-4 copy-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                </svg>
+                <span class="copy-text">Copy</span>
+                <svg class="w-4 h-4 check-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+            `;
 
-//             copyButton.addEventListener('click', async () => {
-//                 try {
-//                     await navigator.clipboard.writeText(block.textContent);
-//                     const copyIcon = copyButton.querySelector('.copy-icon');
-//                     const checkIcon = copyButton.querySelector('.check-icon');
-//                     const copyText = copyButton.querySelector('.copy-text');
+            copyButton.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(block.textContent);
+                    const copyIcon = copyButton.querySelector('.copy-icon');
+                    const checkIcon = copyButton.querySelector('.check-icon');
+                    const copyText = copyButton.querySelector('.copy-text');
 
-//                     copyIcon.classList.add('hidden');
-//                     checkIcon.classList.remove('hidden');
-//                     copyText.textContent = 'Copied!';
-//                     copyButton.classList.add('bg-green-600', 'hover:bg-green-500');
+                    copyIcon.classList.add('hidden');
+                    checkIcon.classList.remove('hidden');
+                    copyText.textContent = 'Copied!';
+                    copyButton.classList.add('bg-green-600', 'hover:bg-green-500');
 
-//                     setTimeout(() => {
-//                         copyIcon.classList.remove('hidden');
-//                         checkIcon.classList.add('hidden');
-//                         copyText.textContent = 'Copy';
-//                         copyButton.classList.remove('bg-green-600', 'hover:bg-green-500');
-//                     }, 2000);
-//                 } catch (err) {
-//                     console.error('Failed to copy:', err);
-//                 }
-//             });
+                    setTimeout(() => {
+                        copyIcon.classList.remove('hidden');
+                        checkIcon.classList.add('hidden');
+                        copyText.textContent = 'Copy';
+                        copyButton.classList.remove('bg-green-600', 'hover:bg-green-500');
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy:', err);
+                }
+            });
 
-//             pre.style.position = 'relative';
-//             pre.classList.add('group');
-//             pre.appendChild(copyButton);
-//         }
+            pre.style.position = 'relative';
+            pre.classList.add('group');
+            pre.appendChild(copyButton);
+        }
 
-//         // Add line numbers
-//         const lh = parseInt(window.getComputedStyle(block, null).getPropertyValue("line-height")) || 28; // 1.75rem = 28px
-//         const ln = Math.floor(block.offsetHeight / lh);
+        // Add line numbers
+        const lh = parseInt(window.getComputedStyle(block, null).getPropertyValue("line-height")) || 28; // 1.75rem = 28px
+        const ln = Math.floor(block.offsetHeight / lh);
 
-//         // Skip line numbers for small code blocks (< 5 lines)
-//         if (ln < 5) {
-//             pre.classList.add('no-line-numbers');
-//             block.style.paddingLeft = '1rem';
-//             return;
-//         }
+        // Skip line numbers for small code blocks (< 5 lines)
+        if (ln < 5) {
+            pre.classList.add('no-line-numbers');
+            block.style.paddingLeft = '1rem';
+            return;
+        }
 
-//         // Create line numbers container
-//         const lineNumbersContainer = document.createElement("div");
-//         lineNumbersContainer.className = "line-numbers-container";
+        // Create line numbers container
+        const lineNumbersContainer = document.createElement("div");
+        lineNumbersContainer.className = "line-numbers-container";
 
-//         // Generate individual line numbers
-//         for (let index = 0; index < ln; index++) {
-//             const lineNumber = document.createElement("div");
-//             lineNumber.className = "line-number";
-//             lineNumber.textContent = index + 1;
-//             lineNumbersContainer.appendChild(lineNumber);
-//         }
+        // Generate individual line numbers
+        for (let index = 0; index < ln; index++) {
+            const lineNumber = document.createElement("div");
+            lineNumber.className = "line-number";
+            lineNumber.textContent = index + 1;
+            lineNumbersContainer.appendChild(lineNumber);
+        }
 
-//         // Ensure code has proper padding to not be hidden by line numbers
-//         block.style.paddingLeft = '3.5rem';
+        // Ensure code has proper padding to not be hidden by line numbers
+        block.style.paddingLeft = '3.5rem';
 
-//         pre.appendChild(lineNumbersContainer);
-//     });
-// });
+        pre.appendChild(lineNumbersContainer);
+    });
+});
 
 // // Add IDs to headings for TOC functionality and active section highlighting
-// document.addEventListener('DOMContentLoaded', () => {
-//   // Find all h2, h3, h4 headings in blog posts
-//   const articleBody = document.getElementById('article-body');
-//   if (!articleBody) return;
+document.addEventListener('DOMContentLoaded', () => {
+  // Find all h2, h3, h4 headings in blog posts
+  const articleBody = document.getElementById('article-body');
+  if (!articleBody) return;
 
-//   const headings = articleBody.querySelectorAll('h2, h3, h4');
-//   headings.forEach((heading) => {
-//     // Only add ID if it doesn't already have one
-//     if (!heading.id) {
-//       // Generate slug from text content
-//       const text = heading.textContent.trim();
-//       const slug = text
-//         .toLowerCase()
-//         .replace(/[^a-z0-9\s-]/g, '')
-//         .replace(/\s+/g, '-')
-//         .replace(/-+/g, '-')
-//         .replace(/^-|-$/g, '');
-//       heading.id = slug;
-//     }
-//   });
+  const headings = articleBody.querySelectorAll('h2, h3, h4');
+  headings.forEach((heading) => {
+    // Only add ID if it doesn't already have one
+    if (!heading.id) {
+      // Generate slug from text content
+      const text = heading.textContent.trim();
+      const slug = text
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+      heading.id = slug;
+    }
+  });
 
-//   // Active section highlighting in TOC
-//   const tocLinks = document.querySelectorAll('nav a[href^="#"]');
-//   if (tocLinks.length === 0) return;
+  // Active section highlighting in TOC
+  const tocLinks = document.querySelectorAll('nav a[href^="#"]');
+  if (tocLinks.length === 0) return;
 
-//   const observerOptions = {
-//     rootMargin: '-20% 0px -35% 0px',
-//     threshold: [0, 0.25, 0.5, 0.75, 1]
-//   };
+  const observerOptions = {
+    rootMargin: '-20% 0px -35% 0px',
+    threshold: [0, 0.25, 0.5, 0.75, 1]
+  };
 
-//   const activeSection = new Map();
+  const activeSection = new Map();
 
-//   const observer = new IntersectionObserver((entries) => {
-//     entries.forEach(entry => {
-//       activeSection.set(entry.target, entry.isIntersecting);
-//     });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      activeSection.set(entry.target, entry.isIntersecting);
+    });
 
-//     // Find the first visible heading
-//     let activeId = null;
-//     for (const [target, isIntersecting] of activeSection.entries()) {
-//       if (isIntersecting) {
-//         activeId = target.id;
-//         break;
-//       }
-//     }
+    // Find the first visible heading
+    let activeId = null;
+    for (const [target, isIntersecting] of activeSection.entries()) {
+      if (isIntersecting) {
+        activeId = target.id;
+        break;
+      }
+    }
 
-//     // Update active state in TOC
-//     tocLinks.forEach(link => {
-//       const href = link.getAttribute('href').substring(1);
-//       if (href === activeId) {
-//         link.classList.add('!text-primary-600', 'dark:!text-primary-400', 'font-semibold');
-//       } else {
-//         link.classList.remove('!text-primary-600', 'dark:!text-primary-400', 'font-semibold');
-//       }
-//     });
-//   }, observerOptions);
+    // Update active state in TOC
+    tocLinks.forEach(link => {
+      const href = link.getAttribute('href').substring(1);
+      if (href === activeId) {
+        link.classList.add('!text-primary-600', 'dark:!text-primary-400', 'font-semibold');
+      } else {
+        link.classList.remove('!text-primary-600', 'dark:!text-primary-400', 'font-semibold');
+      }
+    });
+  }, observerOptions);
 
-//   headings.forEach(heading => observer.observe(heading));
+  headings.forEach(heading => observer.observe(heading));
 
-//   // Smooth scroll for TOC links
-//   tocLinks.forEach(link => {
-//     link.addEventListener('click', (e) => {
-//       e.preventDefault();
-//       const targetId = link.getAttribute('href').substring(1);
-//       const targetElement = document.getElementById(targetId);
-//       if (targetElement) {
-//         const offset = 80; // Account for fixed header
-//         const elementPosition = targetElement.getBoundingClientRect().top;
-//         const offsetPosition = elementPosition + window.pageYOffset - offset;
+  // Smooth scroll for TOC links
+  tocLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        const offset = 80; // Account for fixed header
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
 
-//         window.scrollTo({
-//           top: offsetPosition,
-//           behavior: 'smooth'
-//         });
-//       }
-//     });
-//   });
-// });
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+});
 
 // Scroll reveal - Transition-based visibility on scroll
 document.addEventListener('DOMContentLoaded', () => {
