@@ -63,7 +63,7 @@
 
                 {{-- Title --}}
                 <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors leading-tight line-clamp-2">
-                    <a href="{{ $post->getUrl() }}" class="focus:outline-none">
+                    <a href="{{ $page->getPostUrl($post) }}" class="focus:outline-none">
                         <span class="absolute inset-0" aria-hidden="true"></span>
                         {{ $post->title }}
                     </a>
@@ -87,9 +87,9 @@
             </div>
 
             {{-- Read More CTA --}}
-            <div class="flex items-center text-primary-600 dark:text-primary-400 font-semibold text-sm group-hover:translate-x-2 transition-transform duration-300 mt-2">
-                Read Full Article
-                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="flex items-center text-primary-600 dark:text-primary-400 font-semibold text-sm {{ $page->locale === 'ar' ? 'group-hover:-translate-x-2' : 'group-hover:translate-x-2' }} transition-transform duration-300 mt-2">
+                {{ $page->trans('blog.read_article') }}
+                <svg class="w-4 h-4 {{ $page->locale === 'ar' ? 'mr-2 rotate-180' : 'ml-2' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                 </svg>
             </div>

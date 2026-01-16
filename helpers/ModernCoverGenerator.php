@@ -38,8 +38,11 @@ class ModernCoverGenerator
         $this->imageManager = new ImageManager(new Driver());
     }
 
-    public function generate($post, $destination): bool
+    public function generate($post, $destination, ?string $slug = null): bool
     {
+        // Use provided slug or fall back to filename (for backward compatibility)
+        $filename = $slug ?? $post->getFilename();
+
         // Generate a deterministic seed from the post title
         $seed = crc32($post->title . $post->getDate()->format('Y-m-d'));
         mt_srand($seed);
@@ -64,7 +67,7 @@ class ModernCoverGenerator
             }
         }
 
-        $filePath = $coverDir . '/' . $post->getFilename() . '.png';
+        $filePath = $coverDir . '/' . $filename . '.png';
 
         try {
             $pngData = $img->toPng();
@@ -77,7 +80,7 @@ class ModernCoverGenerator
             return true;
         } catch (\Exception $e) {
             // Log error but don't fail the build
-            error_log(sprintf('Cover generation failed for %s: %s', $post->getFilename(), $e->getMessage()));
+            error_log(sprintf('Cover generation failed for %s: %s', $filename, $e->getMessage()));
             return false;
         }
     }

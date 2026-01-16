@@ -4,10 +4,11 @@ site_path: blog
 @extends('_layouts.blog.partial.rss')
 
 @section('entries')
-    @foreach ($posts as $entry)
+    @foreach ($posts_en as $entry)
+        @php $entryUrl = $page->getPostUrl($entry); @endphp
         <entry>
-            <id>{{ $entry->getUrl() }}</id>
-            <link type="text/html" rel="alternate" href="{{ $entry->getUrl() }}" />
+            <id>{{ $entryUrl }}</id>
+            <link type="text/html" rel="alternate" href="{{ $entryUrl }}" />
             <title>{{ $entry->title }}</title>
             <published>{{ date(DATE_ATOM, $entry->date) }}</published>
             <updated>{{ date(DATE_ATOM, $entry->date) }}</updated>
@@ -15,9 +16,7 @@ site_path: blog
                 <name>{{ $entry->author }}</name>
             </author>
             <summary type="html">{{ $entry->getExcerpt() }}...</summary>
-            <content type="html"><![CDATA[
-                @includeFirst(['_posts.' . $entry->getFilename(), '_posts._tmp.' . $entry->getFilename()])
-            ]]></content>
+            <content type="html"><![CDATA[{!! $entry->getContent() !!}]]></content>
         </entry>
     @endforeach
 @endsection

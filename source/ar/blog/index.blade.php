@@ -6,7 +6,7 @@ pagination:
 @extends('_layouts.blog.layout')
 
 @php
-    $page->locale = 'en';
+    $page->locale = 'ar';
 @endphp
 
 @section('title'){{ $page->trans('blog.title') }} — @parent @endsection

@@ -29,15 +29,25 @@ return [
 
     // collections
     'collections' => [
-        // Legacy collection (kept for backward compatibility during migration)
+        // Base posts collection (loads all posts, generates locale-aware paths)
         'posts' => [
             'author' => 'Awssat Devs',
             'sort' => '-date',
-            'path' => '/blog/{filename}',
+            'path' => function ($post) {
+                $filename = $post->getFilename();
+                $isArabic = Str::endsWith($filename, '.ar');
+                $slug = preg_replace('/\.(en|ar)$/', '', $filename);
+                return $isArabic ? "/ar/blog/{$slug}" : "/blog/{$slug}";
+            },
             'extends' => '_layouts.blog.view',
             'section' => 'post_content',
             'tags' => [],
             'map' => function ($post) {
+                $filename = $post->getFilename();
+                $isArabic = Str::endsWith($filename, '.ar');
+                $post->locale = $isArabic ? 'ar' : 'en';
+                $post->alternateLocale = $isArabic ? 'en' : 'ar';
+                $post->slug = preg_replace('/\.(en|ar)$/', '', $filename);
                 $post->tags = collect($post->tags ?? [])->map(function ($tag) {
                     return Str::kebab($tag);
                 })->toArray();
@@ -146,7 +156,9 @@ return [
         return parse_url($page->external_link, PHP_URL_HOST) ?? null;
     },
     'getCoverImage' => function ($page) {
-        return $page->cover_image ?? url('/assets/images/covers/' . $page->getFilename() . '.png');
+        // Use slug (without locale suffix) for cover image path
+        $filename = $page->slug ?? preg_replace('/\.(en|ar)$/', '', $page->getFilename());
+        return $page->cover_image ?? url('/assets/images/covers/' . $filename . '.png');
     },
     'getScreenshot' => function ($page) {
         // If custom screenshot provided, use it
@@ -200,7 +212,9 @@ return [
         return PostStructuredData::generate($page);
     },
     'getTagUrl' => function ($page, $tag) {
-        return  url('/blog/tag/' . $tag);
+        $locale = $page->locale ?? 'en';
+        $path = $locale === 'en' ? '/blog/tag/' : "/{$locale}/blog/tag/";
+        return url($path . $tag);
     },
     'getTagColor' => function ($page, $tag, $noBox = false) {
         if (!in_array($tag, ['tweet', 'video', 'link', 'original'])) {
@@ -353,6 +367,18 @@ return [
 
         // For other locales, prepend the locale
         return url($path ? "/{$locale}/{$path}" : "/{$locale}");
+    },
+
+    // Generate correct post URL based on locale (strips .en/.ar suffix)
+    'getPostUrl' => function ($page, $post) {
+        $locale = $post->locale ?? $page->locale ?? 'en';
+        $slug = $post->slug ?? preg_replace('/\.(en|ar)$/', '', $post->getFilename());
+
+        if ($locale === 'en') {
+            return url("/blog/{$slug}");
+        }
+
+        return url("/{$locale}/blog/{$slug}");
     },
 
     // Get related posts based on shared tags
