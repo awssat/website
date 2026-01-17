@@ -126,7 +126,7 @@
 
                         <div class="pt-2 md:pt-4">
                             <a href="{{ $item->getUrl() }}" class="inline-flex items-center text-base md:text-lg font-semibold text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors group/link">
-                                {{ $locale === 'ar' ? 'عرض المشروع' : 'View Project' }}
+                                {{ $page->locale === 'ar' ? 'عرض المشروع' : 'View Project' }}
                                 <span class="ml-2 transform group-hover/link:translate-x-2 transition-transform duration-300">→</span>
                             </a>
                         </div>
