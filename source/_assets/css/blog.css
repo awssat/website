@@ -62,7 +62,7 @@
 
 /* Heading anchor links */
 .heading-permalink {
-    @apply text-primary-500 opacity-0 transition-opacity ml-2 no-underline;
+    @apply text-primary-500 opacity-0 transition-opacity ms-2 no-underline;
     opacity: 0 !important;
 }
 

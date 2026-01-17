@@ -143,6 +143,20 @@ return [
                 return $item;
             },
         ],
+
+        // English tags
+        'tags_en' => [
+            'path' => '/blog/tag/{filename}',
+            'extends' => '_layouts.blog.tag',
+            'locale' => 'en',
+        ],
+
+        // Arabic tags
+        'tags_ar' => [
+            'path' => '/ar/blog/tag/{filename}',
+            'extends' => '_layouts.blog.tag',
+            'locale' => 'ar',
+        ],
     ],
 
     // helpers
@@ -225,8 +239,12 @@ return [
     },
 
     'postsOfTag' => function ($page, $allPosts) {
-        return $allPosts->filter(function ($post) use ($page) {
-            return $post->tags ? in_array($page->getFilename(), $post->tags, true) : false;
+        $locale = $page->locale ?? 'en';
+        $collectionName = "posts_{$locale}";
+        $localePosts = $page->{$collectionName} ?? collect();
+        
+        return $localePosts->filter(function ($post) use ($page) {
+            return $post->tags ? in_array($page->filename, $post->tags, true) : false;
         });
     },
 

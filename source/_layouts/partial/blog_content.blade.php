@@ -20,7 +20,7 @@
     @php $featured = $items->shift(); @endphp
     <div class="mb-12 md:mb-16 scroll-reveal px-4 sm:px-0">
         <h3 class="text-xs sm:text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4 sm:mb-6 flex items-center">
-            <span class="w-2 h-2 rounded-full bg-accent-500 {{ $page->locale === 'ar' ? 'ml-2' : 'mr-2' }} animate-pulse"></span>
+            <span class="w-2 h-2 rounded-full bg-accent-500 ms-2 animate-pulse"></span>
             {{ $page->trans('blog.featured_article') }}
         </h3>
         <article class="group relative grid md:grid-cols-2 gap-6 md:gap-8 bg-white dark:bg-gray-900 rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-xl hover:shadow-2xl border border-gray-200 dark:border-gray-800 transition-all duration-300 overflow-hidden">
@@ -86,7 +86,7 @@
                 {{-- Read More CTA --}}
                 <div class="flex items-center text-primary-600 dark:text-primary-400 font-bold group-hover:translate-x-2 transition-transform {{ $page->locale === 'ar' ? 'group-hover:-translate-x-2' : 'group-hover:translate-x-2' }}">
                     {{ $page->trans('blog.read_article') }}
-                    <svg class="w-5 h-5 {{ $page->locale === 'ar' ? 'mr-2 rotate-180' : 'ml-2' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    <svg class="w-5 h-5 {{ $page->locale === 'ar' ? 'rotate-180' : '' }} ms-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                 </div>
             </div>
         </article>

@@ -153,7 +153,7 @@
                                 {{ $locale === 'ar' ? 'تأثير شغلنا وصل لنواة Laravel' : 'Direct Impact on Laravel Core' }}
                             </h3>
                             <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-lg">
-                                {{ $locale === 'ar' ? 'لما قابلتنا مشاكل في الإطار، ما قلنا خل ندور حل ثاني. حليناها! وشاركنا تعديلاتنا مع الكل. 6 تحديثات في قلب الإطار يستخدمها الملايين.' : 'When we hit the framework\'s limits, we didn\'t work around them. We fixed them, and shipped the code to everyone. 6 core PRs used by millions.' }}
+                                {{ $locale === 'ar' ? 'لما قابلتنا مشاكل في الإطار، ما دورنا حل ثاني لكن حليناها! وشاركنا تعديلاتنا مع الكل. 6 تحديثات في قلب الإطار يستخدمها الملايين.' : 'When we hit the framework\'s limits, we don\'t work around them. We fix them, and ship the code to everyone. We\'ve contributed 6 core PRs (fixes) to Laravel used by millions.' }}
                             </p>
                         </div>
 
@@ -179,7 +179,7 @@
                     <div class="relative z-10">
                         <h3 class="text-xl font-bold text-gray-400 mb-2 uppercase tracking-widest">{{ $locale === 'ar' ? 'المجتمع' : 'Community' }}</h3>
                         <div class="flex items-baseline gap-2 mb-8">
-                            <span class="text-6xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-500">2.2k</span>
+                            <span class="text-6xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-500">2.2 {{ $locale === 'ar' ? 'ألف' : 'k' }}</span>
                             <span class="text-xl text-gray-400 font-bold">★</span>
                         </div>
                         <p class="text-gray-400 text-sm leading-relaxed mb-8">
@@ -189,11 +189,11 @@
 
                     <div class="relative z-10 grid grid-cols-2 gap-4">
                         <div class="p-3 bg-white/5 rounded-xl border border-white/10 text-center">
-                            <div class="text-xs text-gray-400 mb-1">Downloads</div>
+                            <div class="text-xs text-gray-400 mb-1">{{ $locale === 'ar' ? 'التنزيلات' : 'Downloads' }}</div>
                             <div class="font-bold font-mono">500k+</div>
                         </div>
                         <div class="p-3 bg-white/5 rounded-xl border border-white/10 text-center">
-                            <div class="text-xs text-gray-400 mb-1">Forks</div>
+                            <div class="text-xs text-gray-400 mb-1">{{ $locale === 'ar' ? 'التفريعات' : 'Forks' }}</div>
                             <div class="font-bold font-mono">150+</div>
                         </div>
                     </div>
@@ -217,7 +217,7 @@
                                 {{ $locale === 'ar' ? 'نصحح ونضبط لك أكواد الذكاء الاصطناعي' : 'AI Code Cleanup & Verification' }}
                             </h3>
                             <p class="text-lg text-gray-400 leading-relaxed max-w-2xl text-balance">
-                                {{ $locale === 'ar' ? 'الحين يمدي أي أحد يصير مبرمج "Vibe Coding"، لكن الكود غالبا مليان ثغرات وأخطاء غبية شوية. كلمنا وبنساعدك بتنظيف الفوضى: وبنصلح الكود السيء (Garbage Code)، نسد الثغرات الأمنية، ونحول مخرجات الـ AI الهشة إلى شيء مضمون ويعتمد عليه.' : 'Vibe coding is fast, but often produces "garbage code" with hidden security holes and bad logic. We step in to clean the mess: auditing your AI-generated codebase, fixing code smells, and turning fragile prototypes into production-grade systems.' }}
+                                {{ $locale === 'ar' ? 'الحين يمدي أي أحد يصير مبرمج ذكاء اصطناعي "Vibe Coding"، لكن الكود غالبا مليان ثغرات وأشياء ما لها معنى. تواصل معنا وبنساعدك بتنظيف الفوضى: وبنصلح الكود السيء (Garbage Code)، نسد الثغرات الأمنية، ونحول مخرجات الـ AI الهشة إلى شيء مضمون ويعتمد عليه.' : 'Vibe coding is fast, but often produces "garbage code" with hidden security holes and bad logic. We step in to clean the mess: auditing your AI-generated codebase, fixing code smells, and turning fragile prototypes into production-grade systems.' }}
                             </p>
                         </div>
 
@@ -1008,7 +1008,7 @@
 
                         <p class="text-xl text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
 
-                            {{ $locale === 'ar' ? 'نحن متخصصون في بناء منصات تتوافق بدقة مع معايير هيئة الحكومة الرقمية (DGA) ولوائح البيانات المحلية.' : 'We specialize in building platforms that strictly adhere to Digital Government Authority (DGA) standards and local data regulations.' }}
+                            {{ $locale === 'ar' ? 'متخصصين في بناء منصات تتوافق بدقة مع معايير هيئة الحكومة الرقمية (DGA) ولوائح البيانات المحلية.' : 'We specialize in building platforms that strictly adhere to Digital Government Authority (DGA) standards and local data regulations.' }}
 
                         </p>
 
@@ -1057,7 +1057,7 @@
 
                 <p class="text-4xl md:text-6xl lg:text-7xl font-black leading-tight scroll-reveal delay-100">
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-700">02.</span><br>
-                    {{ $locale === 'ar' ? 'ما نخمن وندرعم. نجرب ونختبر.' : 'We don\'t guess. We test.' }}
+                    {{ $locale === 'ar' ? 'ما نخمن وندرعم لكن نجرب ونختبر.' : 'We don\'t guess. We test.' }}
                 </p>
 
                 <p class="text-4xl md:text-6xl lg:text-7xl font-black leading-tight scroll-reveal delay-200">
@@ -1076,7 +1076,7 @@
                     {{ $locale === 'ar' ? 'شفافية كاملة.' : 'No Black Boxes.' }}
                 </h2>
                 <p class="text-xl text-gray-600 dark:text-gray-400">
-                    {{ $locale === 'ar' ? 'تحديثات أسبوعية. التزامات يومية. بنخليك معنا أول بأول.' : 'Weekly sprints. Daily commits. You see what we see.' }}
+                    {{ $locale === 'ar' ? 'تحديثات أسبوعية والتزامات يومية بتخليك معنا أول بأول.' : 'Weekly sprints. Daily commits. You see what we see.' }}
                 </p>
             </div>
 
@@ -1086,9 +1086,9 @@
 
                 @php
                     $steps = [
-                        ['title' => $locale === 'ar' ? 'نفهم' : 'Discovery', 'desc' => $locale === 'ar' ? 'ما نبدأ أي سطر كود قبل ما نفهم اللي تبيه بالضبط.' : 'We write zero code until we understand your business.', 'icon' => '🔍'],
+                        ['title' => $locale === 'ar' ? 'نفهم' : 'Discovery', 'desc' => $locale === 'ar' ? 'ما نبدأ أي سطر كود قبل ما نفهم اللي تحتاجه بالضبط.' : 'We write zero code until we understand your business.', 'icon' => '🔍'],
                         ['title' => $locale === 'ar' ? 'نبني' : 'Build', 'desc' => $locale === 'ar' ? 'نتبع منهجية Agile بالتطوير. راح تشوف كل أسبوع وش سوينا.' : 'Agile development. You get a demo every week.', 'icon' => '⚙️'],
-                        ['title' => $locale === 'ar' ? 'ننشر' : 'Launch', 'desc' => $locale === 'ar' ? 'راح نطلق منتجك التقني أو نحدث الموجود بدون ما تتعطل خدماتك أو تضيع بياناتك.' : 'Zero-downtime deployment. Production ready.', 'icon' => '🚀'],
+                        ['title' => $locale === 'ar' ? 'ننشر ونتأكد' : 'Launch', 'desc' => $locale === 'ar' ? 'راح نطلق منتجك التقني أو نحدث الموجود بدون ما تتعطل خدماتك أو تضيع بياناتك.' : 'Zero-downtime deployment. Production ready.', 'icon' => '🚀'],
                     ];
                 @endphp
 
@@ -1187,7 +1187,7 @@
                 {{ $locale === 'ar' ? 'جاهز تنطلق معنا وتنفذ رؤيتك؟' : 'Ready to scale your vision?' }}
             </h2>
             <p class="text-xl md:text-2xl text-primary-100 mb-12 max-w-2xl mx-auto leading-relaxed">
-                {{ $locale === 'ar' ? 'انضم إلى الشركات التي تثق بنا في بنيتها التحتية وتطبيقاتها المهمة.' : 'Join the companies that trust us with their most critical infrastructure and applications.' }}
+                {{ $locale === 'ar' ? 'نهتم بخصوصيتك حتى لو لا سمح الله ما مسكنا شغلك بعد النقاش تأكد أن أفكارك في أمان.' : 'We care about your privacy. Even if we don\'t take your work after the discussion, rest assured your ideas are safe.' }}
             </p>
             <div class="flex flex-col sm:flex-row gap-6 justify-center">
                 <a href="https://github.com/awssat" target="_blank" class="px-8 py-4 bg-white text-gray-900 rounded-full font-bold text-lg shadow-2xl hover:scale-105 transition-transform flex items-center justify-center gap-2">

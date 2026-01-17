@@ -53,7 +53,7 @@
                 {{-- Tags Section - Enhanced with Floating Effect --}}
                 <nav role="navigation" class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-xl border border-gray-200 dark:border-gray-800 scroll-reveal delay-100 hover:shadow-2xl transition-shadow duration-300">
                     <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-5 uppercase tracking-wider flex items-center">
-                        <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-primary-100 dark:bg-primary-900/30 {{ $page->locale === 'ar' ? 'ml-3' : 'mr-3' }}">
+                        <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-primary-100 dark:bg-primary-900/30 ms-3">
                             <svg class="w-4 h-4 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
                             </svg>
@@ -61,7 +61,10 @@
                         {{ $page->trans('blog.explore_topics') }}
                     </h3>
                     <div class="flex flex-col gap-2">
-                        @foreach ($tags as $tag)
+                        @php
+                            $tagCollection = $page->locale === 'ar' ? $tags_ar : $tags_en;
+                        @endphp
+                        @foreach ($tagCollection as $tag)
                         <a href="{{ $page->getTagUrl($tag->filename) }}"
                            title="Browse {{ $tag->title }}"
                            class="group flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200

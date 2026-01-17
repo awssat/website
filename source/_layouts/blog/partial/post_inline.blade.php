@@ -89,7 +89,7 @@
             {{-- Read More CTA --}}
             <div class="flex items-center text-primary-600 dark:text-primary-400 font-semibold text-sm {{ $page->locale === 'ar' ? 'group-hover:-translate-x-2' : 'group-hover:translate-x-2' }} transition-transform duration-300 mt-2">
                 {{ $page->trans('blog.read_article') }}
-                <svg class="w-4 h-4 {{ $page->locale === 'ar' ? 'mr-2 rotate-180' : 'ml-2' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-4 h-4 {{ $page->locale === 'ar' ? 'rotate-180' : '' }} ms-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                 </svg>
             </div>
