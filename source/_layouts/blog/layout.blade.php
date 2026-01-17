@@ -29,6 +29,7 @@
                             </div>
                             <div>
                                 <span class="font-bold text-xl text-gray-900 dark:text-white block">{{ $page->trans('home.title') }}</span>
+                                <span class="block text-sm font-semibold text-primary-600 dark:text-primary-400 text-center mt-0.5" dir="rtl">أوسط</span>
                                 <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">{{ $page->trans('blog.engineering_blog') }}</span>
                             </div>
                         </div>
